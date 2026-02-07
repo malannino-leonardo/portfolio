@@ -1,0 +1,316 @@
+// thoda zada ts ho gya idhar
+export enum SkillNames {
+  JS = "js",
+  TS = "ts",
+  HTML = "html",
+  CSS = "css",
+  REACT = "react",
+  VUE = "vue",
+  NEXTJS = "nextjs",
+  TAILWIND = "tailwind",
+  NODEJS = "nodejs",
+  POSTGRES = "postgres",
+  GIT = "git",
+  GITHUB = "github",
+  NPM = "npm",
+  DOCKER = "docker",
+  GCP = "gcp",
+  VERCEL = "vercel",
+  PYTHON = "python",
+  PHP = "php",
+  MYSQL = "mysql",
+  CPP = "cpp",
+  JSON = "json",
+  NETLIFY = "netlify",
+  VSCODE = "vscode",
+  SUPABASE = "supabase",
+  APACHE = "apache",
+}
+export type Skill = {
+  id: number;
+  name: string;
+  label: string;
+  shortDescription: string;
+  color: string;
+  icon: string;
+};
+export const SKILLS: Record<SkillNames, Skill> = {
+  [SkillNames.JS]: {
+    id: 1,
+    name: "js",
+    label: "JavaScript",
+    shortDescription: "making the web go brrr since '95, on god! 💯🚀",
+    color: "#f0db4f",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  },
+  [SkillNames.TS]: {
+    id: 2,
+    name: "ts",
+    label: "TypeScript",
+    shortDescription:
+      "JS with a glow up, catching bugs before they catch you! 💯🔒",
+    color: "#007acc",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  },
+  [SkillNames.HTML]: {
+    id: 3,
+    name: "html",
+    label: "HTML",
+    shortDescription: "the OG skeleton of the web, still iconic fr fr! 💀🔥",
+    color: "#e34c26",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  },
+  [SkillNames.CSS]: {
+    id: 4,
+    name: "css",
+    label: "CSS",
+    shortDescription: "giving your site that main character energy, no cap! 💁‍♂️🔥",
+    color: "#563d7c",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  },
+  [SkillNames.REACT]: {
+    id: 5,
+    name: "react",
+    label: "React",
+    shortDescription: "components everywhere, state management go crazy! ⚛️🔥",
+    color: "#61dafb",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  },
+  [SkillNames.VUE]: {
+    id: 6,
+    name: "vue",
+    label: "Vue",
+    shortDescription:
+      "frontend vibes so smooth, it’s actually illegal! 🟢😌",
+    color: "#41b883",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+  },
+  [SkillNames.NEXTJS]: {
+    id: 7,
+    name: "nextjs",
+    label: "Next.js",
+    shortDescription:
+      "SSR, ISR, whatever R you want, it’s just better! 👑📜",
+    color: "#fff",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  },
+  [SkillNames.TAILWIND]: {
+    id: 8,
+    name: "tailwind",
+    label: "Tailwind",
+    shortDescription: "styling at the speed of light, CSS who? 🌪️🔥",
+    color: "#38bdf8",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+  },
+  [SkillNames.NODEJS]: {
+    id: 9,
+    name: "nodejs",
+    label: "Node.js",
+    shortDescription: "taking JS to the server, we out here! 🔙🔚",
+    color: "#6cc24a",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  },
+  [SkillNames.POSTGRES]: {
+    id: 10,
+    name: "postgres",
+    label: "PostgreSQL",
+    shortDescription: "the absolute unit of databases, handling data like a pro! 💅🐘",
+    color: "#336791",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  },
+  [SkillNames.GIT]: {
+    id: 11,
+    name: "git",
+    label: "Git",
+    shortDescription: "undo button for your mistakes, saves lives daily! 🕵️‍♂️🔄",
+    color: "#f1502f",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  },
+  [SkillNames.GITHUB]: {
+    id: 12,
+    name: "github",
+    label: "GitHub",
+    shortDescription: "where the whole squad collabs, open source or bust! 🐙📉",
+    color: "#000000",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  },
+  [SkillNames.NPM]: {
+    id: 13,
+    name: "npm",
+    label: "NPM",
+    shortDescription: "node_modules folder looking thicc, dependencies for days! 📦💯",
+    color: "#fff",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
+  },
+  [SkillNames.DOCKER]: {
+    id: 14,
+    name: "docker",
+    label: "Docker",
+    shortDescription: "works on my machine, and now it works on yours too! 🐳🚢",
+    color: "#2496ed",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  },
+  [SkillNames.GCP]: {
+    id: 15,
+    name: "gcp",
+    label: "Google Cloud",
+    shortDescription:
+      "Google-tier infrastructure for your tiny project, we love to see it! ☁️✨",
+    color: "#4285f4",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+  },
+  [SkillNames.VERCEL]: {
+    id: 16,
+    name: "vercel",
+    label: "Vercel",
+    shortDescription:
+      "git push and you're live, literally magic fr! 🚀🌿",
+    color: "#6cc24a",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+  },
+  [SkillNames.PYTHON]: {
+    id: 17,
+    name: "python",
+    label: "Python",
+    shortDescription: "snakes and logic, data science go crazy! 🐍📊",
+    color: "#3776AB",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  [SkillNames.PHP]: {
+    id: 18,
+    name: "php",
+    label: "PHP",
+    shortDescription: "running 80% of the web while people hate on it, iconic! 🐘🔥",
+    color: "#777BB4",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+  },
+  [SkillNames.MYSQL]: {
+    id: 19,
+    name: "mysql",
+    label: "MySQL",
+    shortDescription: "the classic choice for keeping it real with your data! 🐬💾",
+    color: "#4479A1",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  },
+  [SkillNames.CPP]: {
+    id: 20,
+    name: "cpp",
+    label: "C++",
+    shortDescription: "high performance, low-level, high stress - let's get it! 🏎️💻",
+    color: "#00599C",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  },
+  [SkillNames.JSON]: {
+    id: 21,
+    name: "json",
+    label: "JSON",
+    shortDescription: "curly braces and colons, the only way to vibe with data! 📋✨",
+    color: "#000000",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg",
+  },
+  [SkillNames.NETLIFY]: {
+    id: 22,
+    name: "netlify",
+    label: "Netlify",
+    shortDescription: "hosting so fast it'll make your head spin, period! ⚡🚀",
+    color: "#00C7B7",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg",
+  },
+  [SkillNames.VSCODE]: {
+    id: 23,
+    name: "vscode",
+    label: "VS Code",
+    shortDescription: "my second home, literally just an Electron app but we stan! 💻✨",
+    color: "#007ACC",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+  },
+  [SkillNames.SUPABASE]: {
+    id: 24,
+    name: "supabase",
+    label: "Supabase",
+    shortDescription: "Firebase but with actual SQL, we are so back! 🔥🦾",
+    color: "#3ECF8E",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+  },
+  [SkillNames.APACHE]: {
+    id: 25,
+    name: "apache",
+    label: "Apache",
+    shortDescription: "the ancient guardian of the web, still holding the fort! 🪶👑",
+    color: "#D22128",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg",
+  },
+};
+
+export type Experience = {
+  id: number;
+  startDate: string;
+  endDate: string;
+  title: string;
+  company: string;
+  description: string[];
+  skills: SkillNames[];
+};
+
+export const EXPERIENCE: Experience[] = [
+  {
+    id: 1,
+    startDate: "Dec 2024",
+    endDate: "Present",
+    title: "Full Stack Developer",
+    company: "OmniNexus Sdn Bhd",
+    description: [
+      "Built a custom image editor from scratch, cutting $4.8k/year in SaaS costs.",
+      "Architected async job queues processing 1k+ AI tasks daily with bulletproof reliability.",
+      "Optimized media delivery pipeline, slashing asset load times by 40%.",
+      "Shipped high-impact features end-to-end from requirements to production.",
+    ],
+    skills: [
+      SkillNames.NEXTJS,
+      SkillNames.TS,
+      SkillNames.REACT,
+      SkillNames.NODEJS,
+      SkillNames.POSTGRES,
+      SkillNames.DOCKER,
+      SkillNames.GCP,
+    ],
+  },
+  {
+    id: 2,
+    startDate: "Apr 2022",
+    endDate: "Dec 2024",
+    title: "Freelance Full Stack Developer",
+    company: "Self-employed",
+    description: [
+      "Transformed chaotic Excel sheets into polished internal tools for various clients.",
+      "Shipped dashboards and custom CMS platforms tailored to each client's workflow.",
+      "Automated repetitive processes, improving efficiency and reducing human error.",
+      "Focused on clean, maintainable code and interfaces that users actually enjoy.",
+    ],
+    skills: [
+      SkillNames.REACT,
+      SkillNames.VUE,
+      SkillNames.NODEJS,
+      SkillNames.POSTGRES,
+      SkillNames.TAILWIND,
+    ],
+  },
+];
+
+export const themeDisclaimers = {
+  light: [
+    "Warning: Light mode emits a gazillion lumens of pure radiance!",
+    "Caution: Light mode ahead! Please don't try this at home.",
+    "Only trained professionals can handle this much brightness. Proceed with sunglasses!",
+    "Brace yourself! Light mode is about to make everything shine brighter than your future.",
+    "Flipping the switch to light mode... Are you sure your eyes are ready for this?",
+  ],
+  dark: [
+    "Light mode? I thought you went insane... but welcome back to the dark side!",
+    "Switching to dark mode... How was life on the bright side?",
+    "Dark mode activated! Thanks you from the bottom of my heart, and my eyes too.",
+    "Welcome back to the shadows. How was life out there in the light?",
+    "Dark mode on! Finally, someone who understands true sophistication.",
+  ],
+};
+
