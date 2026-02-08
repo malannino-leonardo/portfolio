@@ -15,9 +15,16 @@ export default function FunnyThemeToggle({
   className?: string;
 }) {
   const { setTheme, theme } = useTheme();
-  const [counter, setCounter] = React.useState({ dark: 0, light: 0 });
+  const [indices, setIndices] = React.useState({ dark: 0, light: 0 });
   const { toast } = useToast();
   const ref = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    setIndices({
+      dark: Math.floor(Math.random() * themeDisclaimers.dark.length),
+      light: Math.floor(Math.random() * themeDisclaimers.light.length),
+    });
+  }, []);
 
   const toggleTheme = async (newTheme: string, event?: React.MouseEvent) => {
     // @ts-ignore
@@ -60,14 +67,16 @@ export default function FunnyThemeToggle({
   };
 
   const goLight = (e: React.MouseEvent) => {
-    setCounter({ ...counter, light: counter.light + 1 });
+    const nextDark = Math.floor(Math.random() * themeDisclaimers.dark.length);
+    setIndices((prev) => ({ ...prev, dark: nextDark }));
     toggleTheme("light", e);
   };
 
   const goDark = (e: React.MouseEvent) => {
-    const description =
-      themeDisclaimers.dark[counter.dark % themeDisclaimers.dark.length];
-    setCounter({ ...counter, dark: counter.dark + 1 });
+    const description = themeDisclaimers.dark[indices.dark];
+    const nextLight = Math.floor(Math.random() * themeDisclaimers.light.length);
+    setIndices((prev) => ({ ...prev, light: nextLight }));
+
     toast({
       description: description,
       className:
@@ -105,7 +114,7 @@ export default function FunnyThemeToggle({
           <PopoverContent className="z-[99999] flex flex-col items-center gap-2">
             {/* <p className="text-sm">these stunts are done by professional only</p> */}
             <p className="text-sm text-center">
-              {themeDisclaimers.light[counter.light]}
+              {themeDisclaimers.light[indices.light]}
             </p>
             <Button onClick={goLight}>Go Light</Button>
           </PopoverContent>
