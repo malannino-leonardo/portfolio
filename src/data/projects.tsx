@@ -372,55 +372,78 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Hyrise Studio is a powerful database management tool for Hyrise, enabling visualization, query execution, and performance analysis.
+            Hyrise Studio is a freelancer platform that connects businesses with top-tier freelance talent for web development, design, and digital marketing projects. 
+            With a focus on quality and reliability, Hyrise Studio offers a seamless experience for both clients and freelancers, ensuring successful project outcomes and fostering long-term collaborations.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-4">
-            As soon as you land, boom! You&apos;re greeted with the freshest
-            coupons and top-tier deals that&apos;ll make your wallet happy.
+            The landing page of Hyrise Studio welcomes you with a sleek, modern design that immediately conveys professionalism and creativity.
+             A bold headline captures your attention, while a concise description highlights the platform&apos;s value proposition. 
+             The call-to-action button invites you to explore the services offered, making it easy for potential clients to get started on their projects.
           </p>
-          <SlideShow images={[`${BASE_PATH}/hyrise-studio/landing.png`]} />
-          <TypographyH3 className="my-4 ">Stores</TypographyH3>
-          <p className="font-mono mb-2">
-            Dive into a comprehensive list of stores, each packed with exclusive
-            deals and discounts. It&apos;s like having a VIP pass to every sale
-            in town.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/couponluxury/stores.png`,
-              `${BASE_PATH}/couponluxury/store.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Categories</TypographyH3>
+          <SlideShow images={[`${BASE_PATH}/hyrise-studio/home.png`]} />
 
+          <TypographyH3 className="my-4 ">Services</TypographyH3>
           <p className="font-mono mb-2">
-            Whatever you&apos;re into—fashion, tech, food—you&apos;ll find it
-            neatly organized here. No more endless scrolling; just pick a
-            category and get the best offers instantly.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/couponluxury/categories.png`]} />
-          <TypographyH3 className="my-4 mt-8">Custom CMS </TypographyH3>
-          <p className="font-mono mb-2">
-            Powered by Vue.js, this bad boy allows us to keep the content
-            dynamic and up-to-date. From flash sales to limited-time offers, my
-            CMS ensures everything&apos;s live and relevant.
+            Dive into a comprehensive list of services, each designed to help you achieve your project goals efficiently and effectively. 
+            From web development to digital marketing, Hyrise Studio offers a wide range of solutions tailored to your needs.
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/couponluxury/cms-1.png`,
-              `${BASE_PATH}/couponluxury/cms-2.png`,
+              `${BASE_PATH}/hyrise-studio/services.png`,
             ]}
           />
-          <p className="font-mono mb-2 mt-5">
-            Plus, I&apos;ve sprinkled in some extra magic like personalized
-            deal recommendations, user-friendly search features, and a sleek,
-            responsive design that works like a charm on any device.
-          </p>
+
+          <TypographyH3 className="my-4 ">Freelancers</TypographyH3>
           <p className="font-mono mb-2">
-            CouponLuxury isn&apos;t just a website; it&apos;s your personal deal-hunting
-            assistant, ensuring you never miss out on a bargain!
+            Explore the talented freelancers available on Hyrise Studio, each bringing unique skills and expertise to help you achieve your project goals.
           </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/hyrise-studio/freelancers.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 ">Projects</TypographyH3>
+          <p className="font-mono mb-2">
+            Discover the diverse range of projects undertaken by Hyrise Studio, showcasing their expertise and commitment to delivering high-quality solutions.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/hyrise-studio/projects.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 ">Contact Us</TypographyH3>
+          <p className="font-mono mb-2">
+            Get in touch with Hyrise Studio for any inquiries, project proposals, or collaborations. 
+            Our team is ready to assist you and provide the information you need.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/hyrise-studio/contact-us.png`,
+            ]}
+          />
+          
+          <TypographyH3 className="my-4 ">Account Dashboard</TypographyH3>
+          <p className="font-mono mb-2">
+            Explore the account dashboard of Hyrise Studio, where users can manage their projects, track progress, and access important information all in one place.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/hyrise-studio/account-dashboard.png`,
+            ]}
+          />
+          
+          <TypographyH3 className="my-4 ">Admin Dashboard</TypographyH3>
+          <p className="font-mono mb-2">
+            Explore the admin dashboard of Hyrise Studio, where administrators can manage users, monitor project progress, and access important analytics all in one place.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/hyrise-studio/admin-dashboard.png`,
+            ]}
+          />
         </div>
       );
     },
