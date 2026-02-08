@@ -38,7 +38,7 @@ const config = {
     twitter: "https://x.com/Cronixey",
     linkedin: "https://www.linkedin.com/in/leonardo-malannino-0b5160341/",
     instagram: "https://www.instagram.com/leonardo.malannino/",
-    facebook: "",
+    facebook: "https://www.facebook.com/leonardo.malannino",
     github: "https://github.com/malannino-leonardo",
   },
 };

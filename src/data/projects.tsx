@@ -251,8 +251,8 @@ const projects: Project[] = [
         PROJECT_SKILLS.supabase,
       ],
     },
-    live: "https://rubiks-cube-simulator.example.com/",
-    github: "https://github.com/Naresh-Khatri/Rubiks-Cube-Simulator",
+    live: "https://giansob.itch.io/rubiks-cube-simulator",
+    github: "https://github.com/soban-gianluca/Rubik-Simulator",
     get content() {
       return (
         <div>
@@ -260,66 +260,85 @@ const projects: Project[] = [
             Rubiks Cube Simulator: Solve, learn, and compete!
           </TypographyP>
           <TypographyP className="font-mono ">
-            Practice solving the Rubiks Cube, learn algorithms, and compete with others. Track your progress and improve your speed.
+            Practice solving the Rubiks Cube, learn algorithms, and compete with others globally. Track your progress and improve your speed.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <TypographyH3 className="my-4 mt-8">Cube Solver</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Menus</TypographyH3>
           <p className="font-mono mb-2">
-            Use the interactive solver to practice and learn new algorithms.
+            Explore the main menu of the Rubiks Cube Simulator, where you can access different game modes, settings, controls and your progress.
           </p>
           <SlideShow
             images={[
               `${BASE_PATH}/rubiks-cube-simulator/main-menu.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/statistics.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/controls.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/achievements.png`,
+            ]}
+          />
+          <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
+          <p className="font-mono mb-2">
+            Whether you&apos;re a beginner or a speedcuber, there&apos;s a mode for you. 
+            <ul className="list-disc ml-6">
+              <li>
+                <strong>Free play:</strong> Solve at your own pace without any time constraints.
+              </li>
+              <li>
+                <strong>Easy Mode:</strong> 5 moves scramble, perfect for beginners to practice basic algorithms and get familiar with the cube.
+              </li>
+              <li>
+                <strong>Medium Mode:</strong> 10 moves scramble, suitable for intermediate solvers to practice more complex algorithms.
+              </li>
+              <li>
+                <strong>Hard Mode:</strong> Completely random scramble, designed for advanced solvers to challenge their skills and improve their speed.
+              </li>
+              <li>
+                <strong>Limited time Mode:</strong> Solve the cube within a set time limit, adding an extra layer of challenge for speedcubers.
+              </li>
+              <li>
+                <strong>Limited moves Mode:</strong> Solve the cube with a restricted number of moves, testing your efficiency and strategy.
+              </li>
+              <li>
+                <strong>Daily Mode:</strong> Solve a new random scramble each day, providing a fresh challenge and helping you improve your skills consistently.
+              </li>
+            </ul>
+          </p>
+          <SlideShow
+            images={[
               `${BASE_PATH}/rubiks-cube-simulator/game-modes.png`,
             ]}
           />
-          <TypographyH3 className="my-4 mt-8">Ducklets</TypographyH3>
-          <p className="font-mono mb-2">
-            Collaborate in real-time with others in a multiplayer coding
-            environment, just like CodePen but with a social twist.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/codingducks/ducklets.png`,
-              `${BASE_PATH}/codingducks/ducklet1.png`,
-              `${BASE_PATH}/codingducks/ducklet2.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">UI Battles </TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Visual hints</TypographyH3>
 
           <p className="font-mono mb-2">
-            Challenge yourself to create UI components with HTML/CSS/JS, and get
-            instant feedback with an automated similarity scoring.
+            Get visual hints to learn and master algorithms. 
+            The simulator provides step-by-step guidance, highlighting the pieces to move and the sequence of moves needed to solve the cube.
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/codingducks/css-battles.png`,
-              `${BASE_PATH}/codingducks/css-battle.png`,
-              `${BASE_PATH}/codingducks/css-battle2.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/hint-animation.png`,
             ]}
           />
-          <TypographyH3 className="my-4 mt-8">Contests </TypographyH3>
-          <p className="font-mono mb-2">
-            Organize or participate in coding competitions. Successfully used to
-            host three contests during college.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/codingducks/contests.png`]} />
-          <TypographyH3 className="my-4 mt-8">Playground </TypographyH3>
-          <p className="font-mono mb-2">
-            Test and execute your code instantly in my versatile online code
-            runner.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/codingducks/playground.png`]} />
-          <TypographyH3 className="my-4 mt-8">Users</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Statistics</TypographyH3>
 
           <p className="font-mono mb-2">
-            Track your progress, earn badges, and climb the rankings with
-            detailed user profiles and activity tracking.
+            
+            <ul className="list-disc ml-6">
+              <li>
+                <strong>Personal records:</strong> Track your best times and moves for each game mode, helping you monitor your progress and set new goals.
+              </li>
+              <li>
+                <strong>Global leaderboard:</strong> Compete with players worldwide and see how you rank against other cubers in different game modes.
+              </li>
+              <li>
+                <strong>Daily leaderboard:</strong> Compete with players on the same daily scramble and see how you stack up against others who solved the same challenge.
+              </li>
+            </ul>
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/codingducks/users.png`,
-              `${BASE_PATH}/codingducks/user.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/personal-records.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/global-leaderboard.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/daily-leaderboard.png`,
             ]}
           />
         </div>
@@ -328,23 +347,24 @@ const projects: Project[] = [
   },
   {
     id: "hyrise-studio",
-    category: "Database tool",
+    category: "Freelancer Platform",
     title: "Hyrise Studio",
     src: "/assets/projects-screenshots/hyrise-studio/landing.png",
-    screenshots: ["1.png", "2.png", "3.png", "4.png", "5.png"],
-    live: "https://hyrise-studio.example.com/",
+    screenshots: ["landing.png"],
+    live: "https://hyrise.it/studio",
     skills: {
       frontend: [
-        PROJECT_SKILLS.js,
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
         PROJECT_SKILLS.next,
-        PROJECT_SKILLS.chakra,
-        PROJECT_SKILLS.vue,
+        PROJECT_SKILLS.js,
+        PROJECT_SKILLS.ts,
       ],
       backend: [
         PROJECT_SKILLS.node,
-        PROJECT_SKILLS.express,
         PROJECT_SKILLS.prisma,
         PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.supabase,
         PROJECT_SKILLS.docker,
       ],
     },
@@ -401,15 +421,6 @@ const projects: Project[] = [
             CouponLuxury isn&apos;t just a website; it&apos;s your personal deal-hunting
             assistant, ensuring you never miss out on a bargain!
           </p>
-          {/* <TypographyP className="my-4 mt-8">
-          <strong>Misc:</strong>
-          Hosted not one, not two, but THREE coding contests (Codemacha) during
-          college. Safe to say, Coding Ducks passed the vibe check.
-        </TypographyP>
-        <TypographyP className="my-4 mt-8">
-          <strong>Target Audience:</strong>
-          For all the novice coders out there ready to make their mark.
-        </TypographyP> */}
         </div>
       );
     },
