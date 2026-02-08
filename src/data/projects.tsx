@@ -236,52 +236,41 @@ export type Project = {
 };
 const projects: Project[] = [
   {
-    id: "codingducks",
-    category: "Coding platform",
-    title: "Coding Ducks",
-    src: "/assets/projects-screenshots/codingducks/landing.png",
+    id: "rubiks-cube-simulator",
+    category: "Puzzle game",
+    title: "Rubik's Cube Simulator",
+    src: "/assets/projects-screenshots/rubiks-cube-simulator/landing.png",
     screenshots: ["landing.png"],
     skills: {
       frontend: [
-        PROJECT_SKILLS.ts,
-        PROJECT_SKILLS.next,
-        PROJECT_SKILLS.chakra,
-        PROJECT_SKILLS.reactQuery,
-        PROJECT_SKILLS.firebase,
+        PROJECT_SKILLS.python,
       ],
       backend: [
-        PROJECT_SKILLS.node,
-        PROJECT_SKILLS.express,
-        PROJECT_SKILLS.prisma,
         PROJECT_SKILLS.python,
         PROJECT_SKILLS.postgres,
-        PROJECT_SKILLS.sockerio,
+        PROJECT_SKILLS.supabase,
       ],
     },
-    live: "https://www.codingducks.xyz/",
-    github: "https://github.com/Naresh-Khatri/Coding-Ducks",
+    live: "https://rubiks-cube-simulator.example.com/",
+    github: "https://github.com/Naresh-Khatri/Rubiks-Cube-Simulator",
     get content() {
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Coding ducks = LeetCode + CodePen + CSS Battles
+            Rubiks Cube Simulator: Solve, learn, and compete!
           </TypographyP>
           <TypographyP className="font-mono ">
-            Coding Ducks is your coding dojo — where you level up your skills,
-            battle in real-time code duels, and earn badges like a true code
-            warrior. Track your progress, flex your brain, and climb the
-            leaderboard. Ready to quack the code?
+            Practice solving the Rubiks Cube, learn algorithms, and compete with others. Track your progress and improve your speed.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <TypographyH3 className="my-4 mt-8">Problems </TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Cube Solver</TypographyH3>
           <p className="font-mono mb-2">
-            Solve coding problems similar to LeetCode, enhancing your
-            problem-solving skills across various languages.
+            Use the interactive solver to practice and learn new algorithms.
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/codingducks/problems.png`,
-              `${BASE_PATH}/codingducks/problem.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/main-menu.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/game-modes.png`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Ducklets</TypographyH3>
@@ -338,12 +327,12 @@ const projects: Project[] = [
     },
   },
   {
-    id: "couponluxury",
-    category: "Coupon site",
-    title: "Coupon Luxury",
-    src: "/assets/projects-screenshots/couponluxury/landing.png",
+    id: "hyrise-studio",
+    category: "Database tool",
+    title: "Hyrise Studio",
+    src: "/assets/projects-screenshots/hyrise-studio/landing.png",
     screenshots: ["1.png", "2.png", "3.png", "4.png", "5.png"],
-    live: "https://www.couponluxury.com/",
+    live: "https://hyrise-studio.example.com/",
     skills: {
       frontend: [
         PROJECT_SKILLS.js,
@@ -363,17 +352,14 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            CouponLuxury is your go-to destination for snagging the best deals
-            without lifting a finger. Whether you&apos;re hunting for the latest
-            discounts or trying to save a buck at your favorite stores,
-            CouponLuxury&apos;s got you covered.
+            Hyrise Studio is a powerful database management tool for Hyrise, enabling visualization, query execution, and performance analysis.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-4">
             As soon as you land, boom! You&apos;re greeted with the freshest
             coupons and top-tier deals that&apos;ll make your wallet happy.
           </p>
-          <SlideShow images={[`${BASE_PATH}/couponluxury/landing.png`]} />
+          <SlideShow images={[`${BASE_PATH}/hyrise-studio/landing.png`]} />
           <TypographyH3 className="my-4 ">Stores</TypographyH3>
           <p className="font-mono mb-2">
             Dive into a comprehensive list of stores, each packed with exclusive
@@ -429,12 +415,12 @@ const projects: Project[] = [
     },
   },
   {
-    id: "the-booking-desk",
-    category: "Travel",
-    title: "The Booking Desk",
-    src: "/assets/projects-screenshots/the-booking-desk/landing.png",
+    id: "cl-studio-portfolio",
+    category: "Portfolio",
+    title: "CL Studio Portfolio",
+    src: "/assets/projects-screenshots/cl-studio-portfolio/landing.png",
     screenshots: ["1.png"],
-    live: "https://thebookingdesk.com/",
+    live: "https://cl-studio.it/",
     skills: {
       frontend: [
         PROJECT_SKILLS.ts,
@@ -448,17 +434,14 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            The Booking Desk is your ultimate travel consultation hub, designed
-            to turn your wanderlust dreams into reality. With a focus on smooth
-            and visually captivating animations, navigating the site feels like
-            a breeze—it&apos;s almost as if the destinations are calling you.
+            CL Studio Portfolio showcases creative works and projects with a modern, visually engaging interface and smooth animations.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-8">
             A sleek, modern interface greets you, featuring the latest travel
             tips, deals, and must-visit spots around the globe.
           </p>
-          <SlideShow images={[`${BASE_PATH}/the-booking-desk/landing.png`]} />
+          <SlideShow images={[`${BASE_PATH}/cl-studio-portfolio/landing.png`]} />
           <TypographyH3 className="my-4 mt-8">Blogs</TypographyH3>
           <p className="font-mono mb-2">
             Dive into the curated articles written by travel experts. Whether
@@ -561,12 +544,12 @@ const projects: Project[] = [
     },
   },
   {
-    id: "ghostchat",
-    category: "Anonymous chat",
-    title: "GhostChat",
-    src: "/assets/projects-screenshots/ghostchat/1.png",
+    id: "macos-style-portfolio",
+    category: "Portfolio",
+    title: "macOS Style Portfolio",
+    src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
     screenshots: ["1.png", "2.png", "3.png", "4.png"],
-    live: "https://ghostchat.vercel.app",
+    live: "https://macos-style-portfolio.example.com/",
     github:"https://github.com/Naresh-Khatri/GhostChat",
     skills: {
       frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.next, PROJECT_SKILLS.chakra],
@@ -576,20 +559,14 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Ghostchat is your go-to spot for sending anonymous messages without
-            leaving a trace. Powered by Supabase, it&apos;s all about keeping things
-            low-key and secure. Whether you&apos;re sharing secrets, giving feedback,
-            or just having some fun, Ghostchat ensures your identity stays
-            hidden, while your voice is heard. Say what you want, without the
-            worry.
+            A portfolio site inspired by macOS, featuring smooth transitions, windowed layouts, and a unique desktop-like experience.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <SlideShow
             images={[
-              `${BASE_PATH}/ghostchat/1.png`,
-              `${BASE_PATH}/ghostchat/2.png`,
-              `${BASE_PATH}/ghostchat/3.png`,
-              `${BASE_PATH}/ghostchat/4.png`,
+              `${BASE_PATH}/macos-style-portfolio/landing.png`,
+              `${BASE_PATH}/macos-style-portfolio/window.png`,
+              `${BASE_PATH}/macos-style-portfolio/desktop.png`,
             ]}
           />
         </div>
@@ -597,12 +574,12 @@ const projects: Project[] = [
     },
   },
   {
-    id: "jra",
-    category: "Result analyzer",
-    title: "JNTUA Results Analyzer",
-    src: "/assets/projects-screenshots/jra/1.png",
+    id: "football-championship-website",
+    category: "Sports",
+    title: "Universitarian Football Championship",
+    src: "/assets/projects-screenshots/football-championship-website/landing.png",
     screenshots: ["1.png"],
-    live: "https://naresh-khatri.github.io/JNTUA-result-analyser-spa/#/",
+    live: "https://football-championship.example.com/",
     skills: {
       frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.vue],
       backend: [
@@ -616,14 +593,10 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            JNTUA Results Analyzer was a revolutionary tool designed to simplify
-            and enhance the experience of accessing academic results. It served
-            as a powerful proxy between the JNTUA university results website and
-            its users, offering a range of features that made result analysis
-            faster and more efficient. Here&apos;s what made it stand out:
+            Universitarian Football Championship website provides schedules, results, team info, and highlights for university football tournaments.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow images={[`${BASE_PATH}/jra/1.png`]} />
+          <SlideShow images={[`${BASE_PATH}/football-championship-website/landing.png`]} />
           <TypographyH3 className="my-4 mt-8">
             Effortless Results Retrieval
           </TypographyH3>
