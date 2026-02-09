@@ -40,6 +40,13 @@ const AnimatedBackground = () => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("hero");
 
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "") as Section;
+    if (["hero", "skills", "projects", "contact"].includes(hash)) {
+      setActiveSection(hash);
+    }
+  }, []);
+
   // Animation controllers refs
   const bongoAnimationRef = useRef<{ start: () => void; stop: () => void }>();
   const keycapAnimationsRef = useRef<{ start: () => void; stop: () => void }>();
@@ -192,9 +199,12 @@ const AnimatedBackground = () => {
     if (!kbd) return;
 
     // Initial state
-    const heroState = getKeyboardState({ section: "hero", isMobile });
-    gsap.set(kbd.scale, heroState.scale);
-    gsap.set(kbd.position, heroState.position);
+    const initialState = getKeyboardState({ section: activeSection, isMobile });
+    gsap.set(kbd.scale, initialState.scale);
+    gsap.set(kbd.position, initialState.position);
+    if (initialState.rotation) {
+      gsap.set(kbd.rotation, initialState.rotation);
+    }
 
     // Section transitions
     createSectionTimeline("#skills", "skills", "hero");
@@ -337,10 +347,10 @@ const AnimatedBackground = () => {
       if (obj === kbd) return;
       const name = obj.name.toLowerCase();
       const isKey = name.includes("keycap") || 
-                    skillNames.some(sn => name.includes(sn.toLowerCase())) ||
-                    Object.keys(SKILL_REMAP).some(rk => name.includes(rk.toLowerCase())) ||
-                    name.includes("c++") || 
-                    name.includes("cplusplus");
+                    skillNames.some(sn => name === sn.toLowerCase()) ||
+                    Object.keys(SKILL_REMAP).some(rk => name === rk.toLowerCase()) ||
+                    name === "c++" || 
+                    name === "cplusplus";
       
       if (isKey) {
         obj.visible = false;
