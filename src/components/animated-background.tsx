@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Application, SPEObject, SplineEvent } from "@splinetool/runtime";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -48,7 +48,7 @@ const AnimatedBackground = () => {
   const router = useRouter();
 
   // Helper to safely set variables without crashing if they don't exist
-  const setSplineVariable = (name: string, value: string | number) => {
+  const setSplineVariable = useCallback((name: string, value: string | number) => {
     if (!splineApp) return;
     try {
       // Some versions of Spline runtime might throw on getVariable too if missing, 
@@ -59,7 +59,7 @@ const AnimatedBackground = () => {
     } catch (err) {
       console.warn(`Create variable '${name}' in Spline Editor to enable this feature.`);
     }
-  };
+  }, [splineApp]);
 
   // --- Event Handlers ---
 
@@ -68,7 +68,7 @@ const AnimatedBackground = () => {
     
     const directMatchKey = Object.keys(SKILLS).find(key => 
       key.toLowerCase() === searchName || 
-      (key === "cpp" && searchName === "cplusplus")
+      (key === "cpp" && (searchName === "cplusplus" || searchName === "c++"))
     ) as SkillNames;
 
     if (directMatchKey) return SKILLS[directMatchKey];
@@ -76,10 +76,17 @@ const AnimatedBackground = () => {
     const remappedSkillName = SKILL_REMAP[searchName];
     if (remappedSkillName) return SKILLS[remappedSkillName as SkillNames];
 
+    // Try a more flexible search if no direct match
+    const flexibleMatch = Object.keys(SKILLS).find(key => 
+      searchName.includes(key.toLowerCase()) || key.toLowerCase().includes(searchName)
+    ) as SkillNames;
+
+    if (flexibleMatch) return SKILLS[flexibleMatch];
+
     return null;
   };
 
-  const handleMouseHover = (e: SplineEvent) => {
+  const handleMouseHover = useCallback((e: SplineEvent) => {
     const targetName = e.target.name;
     const skill = getSkillFromObjectName(targetName);
     
@@ -103,9 +110,9 @@ const AnimatedBackground = () => {
         selectedSkillRef.current = skill;
       }
     }
-  };
+  }, [splineApp, playReleaseSound, playPressSound, setSplineVariable]);
 
-  const handleSplineInteractions = () => {
+  const handleSplineInteractions = useCallback(() => {
     if (!splineApp) return;
 
     const isInputFocused = () => {
@@ -136,11 +143,11 @@ const AnimatedBackground = () => {
       }
     });
     splineApp.addEventListener("mouseHover", handleMouseHover);
-  };
+  }, [splineApp, playReleaseSound, playPressSound, setSplineVariable, handleMouseHover]);
 
   // --- Animation Setup Helpers ---
 
-  const createSectionTimeline = (
+  const createSectionTimeline = useCallback((
     triggerId: string,
     targetSection: Section,
     prevSection: Section,
@@ -148,7 +155,9 @@ const AnimatedBackground = () => {
     end: string = "bottom bottom"
   ) => {
     if (!splineApp) return;
-    const kbd = splineApp.findObjectByName("keyboard");
+    const kbd = splineApp.findObjectByName("keyboard") || 
+                splineApp.findObjectByName("Keyboard") || 
+                splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
     if (!kbd) return;
 
     gsap.timeline({
@@ -173,11 +182,13 @@ const AnimatedBackground = () => {
         },
       },
     });
-  };
+  }, [splineApp, isMobile]);
 
-  const setupScrollAnimations = () => {
+  const setupScrollAnimations = useCallback(() => {
     if (!splineApp || !splineContainer.current) return;
-    const kbd = splineApp.findObjectByName("keyboard");
+    const kbd = splineApp.findObjectByName("keyboard") || 
+                splineApp.findObjectByName("Keyboard") || 
+                splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
     if (!kbd) return;
 
     // Initial state
@@ -189,12 +200,15 @@ const AnimatedBackground = () => {
     createSectionTimeline("#skills", "skills", "hero");
     createSectionTimeline("#projects", "projects", "skills", "top 70%");
     createSectionTimeline("#contact", "contact", "projects", "top 30%");
-  };
+  }, [splineApp, isMobile, createSectionTimeline]);
 
-  const getBongoAnimation = () => {
-    const framesParent = splineApp?.findObjectByName("bongo-cat");
-    const frame1 = splineApp?.findObjectByName("frame-1");
-    const frame2 = splineApp?.findObjectByName("frame-2");
+  const getBongoAnimation = useCallback(() => {
+    const findObj = (name: string) => splineApp?.findObjectByName(name) || 
+                                      splineApp?.getAllObjects().find(o => o.name.toLowerCase() === name.toLowerCase());
+
+    const framesParent = findObj("bongo-cat");
+    const frame1 = findObj("frame-1");
+    const frame2 = findObj("frame-2");
 
     if (!frame1 || !frame2 || !framesParent) {
       return { start: () => { }, stop: () => { } };
@@ -222,29 +236,33 @@ const AnimatedBackground = () => {
       frame2.visible = false;
     };
     return { start, stop };
-  };
+  }, [splineApp]);
 
-  const getKeycapsAnimation = () => {
+  const getKeycapsAnimation = useCallback(() => {
     if (!splineApp) return { start: () => { }, stop: () => { } };
 
     let tweens: gsap.core.Tween[] = [];
     const removePrevTweens = () => tweens.forEach((t) => t.kill());
+
+    const findKeycap = (skillName: string) => {
+      const remappedObjName = Object.keys(SKILL_REMAP).find(key => SKILL_REMAP[key] === skillName);
+      return splineApp.findObjectByName(skillName) ||
+        (remappedObjName ? splineApp.findObjectByName(remappedObjName) : null) ||
+        (skillName === "cpp" ? (splineApp.findObjectByName("c++") || splineApp.findObjectByName("cplusplus")) : null) ||
+        splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === skillName.toLowerCase());
+    }
 
     const start = () => {
       removePrevTweens();
       Object.values(SKILLS)
         .sort(() => Math.random() - 0.5)
         .forEach((skill, idx) => {
-          // Find the object by its name, its remapped name, or common variations (c++ vs cpp)
-          const remappedObjName = Object.keys(SKILL_REMAP).find(key => SKILL_REMAP[key] === skill.name);
-          
-          const keycap = splineApp.findObjectByName(skill.name) || 
-                        (remappedObjName ? splineApp.findObjectByName(remappedObjName) : null) ||
-                        (skill.name === "cpp" ? splineApp.findObjectByName("c++") : null);
+          const keycap = findKeycap(skill.name);
 
           if (!keycap) return;
+          const originalY = keycap.position.y || 0;
           const t = gsap.to(keycap.position, {
-            y: Math.random() * 200 + 200,
+            y: originalY + Math.random() * 200 + 200,
             duration: Math.random() * 2 + 2,
             delay: idx * 0.6,
             repeat: -1,
@@ -259,15 +277,11 @@ const AnimatedBackground = () => {
     const stop = () => {
       removePrevTweens();
       Object.values(SKILLS).forEach((skill) => {
-        const remappedObjName = Object.keys(SKILL_REMAP).find(key => SKILL_REMAP[key] === skill.name);
-        
-        const keycap = splineApp.findObjectByName(skill.name) || 
-                      (remappedObjName ? splineApp.findObjectByName(remappedObjName) : null) ||
-                      (skill.name === "cpp" ? splineApp.findObjectByName("c++") : null);
+        const keycap = findKeycap(skill.name);
 
         if (!keycap) return;
         const t = gsap.to(keycap.position, {
-          y: 0,
+          y: 0, // Reset to base position
           duration: 4,
           repeat: 1,
           ease: "elastic.out(1,0.7)",
@@ -278,13 +292,62 @@ const AnimatedBackground = () => {
     };
 
     return { start, stop };
-  };
+  }, [splineApp]);
 
-  const updateKeyboardTransform = async () => {
+  const updateKeyboardTransform = useCallback(async () => {
     if (!splineApp) return;
-    const kbd = splineApp.findObjectByName("keyboard");
+    const allObjects = splineApp.getAllObjects();
+    const kbd = splineApp.findObjectByName("keyboard") || 
+                splineApp.findObjectByName("Keyboard") || 
+                allObjects.find(obj => obj.name.toLowerCase() === "keyboard");
     if (!kbd) return;
 
+    // 1. Identify all objects we intend to show and animate
+    const keycaps = allObjects.filter((obj) => obj.name.toLowerCase().includes("keycap"));
+    const skillKeys: SPEObject[] = [];
+    Object.values(SKILLS).forEach(skill => {
+      const remappedName = Object.keys(SKILL_REMAP).find(k => SKILL_REMAP[k] === skill.name);
+      const obj = splineApp.findObjectByName(skill.name) || 
+                  (remappedName ? splineApp.findObjectByName(remappedName) : null) ||
+                  (skill.name === "cpp" ? (splineApp.findObjectByName("c++") || splineApp.findObjectByName("cplusplus")) : null) ||
+                  allObjects.find(o => o.name.toLowerCase() === skill.name.toLowerCase());
+                  
+      if (obj) skillKeys.push(obj);
+    });
+
+    const platformSpecificKeycaps = isMobile 
+      ? keycaps.filter(k => k.name.toLowerCase().includes("mobile"))
+      : keycaps.filter(k => k.name.toLowerCase().includes("desktop"));
+
+    const allKeysToAnimate = [...platformSpecificKeycaps, ...skillKeys]
+      .filter((obj, index, self) => 
+        index === self.indexOf(obj) && obj !== kbd
+      )
+      .sort((a, b) => {
+        // Reduced tolerance to 1 unit to better distinguish between rows.
+        if (Math.abs(a.position.z - b.position.z) > 1) {
+          return a.position.z - b.position.z;
+        }
+        return a.position.x - b.position.x;
+      });
+
+    // 2. Hide ALL keys and potential key objects initially so the keyboard is purely "empty"
+    const skillNames = Object.values(SkillNames) as string[];
+    allObjects.forEach(obj => {
+      if (obj === kbd) return;
+      const name = obj.name.toLowerCase();
+      const isKey = name.includes("keycap") || 
+                    skillNames.some(sn => name.includes(sn.toLowerCase())) ||
+                    Object.keys(SKILL_REMAP).some(rk => name.includes(rk.toLowerCase())) ||
+                    name.includes("c++") || 
+                    name.includes("cplusplus");
+      
+      if (isKey) {
+        obj.visible = false;
+      }
+    });
+
+    // Reveal the keyboard base
     kbd.visible = false;
     await sleep(400);
     kbd.visible = true;
@@ -301,56 +364,22 @@ const AnimatedBackground = () => {
       }
     );
 
-    const allObjects = splineApp.getAllObjects();
-    const keycaps = allObjects.filter((obj) => obj.name === "keycap");
-
     await sleep(900);
 
-    if (isMobile) {
-      const mobileKeyCaps = allObjects.filter((obj) => obj.name === "keycap-mobile");
-      mobileKeyCaps.forEach((keycap) => { keycap.visible = true; });
-    } else {
-      const desktopKeyCaps = allObjects.filter((obj) => obj.name === "keycap-desktop");
-      desktopKeyCaps.forEach(async (keycap, idx) => {
-        await sleep(idx * 70);
+    // 3. Populate one by one with a strictly sequential animation
+    for (let i = 0; i < allKeysToAnimate.length; i++) {
+        const keycap = allKeysToAnimate[i];
+        const originalY = keycap.position.y || 0;
+        
+        await sleep(45); 
         keycap.visible = true;
-      });
-    }
-
-    // Visibility management
-    const OLD_OBJ_NAMES = ["express", "mongodb", "prettier", "firebase", "wordpress", "linux", "nginx", "aws", "vim"];
-    
-    // 1. Hide old objects that aren't being remapped
-    OLD_OBJ_NAMES.forEach(name => {
-      if (!SKILL_REMAP[name]) {
-        const obj = splineApp.findObjectByName(name);
-        if (obj) obj.visible = false;
+        gsap.fromTo(
+          keycap.position,
+          { y: originalY + 200 },
+          { y: originalY, duration: 0.5, delay: 0.1, ease: "bounce.out" }
+        );
       }
-    });
-
-    // 2. Ensure all active skills (and their remapped objects) are visible
-    Object.values(SKILLS).forEach(skill => {
-      // Try finding by name, remapped name, or common variations
-      const remappedName = Object.keys(SKILL_REMAP).find(k => SKILL_REMAP[k] === skill.name);
-      
-      const obj = splineApp.findObjectByName(skill.name) || 
-                  (remappedName ? splineApp.findObjectByName(remappedName) : null) ||
-                  (skill.name === "cpp" ? splineApp.findObjectByName("c++") : null);
-                  
-      if (obj) obj.visible = true;
-    });
-
-    keycaps.forEach(async (keycap, idx) => {
-      keycap.visible = false;
-      await sleep(idx * 70);
-      keycap.visible = true;
-      gsap.fromTo(
-        keycap.position,
-        { y: 200 },
-        { y: 50, duration: 0.5, delay: 0.1, ease: "bounce.out" }
-      );
-    });
-  };
+  }, [splineApp, activeSection, isMobile]);
 
   // --- Effects ---
 
@@ -366,15 +395,18 @@ const AnimatedBackground = () => {
       keycapAnimationsRef.current?.stop()
     }
 
-  }, [splineApp, isMobile]);
+  }, [splineApp, isMobile, handleSplineInteractions, setupScrollAnimations, getBongoAnimation, getKeycapsAnimation]);
 
   // Handle keyboard text visibility based on theme and section
   useEffect(() => {
     if (!splineApp) return;
-    const textDesktopDark = splineApp.findObjectByName("text-desktop-dark");
-    const textDesktopLight = splineApp.findObjectByName("text-desktop");
-    const textMobileDark = splineApp.findObjectByName("text-mobile-dark");
-    const textMobileLight = splineApp.findObjectByName("text-mobile");
+    const findObj = (name: string) => splineApp.findObjectByName(name) || 
+                                      splineApp.getAllObjects().find(o => o.name.toLowerCase() === name.toLowerCase());
+
+    const textDesktopDark = findObj("text-desktop-dark");
+    const textDesktopLight = findObj("text-desktop");
+    const textMobileDark = findObj("text-mobile-dark");
+    const textMobileLight = findObj("text-mobile");
 
     if (!textDesktopDark || !textDesktopLight || !textMobileDark || !textMobileLight) return;
 
@@ -408,7 +440,7 @@ const AnimatedBackground = () => {
     // console.log(selectedSkill)
     setSplineVariable("heading", selectedSkill.label);
     setSplineVariable("desc", selectedSkill.shortDescription);
-  }, [selectedSkill]);
+  }, [selectedSkill, splineApp, setSplineVariable]);
 
   // Handle rotation and teardown animations based on active section
   useEffect(() => {
@@ -417,7 +449,9 @@ const AnimatedBackground = () => {
     let rotateKeyboard: gsap.core.Tween | undefined;
     let teardownKeyboard: gsap.core.Tween | undefined;
 
-    const kbd = splineApp.findObjectByName("keyboard");
+    const kbd = splineApp.findObjectByName("keyboard") || 
+                splineApp.findObjectByName("Keyboard") || 
+                splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
 
     if (kbd) {
       rotateKeyboard = gsap.to(kbd.rotation, {
@@ -492,7 +526,7 @@ const AnimatedBackground = () => {
       rotateKeyboard?.kill();
       teardownKeyboard?.kill();
     };
-  }, [activeSection, splineApp]);
+  }, [activeSection, splineApp, setSplineVariable]);
 
   // Reveal keyboard on load/route change
   useEffect(() => {
@@ -501,7 +535,7 @@ const AnimatedBackground = () => {
 
     if (!splineApp || isLoading || keyboardRevealed) return;
     updateKeyboardTransform();
-  }, [splineApp, isLoading, activeSection]);
+  }, [splineApp, isLoading, activeSection, keyboardRevealed, router, updateKeyboardTransform]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
