@@ -20,9 +20,6 @@ export default function Particles({
   ease = 50,
   refresh = false,
 }: ParticlesProps) {
-  const pathname = usePathname();
-  const isBlogPost = pathname.startsWith("/blogs/") && pathname !== "/blogs";
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
@@ -33,7 +30,6 @@ export default function Particles({
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
   useEffect(() => {
-    if (isBlogPost) return
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
@@ -44,7 +40,7 @@ export default function Particles({
     return () => {
       window.removeEventListener("resize", initCanvas);
     };
-  }, [isBlogPost]);
+  }, []);
 
   useEffect(() => {
     onMouseMove();
@@ -231,8 +227,6 @@ export default function Particles({
     });
     window.requestAnimationFrame(animate);
   };
-
-  if (isBlogPost) return null;
 
   return (
     <div

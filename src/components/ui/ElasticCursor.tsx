@@ -72,9 +72,6 @@ function getRekt(el: HTMLElement) {
 const CURSOR_DIAMETER = 50;
 
 function ElasticCursor() {
-  const pathname = usePathname();
-  const isBlogPost = pathname.startsWith("/blogs/") && pathname !== "/blogs";
-
   const { loadingPercent, isLoading } = usePreloader();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -191,7 +188,7 @@ function ElasticCursor() {
   }, [loadingPercent]);
 
   useTicker(loop, isLoading || !cursorMoved || isMobile);
-  if (isMobile || isBlogPost) return null;
+  if (isMobile) return null;
 
   // Return UI
   return (

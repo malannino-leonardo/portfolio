@@ -33,16 +33,3 @@ function getMDXData(dir: string) {
     };
   });
 }
-
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "src/content/blogs"));
-}
-
-export function getBlogPost(slug: string) {
-  const filePath = path.join(process.cwd(), "src/content/blogs", `${slug}.mdx`);
-  const { data, content } = readMDXFile(filePath);
-  return {
-    metadata: data as Metadata,
-    content,
-  };
-}
