@@ -26,6 +26,8 @@ import {
   SiThreedotjs,
   SiTypescript,
   SiVuedotjs,
+  SiHtml5,
+  SiCss3,
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
@@ -222,6 +224,18 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiSupabase />,
   },
+  html: {
+    title: "HTML",
+    bg: "black",
+    fg: "white",
+    icon: <SiHtml5 />,
+  },
+  css: {
+    title: "CSS",
+    bg: "black",
+    fg: "white",
+    icon: <SiCss3 />,
+  },
 };
 export type Project = {
   id: string;
@@ -257,15 +271,15 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Rubiks Cube Simulator: Solve, learn, and compete!
+            Rubik&apos;s Cube Simulator: Improve your solving skills and compete globally!
           </TypographyP>
           <TypographyP className="font-mono ">
-            Practice solving the Rubiks Cube, learn algorithms, and compete with others globally. Track your progress and improve your speed.
+            Practice solving the Rubik&apos;s Cube, learn new techniques, and compete with cubers around the world. Track your progress and work on improving your solving speed.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <TypographyH3 className="my-4 mt-8">Menus</TypographyH3>
           <p className="font-mono mb-2">
-            Explore the main menu of the Rubiks Cube Simulator, where you can access different game modes, settings, controls and your progress.
+            Browse the menus to access different game modes, customize your settings, adjust controls, and review your progress.
           </p>
           <SlideShow
             images={[
@@ -277,28 +291,28 @@ const projects: Project[] = [
           />
           <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
           <p className="font-mono mb-2">
-            Whether you&apos;re a beginner or a speedcuber, there&apos;s a mode for you. 
+            Whether you&apos;re a beginner or an experienced solver, there&apos;s a mode suited for you. 
             <ul className="list-disc ml-6">
               <li>
-                <strong>Free play:</strong> Solve at your own pace without any time constraints.
+                <strong>Free play:</strong> Solve at your own pace without time constraints.
               </li>
               <li>
-                <strong>Easy Mode:</strong> 5 moves scramble, perfect for beginners to practice basic algorithms and get familiar with the cube.
+                <strong>Easy Mode:</strong> 5 moves scramble, ideal for learning basic techniques and understanding cube mechanics.
               </li>
               <li>
-                <strong>Medium Mode:</strong> 10 moves scramble, suitable for intermediate solvers to practice more complex algorithms.
+                <strong>Medium Mode:</strong> 10 moves scramble, good for practicing more advanced techniques once you&apos;ve mastered the basics.
               </li>
               <li>
-                <strong>Hard Mode:</strong> Completely random scramble, designed for advanced solvers to challenge their skills and improve their speed.
+                <strong>Hard Mode:</strong> Fully randomized scramble, designed for experienced solvers who want to challenge themselves and improve their speed.
               </li>
               <li>
-                <strong>Limited time Mode:</strong> Solve the cube within a set time limit, adding an extra layer of challenge for speedcubers.
+                <strong>Limited time Mode:</strong> Solve the cube within a set time limit for an additional challenge.
               </li>
               <li>
-                <strong>Limited moves Mode:</strong> Solve the cube with a restricted number of moves, testing your efficiency and strategy.
+                <strong>Limited moves Mode:</strong> Solve the cube with a limited number of moves, testing your efficiency and strategic thinking.
               </li>
               <li>
-                <strong>Daily Mode:</strong> Solve a new random scramble each day, providing a fresh challenge and helping you improve your skills consistently.
+                <strong>Daily Mode:</strong> A new scramble each day, providing a consistent challenge and helping you improve over time.
               </li>
             </ul>
           </p>
@@ -310,8 +324,7 @@ const projects: Project[] = [
           <TypographyH3 className="my-4 mt-8">Visual hints</TypographyH3>
 
           <p className="font-mono mb-2">
-            Get visual hints to learn and master algorithms. 
-            The simulator provides step-by-step guidance, highlighting the pieces to move and the sequence of moves needed to solve the cube.
+            Visual guidance to help you solve the cube. Provides step-by-step instructions, highlighting pieces to move and the necessary sequence of moves.
           </p>
           <SlideShow
             images={[
@@ -324,13 +337,13 @@ const projects: Project[] = [
             
             <ul className="list-disc ml-6">
               <li>
-                <strong>Personal records:</strong> Track your best times and moves for each game mode, helping you monitor your progress and set new goals.
+                <strong>Personal records:</strong> Track your best times and move counts for each game mode to monitor your progress and identify areas for improvement.
               </li>
               <li>
-                <strong>Global leaderboard:</strong> Compete with players worldwide and see how you rank against other cubers in different game modes.
+                <strong>Global leaderboard:</strong> Compete with solvers worldwide and see your ranking across different game modes.
               </li>
               <li>
-                <strong>Daily leaderboard:</strong> Compete with players on the same daily scramble and see how you stack up against others who solved the same challenge.
+                <strong>Daily leaderboard:</strong> Compete with other players on the daily scramble and compare your performance against others on the same challenge.
               </li>
             </ul>
           </p>
@@ -351,7 +364,7 @@ const projects: Project[] = [
     title: "Hyrise Studio",
     src: "/assets/projects-screenshots/hyrise-studio/landing.png",
     screenshots: ["landing.png"],
-    live: "https://hyrise.it/studio",
+    live: "",
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
@@ -372,8 +385,7 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Hyrise Studio is a freelancer platform that connects businesses with top-tier freelance talent for web development, design, and digital marketing projects. 
-            With a focus on quality and reliability, Hyrise Studio offers a seamless experience for both clients and freelancers, ensuring successful project outcomes and fostering long-term collaborations.
+            Hyrise Studio connects businesses with skilled freelancers for web, design, and marketing projects. Fast, reliable, and easy.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-4">
@@ -385,8 +397,7 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 ">Services</TypographyH3>
           <p className="font-mono mb-2">
-            Dive into a comprehensive list of services, each designed to help you achieve your project goals efficiently and effectively. 
-            From web development to digital marketing, Hyrise Studio offers a wide range of solutions tailored to your needs.
+            Check out all the services—they cover everything from building websites to helping you get noticed online. Whatever you need for your project, you’ll probably find it here.
           </p>
           <SlideShow
             images={[
@@ -396,7 +407,7 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 ">Freelancers</TypographyH3>
           <p className="font-mono mb-2">
-            Explore the talented freelancers available on Hyrise Studio, each bringing unique skills and expertise to help you achieve your project goals.
+            Take a look at the freelancers on Hyrise Studio. Everyone’s got their own skills and style, so you can find the right person for your job without any hassle.
           </p>
           <SlideShow
             images={[
@@ -406,7 +417,7 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 ">Projects</TypographyH3>
           <p className="font-mono mb-2">
-            Discover the diverse range of projects undertaken by Hyrise Studio, showcasing their expertise and commitment to delivering high-quality solutions.
+            See what kind of projects Hyrise Studio has worked on. There’s a good mix, and you can tell they know what they’re doing and care about doing a solid job.
           </p>
           <SlideShow
             images={[
@@ -416,8 +427,7 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 ">Contact Us</TypographyH3>
           <p className="font-mono mb-2">
-            Get in touch with Hyrise Studio for any inquiries, project proposals, or collaborations. 
-            Our team is ready to assist you and provide the information you need.
+            Got questions or want to work together? Just reach out. The team’s friendly and will help you out with whatever you need.
           </p>
           <SlideShow
             images={[
@@ -427,7 +437,7 @@ const projects: Project[] = [
           
           <TypographyH3 className="my-4 ">Account Dashboard</TypographyH3>
           <p className="font-mono mb-2">
-            Explore the account dashboard of Hyrise Studio, where users can manage their projects, track progress, and access important information all in one place.
+            The account dashboard is where you keep track of your projects and see how things are going—all your info in one spot, nice and simple.
           </p>
           <SlideShow
             images={[
@@ -437,7 +447,7 @@ const projects: Project[] = [
           
           <TypographyH3 className="my-4 ">Admin Dashboard</TypographyH3>
           <p className="font-mono mb-2">
-            Explore the admin dashboard of Hyrise Studio, where administrators can manage users, monitor project progress, and access important analytics all in one place.
+            If you’re an admin, there’s a dashboard for you too. You can keep an eye on users, check how projects are moving along, and see all the important stats in one place.
           </p>
           <SlideShow
             images={[
@@ -453,7 +463,7 @@ const projects: Project[] = [
     category: "Portfolio",
     title: "CL Studio Portfolio",
     src: "/assets/projects-screenshots/cl-studio-portfolio/landing.png",
-    screenshots: ["1.png"],
+    screenshots: ["landing.png"],
     live: "https://cl-studio.it/",
     skills: {
       frontend: [
@@ -516,9 +526,9 @@ const projects: Project[] = [
     category: "Portfolio",
     title: "My Portfolio",
     src: "/assets/projects-screenshots/portfolio/landing.png",
-    screenshots: ["1.png"],
-    live: "http://nareshkhatri.vercel.app",
-    github:"https://github.com/Naresh-Khatri/Portfolio",
+    screenshots: ["landing.png"],
+    live: "http://malannino-leonardo.vercel.app",
+    github:"https://github.com/malannino-leonardo/Portfolio",
     skills: {
       frontend: [
         PROJECT_SKILLS.ts,
@@ -535,18 +545,16 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Welcome to my digital playground, where creativity meets code in the
-            dopest way possible.
+            Hey there! This is my little corner on the web where I mix creativity and code in a fun and relaxed way.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <TypographyH3 className="my-4 mt-8">
             Beautiful 3D Objects{" "}
           </TypographyH3>
           <p className="font-mono mb-2">
-            Did you see that 3D keyboard modal? Yeah! I made that. That
-            interactive keyboard is being rendered in 3D on a webpage 🤯, and
-            pressing each keycap reveals a skill in a goofy way. It&apos;s like
-            typing, but make it art.
+            Did you check out that 3D keyboard modal? It&apos;s super cool! 
+            The whole keyboard pops out in 3D right on the site 🤯, and when you smash a key, 
+            it shows off a skill in a fun, goofy way. It&apos;s like typing, but way cooler.
           </p>
           <SlideShow
             images={[
@@ -556,13 +564,14 @@ const projects: Project[] = [
           />
           <TypographyH3 className="my-4 ">Space Theme</TypographyH3>
           <p className="font-mono mb-2">
-            Dark background + floating particles = out-of-this-world cool.
+            Dark background + floating particles = super cool space vibes.
           </p>
           <SlideShow images={[`${BASE_PATH}/portfolio/navbar.png`]} />
           <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
 
           <p className="font-mono mb-2">
-            My top personal and freelance projects — no filler, all killer.
+            Here are my coolest projects. 
+            Just the good stuff, no boring bits.
           </p>
           <SlideShow
             images={[
@@ -571,7 +580,7 @@ const projects: Project[] = [
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
-            This site&apos;s not just a portfolio — it&apos;s a whole vibe.
+            This site isn&apos;t just a portfolio. It&apos;s got its own style.
           </p>
         </div>
       );
@@ -580,27 +589,62 @@ const projects: Project[] = [
   {
     id: "macos-style-portfolio",
     category: "Portfolio",
-    title: "macOS Style Portfolio",
+    title: "MacOS Style Portfolio",
     src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
     screenshots: ["1.png", "2.png", "3.png", "4.png"],
     live: "https://macos-style-portfolio.example.com/",
-    github:"https://github.com/Naresh-Khatri/GhostChat",
+    github:"https://github.com/malannino-leonardo/macos-style-portfolio",
     skills: {
-      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.next, PROJECT_SKILLS.chakra],
-      backend: [PROJECT_SKILLS.supabase],
+      frontend: [PROJECT_SKILLS.html, PROJECT_SKILLS.css, PROJECT_SKILLS.js],
+      backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            A portfolio site inspired by macOS, featuring smooth transitions, windowed layouts, and a unique desktop-like experience.
+            A portfolio site that looks and feels like your Mac, with smooth animations, windows you can drag around, and a really cool desktop-like vibe.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <SlideShow
             images={[
               `${BASE_PATH}/macos-style-portfolio/landing.png`,
-              `${BASE_PATH}/macos-style-portfolio/window.png`,
-              `${BASE_PATH}/macos-style-portfolio/desktop.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Desktop Experience</TypographyH3>
+          <p className="font-mono mb-2">
+            The site works just like your Mac desktop. You can drag windows around, use a dock to jump between things, and everything animates smoothly to keep it feeling alive and interactive.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/macos-style-portfolio/pfp.png`,
+              `${BASE_PATH}/macos-style-portfolio/about-me.png`,
+              `${BASE_PATH}/macos-style-portfolio/notes-app.png`,
+              `${BASE_PATH}/macos-style-portfolio/photos-folder.png`,
+              `${BASE_PATH}/macos-style-portfolio/videos-folder.png`,
+              `${BASE_PATH}/macos-style-portfolio/contacts.png`,
+              `${BASE_PATH}/macos-style-portfolio/reviews.png`,
+              `${BASE_PATH}/macos-style-portfolio/trash.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">OS Starting Animation</TypographyH3>
+          <p className="font-mono mb-2">
+            You get to see that cool Mac startup animation when you first visit, which sets the mood for the whole experience and makes everything feel really immersive right away.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/macos-style-portfolio/os-starting.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">User Selection</TypographyH3>
+          <p className="font-mono mb-2">
+            Pick a user profile to get started, kind of like logging into your Mac. Each profile gives you your own personalized setup.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/macos-style-portfolio/user-selection.png`,
             ]}
           />
         </div>
@@ -614,6 +658,7 @@ const projects: Project[] = [
     src: "/assets/projects-screenshots/football-championship-website/landing.png",
     screenshots: ["1.png"],
     live: "https://football-championship.example.com/",
+    github: "https://github.com/malannino-leonardo/tuc-units",
     skills: {
       frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.vue],
       backend: [
