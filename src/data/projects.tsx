@@ -28,6 +28,7 @@ import {
   SiVuedotjs,
   SiHtml5,
   SiCss3,
+  SiPhp
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
@@ -235,6 +236,12 @@ const PROJECT_SKILLS = {
     bg: "black",
     fg: "white",
     icon: <SiCss3 />,
+  },
+  php: {
+    title: "PHP",
+    bg: "black",
+    fg: "white",
+    icon: <SiPhp />,
   },
 };
 export type Project = {
@@ -467,56 +474,54 @@ const projects: Project[] = [
     live: "https://cl-studio.it/",
     skills: {
       frontend: [
-        PROJECT_SKILLS.ts,
-        PROJECT_SKILLS.next,
-        PROJECT_SKILLS.aceternity,
+        PROJECT_SKILLS.react,
         PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.ts,
       ],
-      backend: [PROJECT_SKILLS.sanity],
+      backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            CL Studio Portfolio showcases creative works and projects with a modern, visually engaging interface and smooth animations.
+            CL Studio Portfolio is a modern showcase of creative work and projects with beautiful visuals and smooth animations that make browsing a pleasure.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-8">
-            A sleek, modern interface greets you, featuring the latest travel
-            tips, deals, and must-visit spots around the globe.
+            The interface is sleek and modern, designed to highlight the studio&apos;s best work with an engaging layout and plenty of visual appeal.
           </p>
-          <SlideShow images={[`${BASE_PATH}/cl-studio-portfolio/landing.png`]} />
-          <TypographyH3 className="my-4 mt-8">Blogs</TypographyH3>
-          <p className="font-mono mb-2">
-            Dive into the curated articles written by travel experts. Whether
-            you&apos;re looking for hidden gems or travel hacks, our blog section has
-            you covered.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/the-booking-desk/blogs.png`,
-              `${BASE_PATH}/the-booking-desk/blog.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Sanity CMS</TypographyH3>
+          <SlideShow images={[`${BASE_PATH}/cl-studio-portfolio/home.png`]} />
 
+          <TypographyH3 className="my-4 mt-8">Profiles</TypographyH3>
           <p className="font-mono mb-2">
-            Keeping everything fresh and up-to-date, I&apos;ve integrated Sanity CMS
-            to manage all the content with ease, ensuring you always get the
-            latest and greatest information.
+            Browse team member profiles to learn about the talented people behind the studio and their individual expertise.
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/the-booking-desk/cms-1.png`,
-              `${BASE_PATH}/the-booking-desk/cms-2.png`,
+              `${BASE_PATH}/cl-studio-portfolio/profile.png`,
             ]}
           />
-          <p className="font-mono mb-2 my-8">
-            With a stunning 100% score on Lighthouse, The Booking Desk isn&apos;t
-            just beautiful—it&apos;s built to perform. Whether you&apos;re planning your
-            next adventure or just daydreaming, our site delivers a top-notch
-            experience that&apos;s both informative and enjoyable.
+          
+          <TypographyH3 className="my-4 mt-8">Experience & Data</TypographyH3>
+          <p className="font-mono mb-2">
+            Explore the studio&apos;s background, skills, and experience through an organized overview of their professional journey and key achievements.
           </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/cl-studio-portfolio/experience&data.png`,
+            ]}
+          />
+          
+          <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
+          <p className="font-mono mb-2">
+            Check out the studio&apos;s impressive portfolio of completed projects, each one showcasing their creativity and technical skill in action.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/cl-studio-portfolio/project-view.png`,
+            ]}
+          />
         </div>
       );
     },
@@ -558,7 +563,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/portfolio/landing.png`,
+              `${BASE_PATH}/portfolio/home.png`,
               `${BASE_PATH}/portfolio/skills.png`,
             ]}
           />
@@ -591,7 +596,7 @@ const projects: Project[] = [
     category: "Portfolio",
     title: "MacOS Style Portfolio",
     src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
-    screenshots: ["1.png", "2.png", "3.png", "4.png"],
+    screenshots: ["landing.png"],
     live: "https://macos-style-portfolio.example.com/",
     github:"https://github.com/malannino-leonardo/macos-style-portfolio",
     skills: {
@@ -607,7 +612,7 @@ const projects: Project[] = [
           <ProjectsLinks live={this.live} repo={this.github} />
           <SlideShow
             images={[
-              `${BASE_PATH}/macos-style-portfolio/landing.png`,
+              `${BASE_PATH}/macos-style-portfolio/home.png`,
             ]}
           />
 
@@ -656,95 +661,65 @@ const projects: Project[] = [
     category: "Sports",
     title: "Universitarian Football Championship",
     src: "/assets/projects-screenshots/football-championship-website/landing.png",
-    screenshots: ["1.png"],
-    live: "https://football-championship.example.com/",
-    github: "https://github.com/malannino-leonardo/tuc-units",
+    screenshots: ["landing.png"],
+    live: "https://tuc-units.infinityfree.me/",
+    github: "",
     skills: {
-      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.vue],
+      frontend: [PROJECT_SKILLS.html, PROJECT_SKILLS.css, PROJECT_SKILLS.js],
       backend: [
         PROJECT_SKILLS.node,
-        PROJECT_SKILLS.mongo,
-        PROJECT_SKILLS.express,
-        PROJECT_SKILLS.docker,
+        PROJECT_SKILLS.php,
+        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.supabase,
       ],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            Universitarian Football Championship website provides schedules, results, team info, and highlights for university football tournaments.
+            A dedicated website for the Universitarian Football Championship featuring schedules, match results, team information, and tournament statistics all in one place.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow images={[`${BASE_PATH}/football-championship-website/landing.png`]} />
-          <TypographyH3 className="my-4 mt-8">
-            Effortless Results Retrieval
-          </TypographyH3>
-          {/* Effortless Results Retrieval: */}
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Search all your results using a single roll number, eliminating
-              the tedious task of sifting through thousands of rows on the
-              official site.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Class-Wise Results:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              class-wise results effortlessly by entering a roll number range.
-              No more manual searches or filtering.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Faculty Features:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Faculty members could download batch results in Excel format,
-              making administrative tasks a breeze.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">
-            Enhanced Data Insights:
-          </TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Each result came with additional features including:
-              <ul className="list-disc font-mono ml-6">
-                <li>
-                  <strong>CGPA Calculations: </strong>Easily track your
-                  cumulative grade point average.
-                </li>
-                <li>
-                  <strong>Charts:</strong> Visualize your academic performance
-                  with comprehensive charts.
-                </li>
-                <li>
-                  <strong>Future Projections:</strong> Get insights into
-                  potential future outcomes based on current performance.
-                </li>
-                <li>
-                  <strong> Backlog Counts: </strong>Keep track of your backlog
-                  subjects at a glance.
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Performance:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              The application was significantly faster and more efficient than
-              the official site, providing a smoother user experience.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Downfall:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Unfortunately, as of May 2022, the tool stopped working due to the
-              introduction of CAPTCHA on the official JNTUA results site, which
-              disrupted the seamless functionality of the app. JNTUA Results
-              Analyzer transformed the way students and faculty interacted with
-              academic results, making it a must-have tool until its unexpected
-              shutdown.
-            </li>
-          </ul>
+          <SlideShow images={[`${BASE_PATH}/football-championship-website/home.png`]} />
+
+          <TypographyH3 className="my-4 mt-8">Informative pages</TypographyH3>
+          <p className="font-mono mb-2">
+            The website has dedicated pages for tournament, about and contacts.
+            <br></br>
+            <ul className="list-disc ml-6">
+              <li>
+                <strong>Tournament Page:</strong> Your complete resource for the championship with the full schedule, latest results, team and player profiles, and detailed statistics.
+              </li>
+              <li>
+                <strong>About Page:</strong> Discover the history and mission behind the Universitarian Football Championship, including what inspired its creation and the values that guide the tournament.
+              </li>
+              <li>
+                <strong>Contact Page:</strong> Have questions or want to get involved with the championship? The contact page provides all the information you need to reach out to the tournament organizers.
+              </li>
+            </ul>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/football-championship-website/il-torneo.png`,
+              `${BASE_PATH}/football-championship-website/about.png`,
+              `${BASE_PATH}/football-championship-website/contacts.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Teams, results and leaderboard</TypographyH3>
+          <p className="font-mono mb-2">
+            Follow the latest tournament developments with live results, team standings, and up-to-date leaderboards so you can track progress throughout the competition.
+          </p>
+          
+          <TypographyH3 className="my-4 mt-8">Registration form</TypographyH3>
+          <p className="font-mono mb-2">
+            Sign up for the tournament with our simple online registration form. Just provide your information and you&apos;ll be ready to compete in the championship.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/football-championship-website/registration-form.png`,
+            ]}
+          />
         </div>
       );
     },
