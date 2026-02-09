@@ -291,7 +291,6 @@ const projects: Project[] = [
           <SlideShow
             images={[
               `${BASE_PATH}/rubiks-cube-simulator/main-menu.png`,
-              `${BASE_PATH}/rubiks-cube-simulator/statistics.png`,
               `${BASE_PATH}/rubiks-cube-simulator/controls.png`,
               `${BASE_PATH}/rubiks-cube-simulator/achievements.png`,
             ]}

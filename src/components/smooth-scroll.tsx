@@ -22,13 +22,12 @@ function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
 
   return (
     <ReactLenis
-      root
+      root={!isInsideModal}
       options={{
         duration: 2,
         prevent: (node) => {
           if (isInsideModal) return true;
-          const modalOpen = node.classList.contains("modall");
-          return modalOpen;
+          return !!node.closest('.modall');
         },
       }}
     >

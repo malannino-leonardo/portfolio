@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalTrigger,
+  useModal,
 } from "../ui/animated-modal";
 import { FloatingDock } from "../ui/floating-dock";
 import Link from "next/link";
@@ -63,18 +64,30 @@ const Modall = ({ project }: { project: Project }) => {
             </ModalContent>
           </SmoothScroll>
           <ModalFooter className="gap-4">
-            <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-              Cancel
-            </button>
-            <Link href={project.live} target="_blank">
-              <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
-                Visit
-              </button>
-            </Link>
+            <FooterContent project={project} />
           </ModalFooter>
         </ModalBody>
       </Modal>
     </div>
+  );
+};
+
+const FooterContent = ({ project }: { project: Project }) => {
+  const { setOpen } = useModal();
+  return (
+    <>
+      <button
+        onClick={() => setOpen(false)}
+        className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28"
+      >
+        Cancel
+      </button>
+      <Link href={project.live} target="_blank">
+        <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
+          Visit
+        </button>
+      </Link>
+    </>
   );
 };
 export default ProjectsSection;

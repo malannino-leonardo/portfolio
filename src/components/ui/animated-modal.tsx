@@ -71,11 +71,19 @@ export const ModalBody = ({
   const { open } = useModal();
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
     if (typeof window !== "undefined") {
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") setOpen(false);
-      });
+      document.addEventListener("keydown", handleKeyDown);
     }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    };
   }, []);
   useEffect(() => {
     if (open) {
@@ -104,14 +112,14 @@ export const ModalBody = ({
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="modall fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50"
+          className="modall fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-[2000] pointer-events-auto"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-[2001] flex flex-col flex-1 overflow-hidden",
               className
             )}
             initial={{
@@ -196,8 +204,11 @@ const Overlay = ({ className }: { className?: string }) => {
         opacity: 0,
         backdropFilter: "blur(0px)",
       }}
-      className={`modal-overlay fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
-      onClick={() => setOpen(false)}
+      className={`modal-overlay fixed inset-0 h-full w-full bg-black bg-opacity-50 z-[2000] pointer-events-auto ${className}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        setOpen(false);
+      }}
     ></motion.div>
   );
 };
@@ -243,8 +254,7 @@ export const useOutsideClick = (
       // DO NOTHING if the element being clicked is the target element or their children
       if (
         !ref.current ||
-        ref.current.contains(event.target) ||
-        !event.target.classList.contains("no-click-outside")
+        ref.current.contains(event.target)
       ) {
         return;
       }
