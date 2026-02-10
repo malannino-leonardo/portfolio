@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useMousePosition } from "@/utils/mouse";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { usePerformance } from "@/hooks/use-performance";
 
 interface ParticlesProps {
   className?: string;
@@ -20,6 +21,7 @@ export default function Particles({
   ease = 50,
   refresh = false,
 }: ParticlesProps) {
+  const { isLowPowerMode } = usePerformance();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
@@ -29,18 +31,30 @@ export default function Particles({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
+  // Reduce particle count on low power mode
+  const effectiveQuantity = isLowPowerMode ? Math.floor(quantity / 2) : quantity;
+
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
     initCanvas();
-    animate();
+    let animationFrameId: number;
+
+    const render = () => {
+      animate();
+      animationFrameId = window.requestAnimationFrame(render);
+    };
+
+    render();
+
     window.addEventListener("resize", initCanvas);
 
     return () => {
       window.removeEventListener("resize", initCanvas);
+      window.cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isLowPowerMode, effectiveQuantity]); // Re-init if quantity changes
 
   useEffect(() => {
     onMouseMove();
@@ -149,7 +163,7 @@ export default function Particles({
 
   const drawParticles = () => {
     clearContext();
-    const particleCount = quantity;
+    const particleCount = effectiveQuantity;
     for (let i = 0; i < particleCount; i++) {
       const circle = circleParams();
       drawCircle(circle);
@@ -225,7 +239,6 @@ export default function Particles({
         );
       }
     });
-    window.requestAnimationFrame(animate);
   };
 
   return (

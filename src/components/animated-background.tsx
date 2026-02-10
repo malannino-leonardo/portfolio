@@ -12,6 +12,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { Section, getKeyboardState } from "./animated-background-config";
 import { useSounds } from "./realtime/hooks/use-sounds";
+import { usePerformance } from "@/hooks/use-performance";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,7 @@ const SKILL_REMAP: Record<string, SkillNames> = {
 const AnimatedBackground = () => {
   const { isLoading, bypassLoading } = usePreloader();
   const { theme } = useTheme();
+  const { isLowPowerMode } = usePerformance();
   const isMobile = useMediaQuery("(max-width: 767px)");
   const splineContainer = useRef<HTMLDivElement>(null);
   const [splineApp, setSplineApp] = useState<Application>();
@@ -249,7 +251,7 @@ const AnimatedBackground = () => {
   }, [splineApp]);
 
   const getKeycapsAnimation = useCallback(() => {
-    if (!splineApp) return { start: () => { }, stop: () => { } };
+    if (!splineApp || isLowPowerMode) return { start: () => { }, stop: () => { } };
 
     let tweens: gsap.core.Tween[] = [];
     const removePrevTweens = () => tweens.forEach((t) => t.kill());
@@ -381,13 +383,18 @@ const AnimatedBackground = () => {
         const keycap = allKeysToAnimate[i];
         const originalY = keycap.position.y || 0;
         
-        await sleep(45); 
+        if (!isLowPowerMode) await sleep(45); 
         keycap.visible = true;
-        gsap.fromTo(
-          keycap.position,
-          { y: originalY + 200 },
-          { y: originalY, duration: 0.5, delay: 0.1, ease: "bounce.out" }
-        );
+
+        if (!isLowPowerMode) {
+          gsap.fromTo(
+            keycap.position,
+            { y: originalY + 200 },
+            { y: originalY, duration: 0.5, delay: 0.1, ease: "bounce.out" }
+          );
+        } else {
+          keycap.position.y = originalY;
+        }
       }
   }, [splineApp, activeSection, isMobile]);
 

@@ -4,6 +4,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import { ReactNode, useEffect, useRef } from "react";
+import { usePerformance } from "@/hooks/use-performance";
 
 interface BlurIntProps {
   children: ReactNode;
@@ -22,9 +23,10 @@ export const BlurIn = ({
   delay = 0,
   duration = 1,
 }: BlurIntProps) => {
+  const { isLowPowerMode } = usePerformance();
   const defaultVariants = {
-    hidden: { filter: "blur(10px)", opacity: 0 },
-    visible: { filter: "blur(0px)", opacity: 1 },
+    hidden: { filter: isLowPowerMode ? "none" : "blur(10px)", opacity: 0 },
+    visible: { filter: isLowPowerMode ? "none" : "blur(0px)", opacity: 1 },
   };
   const combinedVariants = variant || defaultVariants;
 
