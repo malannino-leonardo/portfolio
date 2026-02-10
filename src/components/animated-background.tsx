@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Spline = React.lazy(() => import("@splinetool/react-spline"));
 import { Skill, SkillNames, SKILLS } from "@/data/constants";
-import { sleep } from "@/lib/utils";
+import { sleep, cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
@@ -555,17 +555,22 @@ const AnimatedBackground = () => {
   }, [splineApp, isLoading, activeSection, keyboardRevealed, router, updateKeyboardTransform]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Spline
-        className="w-full h-full fixed"
-        ref={splineContainer}
-        onLoad={(app: Application) => {
-          setSplineApp(app);
-          bypassLoading();
-        }}
-        scene="/assets/skills-keyboard.spline"
-      />
-    </Suspense>
+    <div className={cn(
+      "w-full h-full fixed inset-0 transition-opacity duration-1000 z-[-1]",
+      !keyboardRevealed ? "opacity-0" : "opacity-100"
+    )}>
+      <Suspense fallback={null}>
+        <Spline
+          className="w-full h-full"
+          ref={splineContainer}
+          onLoad={(app: Application) => {
+            setSplineApp(app);
+            bypassLoading();
+          }}
+          scene="/assets/skills-keyboard.spline"
+        />
+      </Suspense>
+    </div>
   );
 };
 

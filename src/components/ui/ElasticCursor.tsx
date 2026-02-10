@@ -182,10 +182,16 @@ function ElasticCursor() {
 
   useEffect(() => {
     if (!jellyRef.current) return;
-    jellyRef.current.style.height = "2rem"; // "8rem";
-    jellyRef.current.style.borderRadius = "1rem";
-    jellyRef.current.style.width = loadingPercent * 2 + "vw";
-  }, [loadingPercent]);
+    if (isLoading) {
+      jellyRef.current.style.height = "2rem"; // "8rem";
+      jellyRef.current.style.borderRadius = "1rem";
+      jellyRef.current.style.width = loadingPercent * 2 + "vw";
+    } else {
+      jellyRef.current.style.height = "";
+      jellyRef.current.style.borderRadius = "";
+      jellyRef.current.style.width = "";
+    }
+  }, [loadingPercent, isLoading]);
 
   useTicker(loop, isLoading || !cursorMoved || isMobile);
   if (isMobile) return null;
@@ -202,7 +208,7 @@ function ElasticCursor() {
           "translate-x-[-50%] translate-y-[-50%]"
         )}
         style={{
-          zIndex: 100,
+          zIndex: 9999,
           backdropFilter: "invert(100%)",
         }}
       ></div>
