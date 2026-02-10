@@ -273,7 +273,7 @@ const projects: Project[] = [
       ],
     },
     live: "https://giansob.itch.io/rubiks-cube-simulator",
-    github: "",
+    github: "https://github.com/soban-gianluca/Rubik-Simulator",
     get content() {
       return (
         <div>
