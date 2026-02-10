@@ -28,7 +28,8 @@ import {
   SiVuedotjs,
   SiHtml5,
   SiCss3,
-  SiPhp
+  SiPhp,
+  SiXampp
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
@@ -242,6 +243,12 @@ const PROJECT_SKILLS = {
     bg: "black",
     fg: "white",
     icon: <SiPhp />,
+  },
+  xampp: {
+    title: "XAMPP",
+    bg: "black",
+    fg: "white",
+    icon: <SiXampp />,
   },
 };
 export type Project = {
@@ -670,6 +677,7 @@ const projects: Project[] = [
         PROJECT_SKILLS.php,
         PROJECT_SKILLS.postgres,
         PROJECT_SKILLS.supabase,
+        PROJECT_SKILLS.xampp,
       ],
     },
     get content() {
