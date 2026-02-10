@@ -3,7 +3,6 @@
 import Particles from "@/components/Particles";
 import EasterEggs from "@/components/easter-eggs";
 import ElasticCursor from "@/components/ui/ElasticCursor";
-import RadialMenu from "@/components/radial-menu/index";
 import { usePerformance } from "@/hooks/use-performance";
 
 export default function AppOverlays() {
@@ -17,7 +16,6 @@ export default function AppOverlays() {
       />
       <EasterEggs />
       {!isLowPowerMode && <ElasticCursor />}
-      <RadialMenu />
     </>
   );
 }

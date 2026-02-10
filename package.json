@@ -22,8 +22,6 @@
     "@splidejs/react-splide": "^0.7.12",
     "@splinetool/react-spline": "^4.0.0",
     "@splinetool/runtime": "^1.9.3",
-    "@types/canvas-confetti": "^1.9.0",
-    "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
