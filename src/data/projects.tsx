@@ -273,7 +273,7 @@ const projects: Project[] = [
       ],
     },
     live: "https://giansob.itch.io/rubiks-cube-simulator",
-    github: "https://github.com/soban-gianluca/Rubik-Simulator",
+    github: "",
     get content() {
       return (
         <div>
@@ -596,8 +596,8 @@ const projects: Project[] = [
     title: "MacOS Style Portfolio",
     src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
     screenshots: ["landing.png"],
-    live: "https://macos-style-portfolio.example.com/",
-    github:"https://github.com/malannino-leonardo/macos-style-portfolio",
+    live: "https://sunforgione.com/",
+    github:"",
     skills: {
       frontend: [PROJECT_SKILLS.html, PROJECT_SKILLS.css, PROJECT_SKILLS.js],
       backend: [],
