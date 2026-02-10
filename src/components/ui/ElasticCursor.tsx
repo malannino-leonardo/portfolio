@@ -57,15 +57,12 @@ function getAngle(diffX: number, diffY: number) {
   return (Math.atan2(diffY, diffX) * 180) / Math.PI;
 }
 
-function getRekt(el: HTMLElement) {
-  if (el.classList.contains("cursor-can-hover"))
-    return el.getBoundingClientRect();
-  else if (el.parentElement?.classList.contains("cursor-can-hover"))
-    return el.parentElement.getBoundingClientRect();
-  else if (
-    el.parentElement?.parentElement?.classList.contains("cursor-can-hover")
-  )
-    return el.parentElement.parentElement.getBoundingClientRect();
+function getHoverElement(el: HTMLElement) {
+  if (el.classList.contains("cursor-can-hover")) return el;
+  if (el.parentElement?.classList.contains("cursor-can-hover"))
+    return el.parentElement;
+  if (el.parentElement?.parentElement?.classList.contains("cursor-can-hover"))
+    return el.parentElement.parentElement;
   return null;
 }
 
@@ -112,6 +109,8 @@ function ElasticCursor() {
       set.sy(1 - scale * 2);
     } else {
       set.r(0);
+      set.sx(1);
+      set.sy(1);
     }
   }, [isHovering, isLoading]);
 
@@ -126,20 +125,22 @@ function ElasticCursor() {
         setCursorMoved(true);
       }
       const el = e.target as HTMLElement;
-      const hoverElemRect = getRekt(el);
-      if (hoverElemRect) {
-        const rect = el.getBoundingClientRect();
+      const hoverElem = getHoverElement(el);
+      if (hoverElem) {
+        const rect = hoverElem.getBoundingClientRect();
         setIsHovering(true);
         gsap.to(jellyRef.current, {
           rotate: 0,
           duration: 0,
         });
         gsap.to(jellyRef.current, {
-          width: el.offsetWidth + 20,
-          height: el.offsetHeight + 20,
+          width: hoverElem.offsetWidth + 20,
+          height: hoverElem.offsetHeight + 20,
           x: rect.left + rect.width / 2,
           y: rect.top + rect.height / 2,
           borderRadius: 10,
+          scaleX: 1,
+          scaleY: 1,
           duration: 1.5,
           ease: "elastic.out(1, 0.3)",
         });
@@ -150,6 +151,8 @@ function ElasticCursor() {
           borderRadius: 50,
           width: CURSOR_DIAMETER,
           height: CURSOR_DIAMETER,
+          scaleX: 1,
+          scaleY: 1,
         });
         setIsHovering(false);
       }
