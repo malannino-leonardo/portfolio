@@ -99,7 +99,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     label: "Tailwind",
     shortDescription: "styling at the speed of light, CSS who? 🌪️🔥",
     color: "#38bdf8",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
   [SkillNames.NODEJS]: {
     id: 9,

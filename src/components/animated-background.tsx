@@ -44,7 +44,7 @@ const AnimatedBackground = () => {
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "") as Section;
-    if (["hero", "skills", "projects", "contact"].includes(hash)) {
+    if (["hero", "skills", "about", "projects", "contact"].includes(hash)) {
       setActiveSection(hash);
     }
   }, []);
@@ -222,9 +222,10 @@ const AnimatedBackground = () => {
 
     // Section transitions
     createSectionTimeline("#skills", "skills", "hero");
-    createSectionTimeline("#projects", "projects", "skills", "top 70%");
+    createSectionTimeline("#about", "about", "skills", "top 70%");
+    createSectionTimeline("#projects", "projects", "about", "top 70%");
     createSectionTimeline("#contact", "contact", "projects", "top 30%");
-  }, [splineApp, isMobile, createSectionTimeline]);
+  }, [splineApp, isMobile, createSectionTimeline, activeSection]);
 
   const getBongoAnimation = useCallback(() => {
     const findObj = (name: string) => splineApp?.findObjectByName(name) || 
