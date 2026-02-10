@@ -1,16 +1,16 @@
 # 🚀 My Portfolio Website
 
-Welcome to the repository for my personal portfolio website! This is where I showcase my skills, projects, and a bit of my personality through jaw-dropping 3D animations, slick interactions, and fluid motion. If you're into creative web design, you're in the right place.
+Hey! Welcome to my personal portfolio website repository. Here you'll find my work showcasing my skills, projects, and personality through some cool 3D animations, smooth interactions, and nice motion effects. If you love creative web design, you're in the right spot.
 
-![Portfolio Preview](https://github.com/Naresh-Khatri/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
+![Portfolio Preview](https://github.com/malannino-leonardo/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
 
 ## 🔥 Features
 
-- **3D Animations**: Custom-made interactive keyboard using Spline with skills as keycaps that reveal titles and descriptions on hover.
-- **Slick Interactions**: Powered by GSAP and Framer Motion for smooth animations on scroll, hover, and element reveal.
-- **Space Theme**: Particles on a dark background to simulate a cosmic environment, making the experience out of this world.
-- **Responsive Design**: Fully responsive across all devices to ensure the best user experience.
-- **Innovative Web Design**: Combining creativity with functionality to push the boundaries of modern web design.
+- **3D Animations**: A custom interactive keyboard built with Spline that displays skills as keycaps. Hover over them to see titles and descriptions.
+- **Smooth Interactions**: Built with GSAP and Framer Motion for fluid animations on scroll, hover, and element reveal.
+- **Space Theme**: Particle effects on a dark background to create a cosmic feel and immersive experience.
+- **Responsive Design**: Works great on all device sizes for the best viewing experience.
+- **Creative Web Design**: Blends creativity with functionality to deliver modern, engaging web design.
 
 ## 🛠️ Tech Stack
 
@@ -30,7 +30,7 @@ Welcome to the repository for my personal portfolio website! This is where I sho
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Naresh-Khatri/Portfolio.git
+    git clone https://github.com/malannino-leonardo/Portfolio.git
     ```
 
 2. Navigate to the project directory:
@@ -55,20 +55,21 @@ Welcome to the repository for my personal portfolio website! This is where I sho
     yarn dev
     ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the magic!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to check it out!
 
 ## 🚀 Deployment
 
-This site is deployed on Vercel. For your own deployment, follow these steps:
+This site runs on Vercel. To deploy your own version, follow these steps:
 
-1. Push your code to a GitHub repository.
-2. Connect your repository to Vercel.
-3. Vercel will handle the deployment process.
+1. Push your code to GitHub.
+2. Link your repository to Vercel.
+3. Vercel takes care of the rest.
 
 ## 🤝 Contributing
 
-If you'd like to contribute or suggest improvements, feel free to open an issue or submit a pull request. All contributions are welcome!
+Found something you'd like to improve? Feel free to open an issue or submit a pull request. I'm always open to feedback and contributions!
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source under the [MIT License](LICENSE).
+
