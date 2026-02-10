@@ -20,11 +20,11 @@ const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen")}>
-      <div className="grid md:grid-cols-2">
+    <SectionWrapper id="hero" className={cn("relative w-full h-screen pointer-events-none")}>
+      <div className="grid md:grid-cols-2 pointer-events-none">
         <div
           className={cn(
-            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
+            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2] pointer-events-none",
             "col-span-1",
             "flex flex-col justify-start md:justify-center items-center md:items-start",
             "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"

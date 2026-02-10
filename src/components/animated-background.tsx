@@ -134,13 +134,14 @@ const AnimatedBackground = () => {
       );
     };
 
-    splineApp.addEventListener("keyUp", () => {
+    const onKeyUp = () => {
       if (!splineApp || isInputFocused()) return;
       playReleaseSound();
       setSplineVariable("heading", "");
       setSplineVariable("desc", "");
-    });
-    splineApp.addEventListener("keyDown", (e) => {
+    };
+
+    const onKeyDown = (e: SplineEvent) => {
       if (!splineApp || isInputFocused()) return;
       const skill = getSkillFromObjectName(e.target.name);
       if (skill) {
@@ -150,8 +151,19 @@ const AnimatedBackground = () => {
         setSplineVariable("heading", skill.label);
         setSplineVariable("desc", skill.shortDescription);
       }
-    });
-    splineApp.addEventListener("mouseHover", handleMouseHover);
+    };
+
+    const onMouseHover = (e: SplineEvent) => handleMouseHover(e);
+
+    splineApp.addEventListener("keyUp", onKeyUp);
+    splineApp.addEventListener("keyDown", onKeyDown);
+    splineApp.addEventListener("mouseHover", onMouseHover);
+
+    return () => {
+      splineApp.removeEventListener("keyUp", onKeyUp);
+      splineApp.removeEventListener("keyDown", onKeyDown);
+      splineApp.removeEventListener("mouseHover", onMouseHover);
+    };
   }, [splineApp, playReleaseSound, playPressSound, setSplineVariable, handleMouseHover]);
 
   // --- Animation Setup Helpers ---
@@ -403,15 +415,16 @@ const AnimatedBackground = () => {
   // Initialize GSAP and Spline interactions
   useEffect(() => {
     if (!splineApp) return;
-    handleSplineInteractions();
+    const cleanup = handleSplineInteractions();
     setupScrollAnimations();
     bongoAnimationRef.current = getBongoAnimation();
     keycapAnimationsRef.current = getKeycapsAnimation();
-    return () => {
-      bongoAnimationRef.current?.stop()
-      keycapAnimationsRef.current?.stop()
-    }
 
+    return () => {
+      cleanup?.();
+      bongoAnimationRef.current?.stop();
+      keycapAnimationsRef.current?.stop();
+    };
   }, [splineApp, isMobile, handleSplineInteractions, setupScrollAnimations, getBongoAnimation, getKeycapsAnimation]);
 
   // Handle keyboard text visibility based on theme and section
@@ -556,12 +569,12 @@ const AnimatedBackground = () => {
 
   return (
     <div className={cn(
-      "w-full h-full fixed inset-0 transition-opacity duration-1000 z-[-1]",
+      "w-full h-full fixed inset-0 transition-opacity duration-1000 z-0",
       !keyboardRevealed ? "opacity-0" : "opacity-100"
     )}>
       <Suspense fallback={null}>
         <Spline
-          className="w-full h-full"
+          className="w-full h-full pointer-events-auto"
           ref={splineContainer}
           onLoad={(app: Application) => {
             setSplineApp(app);
