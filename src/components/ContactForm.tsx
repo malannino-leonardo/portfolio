@@ -15,11 +15,17 @@ const ContactForm = () => {
   const [message, setMessage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
+  const isFullNameValid = fullName.length >= 2 || fullName.length === 0;
+  const isMessageValid = message.length >= 10 || message.length === 0;
+  const canSubmit =
+    fullName.length >= 2 && message.length >= 10 && email.length > 0;
+
   const { toast } = useToast();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!canSubmit) return;
     setLoading(true);
     try {
       const res = await fetch("/api/send", {
@@ -39,7 +45,7 @@ const ContactForm = () => {
         title: "Thank you!",
         description: "I'll get back to you as soon as possible.",
         variant: "default",
-        className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
+        className: cn("top-20 mx-auto flex fixed md:top-20 md:right-4"),
       });
       setLoading(false);
       setFullName("");
@@ -54,7 +60,7 @@ const ContactForm = () => {
         title: "Error",
         description: "Something went wrong! Please check the fields.",
         className: cn(
-          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+          "top-20 w-full flex justify-center fixed md:max-w-7xl md:top-20 md:right-4"
         ),
         variant: "destructive",
       });
@@ -74,6 +80,11 @@ const ContactForm = () => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
+          {!isFullNameValid && (
+            <p className="text-[10px] text-red-500">
+              Minimum 2 characters required
+            </p>
+          )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
@@ -96,12 +107,20 @@ const ContactForm = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
-        </p>
+        <div className="flex justify-between items-center">
+          {!isMessageValid ? (
+            <p className="text-[10px] text-red-500">
+              Minimum 10 characters required ({message.length}/10)
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              I&apos;ll never share your data with anyone else. Pinky promise!
+            </p>
+          )}
+        </div>
       </div>
       <Button
-        disabled={loading}
+        disabled={loading || !canSubmit}
         className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
         type="submit"
       >
