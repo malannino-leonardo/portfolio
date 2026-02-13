@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { config } from "@/data/config";
 import { DiMongodb, DiNginx, DiNpm, DiPostgresql, DiVim } from "react-icons/di";
 import {
   FaAws,
@@ -287,10 +288,7 @@ function Page() {
           >
             <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
             <p className="mb-10 text-roboto">
-              I&apos;m a full-stack developer who specializes in creating visually compelling web experiences. 
-              I combine solid engineering with creative experimentation, working with 3D graphics, animations, 
-              and interactive design to build applications that are both technically sound and engaging. 
-              I approach problems methodically and deliver solutions that work.
+              {config.description.long}
             </p>
             <p className="mb-10">
               When I&apos;m not coding, you can find me exploring new technologies or sipping coffee

@@ -5,6 +5,7 @@ import SectionWrapper from "@/components/ui/section-wrapper";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import { config } from "@/data/config";
 
 const AboutSection = () => {
   return (
@@ -50,8 +51,7 @@ const AboutSection = () => {
                  transition={{ delay: 0.2 }}
                  className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto lg:mx-0"
                >
-                 I&apos;m a full-stack developer obsessed with building cool stuff on the web. I love playing with 3D, animations, 
-                 and creating experiences that actually make people go &ldquo;wow&rdquo;. Always tinkering, always experimenting.
+                 {config.description.long}
                </motion.p>
             </div>
           </div>
