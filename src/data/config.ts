@@ -1,7 +1,7 @@
 const config = {
   title: "Leonardo Malannino | Full-Stack Developer",
   description: {
-    long: "Explore the portfolio of Leonardo, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
+    long: "Explore the portfolio of Leonardo, a full-stack developer specializing in creating interactive web experiences and innovative projects. From 3D animations to dynamic websites, discover a showcase of creativity and technical expertise.",
     short:
       "Discover the portfolio of Leonardo, a full-stack developer creating interactive web experiences and innovative projects.",
   },

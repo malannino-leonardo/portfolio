@@ -287,11 +287,10 @@ function Page() {
           >
             <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
             <p className="mb-10 text-roboto">
-              Hey there! I&apos;m Leonardo Malannino, a Fullstack developer passionate about
-              creating meaningful digital experiences. With great in Web
-              development, I thrive on turning ideas into reality through coding
-              and design. My journey began with a fascination for technology and
-              a drive to make a positive impact.
+              I&apos;m a full-stack developer who specializes in creating visually compelling web experiences. 
+              I combine solid engineering with creative experimentation, working with 3D graphics, animations, 
+              and interactive design to build applications that are both technically sound and engaging. 
+              I approach problems methodically and deliver solutions that work.
             </p>
             <p className="mb-10">
               When I&apos;m not coding, you can find me [Your
