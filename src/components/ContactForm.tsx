@@ -114,7 +114,7 @@ const ContactForm = () => {
             </p>
           ) : (
             <p className="text-sm text-muted-foreground">
-              I&apos;ll never share your data with anyone else. Pinky promise!
+              Your information will remain confidential and secure.
             </p>
           )}
         </div>
