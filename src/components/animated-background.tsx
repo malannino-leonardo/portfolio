@@ -28,6 +28,13 @@ const SKILL_REMAP: Record<string, SkillNames> = {
   "vim": SkillNames.APACHE,
 };
 
+const KEYBOARD_SCROLL_TRIGGER_PREFIX = "keyboard-section-";
+const KEYBOARD_TRANSITION_DURATION = {
+  default: 0.7,
+  aboutProjects: 1.2,
+  projectsContact: 1.5,
+} as const;
+
 const AnimatedBackground = () => {
   const { isLoading, bypassLoading } = usePreloader();
   const { theme } = useTheme();
@@ -41,13 +48,19 @@ const AnimatedBackground = () => {
 
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("hero");
+  const activeSectionRef = useRef<Section>("hero");
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "") as Section;
     if (["hero", "skills", "about", "projects", "contact"].includes(hash)) {
+      activeSectionRef.current = hash;
       setActiveSection(hash);
     }
   }, []);
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   // Animation controllers refs
   const bongoAnimationRef = useRef<{ start: () => void; stop: () => void }>();
@@ -168,12 +181,60 @@ const AnimatedBackground = () => {
 
   // --- Animation Setup Helpers ---
 
+  const clearKeyboardScrollTriggers = useCallback(() => {
+    ScrollTrigger.getAll().forEach((trigger) => {
+      const id = trigger.vars.id;
+      if (typeof id === "string" && id.startsWith(KEYBOARD_SCROLL_TRIGGER_PREFIX)) {
+        trigger.kill();
+      }
+    });
+  }, []);
+
+  const applyKeyboardState = useCallback((
+    kbd: SPEObject,
+    section: Section,
+    duration: number = KEYBOARD_TRANSITION_DURATION.default
+  ) => {
+    const state = getKeyboardState({ section, isMobile });
+
+    gsap.killTweensOf(kbd.scale);
+    gsap.killTweensOf(kbd.position);
+    gsap.killTweensOf(kbd.rotation);
+
+    gsap.to(kbd.scale, {
+      ...state.scale,
+      duration,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    gsap.to(kbd.position, {
+      ...state.position,
+      duration,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    gsap.to(kbd.rotation, {
+      ...state.rotation,
+      duration,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    if (activeSectionRef.current !== section) {
+      activeSectionRef.current = section;
+      setActiveSection(section);
+    }
+  }, [isMobile]);
+
   const createSectionTimeline = useCallback((
     triggerId: string,
     targetSection: Section,
     prevSection: Section,
     start: string = "top 50%",
-    end: string = "bottom bottom"
+    end: string = "bottom bottom",
+    transitionDuration: number = KEYBOARD_TRANSITION_DURATION.default
   ) => {
     if (!splineApp) return;
     const kbd = splineApp.findObjectByName("keyboard") || 
@@ -181,51 +242,73 @@ const AnimatedBackground = () => {
                 splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
     if (!kbd) return;
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerId,
-        start,
-        end,
-        scrub: true,
-        onEnter: () => {
-          setActiveSection(targetSection);
-          const state = getKeyboardState({ section: targetSection, isMobile });
-          gsap.to(kbd.scale, { ...state.scale, duration: 1 });
-          gsap.to(kbd.position, { ...state.position, duration: 1 });
-          gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
-        },
-        onLeaveBack: () => {
-          setActiveSection(prevSection);
-          const state = getKeyboardState({ section: prevSection, isMobile, });
-          gsap.to(kbd.scale, { ...state.scale, duration: 1 });
-          gsap.to(kbd.position, { ...state.position, duration: 1 });
-          gsap.to(kbd.rotation, { ...state.rotation, duration: 1 });
-        },
+    ScrollTrigger.create({
+      id: `${KEYBOARD_SCROLL_TRIGGER_PREFIX}${targetSection}`,
+      trigger: triggerId,
+      start,
+      end,
+      onEnter: () => {
+        applyKeyboardState(kbd, targetSection, transitionDuration);
+      },
+      onEnterBack: () => {
+        applyKeyboardState(kbd, targetSection, transitionDuration);
+      },
+      onLeaveBack: () => {
+        applyKeyboardState(kbd, prevSection, transitionDuration);
       },
     });
-  }, [splineApp, isMobile]);
+  }, [splineApp, applyKeyboardState]);
 
   const setupScrollAnimations = useCallback(() => {
     if (!splineApp || !splineContainer.current) return;
+
+    clearKeyboardScrollTriggers();
+
     const kbd = splineApp.findObjectByName("keyboard") || 
                 splineApp.findObjectByName("Keyboard") || 
                 splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
     if (!kbd) return;
 
-    // Initial state
-    const initialState = getKeyboardState({ section: activeSection, isMobile });
+    const hash = window.location.hash.replace("#", "") as Section;
+    const initialSection: Section = ["hero", "skills", "about", "projects", "contact"].includes(hash)
+      ? hash
+      : activeSectionRef.current;
+
+    const initialState = getKeyboardState({ section: initialSection, isMobile });
+    gsap.killTweensOf(kbd.scale);
+    gsap.killTweensOf(kbd.position);
+    gsap.killTweensOf(kbd.rotation);
     gsap.set(kbd.scale, initialState.scale);
     gsap.set(kbd.position, initialState.position);
-    if (initialState.rotation) {
-      gsap.set(kbd.rotation, initialState.rotation);
+    gsap.set(kbd.rotation, initialState.rotation);
+
+    if (activeSectionRef.current !== initialSection) {
+      activeSectionRef.current = initialSection;
+      setActiveSection(initialSection);
     }
 
     // Section transitions
     createSectionTimeline("#skills", "skills", "hero");
     createSectionTimeline("#about", "about", "skills", "top 70%");
-    createSectionTimeline("#projects", "projects", "about", "top 70%");
-    createSectionTimeline("#contact", "contact", "projects", "top 30%");
-  }, [splineApp, isMobile, createSectionTimeline, activeSection]);
+    createSectionTimeline(
+      "#projects",
+      "projects",
+      "about",
+      "top 70%",
+      "bottom bottom",
+      KEYBOARD_TRANSITION_DURATION.aboutProjects
+    );
+    createSectionTimeline(
+      "#contact",
+      "contact",
+      "projects",
+      "top 30%",
+      "bottom bottom",
+      KEYBOARD_TRANSITION_DURATION.projectsContact
+    );
+
+    ScrollTrigger.refresh();
+  }, [splineApp, isMobile, createSectionTimeline, clearKeyboardScrollTriggers]);
 
   const getBongoAnimation = useCallback(() => {
     const findObj = (name: string) => splineApp?.findObjectByName(name) || 
@@ -423,10 +506,11 @@ const AnimatedBackground = () => {
 
     return () => {
       cleanup?.();
+      clearKeyboardScrollTriggers();
       bongoAnimationRef.current?.stop();
       keycapAnimationsRef.current?.stop();
     };
-  }, [splineApp, isMobile, handleSplineInteractions, setupScrollAnimations, getBongoAnimation, getKeycapsAnimation]);
+  }, [splineApp, isMobile, handleSplineInteractions, setupScrollAnimations, getBongoAnimation, getKeycapsAnimation, clearKeyboardScrollTriggers]);
 
   // Handle keyboard text visibility based on theme and section
   useEffect(() => {
@@ -478,13 +562,16 @@ const AnimatedBackground = () => {
     if (!splineApp) return;
 
     let rotateKeyboard: gsap.core.Tween | undefined;
-    let teardownKeyboard: gsap.core.Tween | undefined;
+    let contactKeyboardWobble: gsap.core.Tween | undefined;
+    let cancelled = false;
 
     const kbd = splineApp.findObjectByName("keyboard") || 
                 splineApp.findObjectByName("Keyboard") || 
                 splineApp.getAllObjects().find(obj => obj.name.toLowerCase() === "keyboard");
 
     if (kbd) {
+      const contactRotation = getKeyboardState({ section: "contact", isMobile }).rotation;
+
       rotateKeyboard = gsap.to(kbd.rotation, {
         y: Math.PI * 2 + kbd.rotation.y,
         duration: 10,
@@ -496,21 +583,31 @@ const AnimatedBackground = () => {
         paused: true, // Start paused
       });
 
-      teardownKeyboard = gsap.fromTo(
+      contactKeyboardWobble = gsap.fromTo(
         kbd.rotation,
-        { y: 0, x: -Math.PI, z: 0 },
         {
-          y: -Math.PI / 2,
-          duration: 5,
+          x: contactRotation.x - 0.08,
+          y: contactRotation.y + 0.12,
+          z: contactRotation.z - 0.04,
+        },
+        {
+          x: contactRotation.x + 0.08,
+          y: contactRotation.y - 0.12,
+          z: contactRotation.z + 0.04,
+          duration: 2.4,
           repeat: -1,
           yoyo: true,
-          yoyoEase: true,
-          delay: 2.5,
+          ease: "sine.inOut",
           immediateRender: false,
           paused: true,
         }
       );
     }
+
+    const wait = async (duration: number) => {
+      await sleep(duration);
+      return !cancelled;
+    };
 
     const manageAnimations = async () => {
       // Reset text if not in skills
@@ -521,32 +618,31 @@ const AnimatedBackground = () => {
 
       // Handle Rotate/Teardown Tweens
       if (activeSection === "hero") {
-        rotateKeyboard?.restart();
-        teardownKeyboard?.pause();
+        rotateKeyboard?.restart(true, false);
+        contactKeyboardWobble?.pause(0);
       } else if (activeSection === "contact") {
-        rotateKeyboard?.pause();
+        rotateKeyboard?.pause(0);
       } else {
-        rotateKeyboard?.pause();
-        teardownKeyboard?.pause();
+        rotateKeyboard?.pause(0);
+        contactKeyboardWobble?.pause(0);
       }
 
       // Handle Bongo Cat
       if (activeSection === "projects") {
-        await sleep(300);
+        if (!(await wait(300))) return;
         bongoAnimationRef.current?.start();
       } else {
-        await sleep(200);
+        if (!(await wait(200))) return;
         bongoAnimationRef.current?.stop();
       }
 
       // Handle Contact Section Animations
       if (activeSection === "contact") {
-        await sleep(600);
-        teardownKeyboard?.restart();
+        if (!(await wait(350))) return;
+        contactKeyboardWobble?.restart(true, false);
         keycapAnimationsRef.current?.start();
       } else {
-        await sleep(600);
-        teardownKeyboard?.pause();
+        contactKeyboardWobble?.pause(0);
         keycapAnimationsRef.current?.stop();
       }
     };
@@ -554,10 +650,11 @@ const AnimatedBackground = () => {
     manageAnimations();
 
     return () => {
+      cancelled = true;
       rotateKeyboard?.kill();
-      teardownKeyboard?.kill();
+      contactKeyboardWobble?.kill();
     };
-  }, [activeSection, splineApp, setSplineVariable]);
+  }, [activeSection, splineApp, setSplineVariable, isMobile]);
 
   // Reveal keyboard on load/route change
   useEffect(() => {

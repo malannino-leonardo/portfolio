@@ -87,9 +87,9 @@ export const STATES = {
       scale: { x: 0.25, y: 0.25, z: 0.25 },
       position: { x: 0, y: 150, z: 0 },
       rotation: {
-        x: Math.PI,
-        y: Math.PI / 3,
-        z: Math.PI,
+        x: 0,
+        y: -Math.PI / 8,
+        z: 0,
       },
     },
   },

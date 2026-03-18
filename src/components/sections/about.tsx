@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { config } from "@/data/config";
+import ContributionGraph from "./contribution-graph";
 
 const AboutSection = () => {
   return (
@@ -67,6 +68,10 @@ const AboutSection = () => {
             ))}
           </div>
 
+        </div>
+
+        <div className="mt-16">
+          <ContributionGraph />
         </div>
       </div>
     </SectionWrapper>
