@@ -731,5 +731,89 @@ const projects: Project[] = [
       );
     },
   },
+  {
+    id: "eu-puzzle",
+    category: "Puzzle game",
+    title: "EU Puzzle",
+    src: "/assets/projects-screenshots/eu-puzzle/landing.jpg",
+    screenshots: ["home.png"],
+    live: "https://eu-puzzle.netlify.app/",
+    github: "https://github.com/malannino-leonardo/eu-puzzle",
+    skills: {
+      frontend: [PROJECT_SKILLS.html, PROJECT_SKILLS.css, PROJECT_SKILLS.js],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.supabase,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            An interactive map game where you rebuild the European Union (27 member states) by connecting countries in the correct way..
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+          <SlideShow images={[`${BASE_PATH}/eu-puzzle/home.png`]} />
+
+          <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
+          <p className="font-mono mb-2">
+            Choose from different game modes to test your knowledge of European geography and the EU member states.
+            <br></br>
+            <ul className="list-disc ml-6">
+              <li>
+                <strong>Easy mode:</strong> Visual map guides help you place countries.
+              </li>
+              <li>
+                <strong>Medium mode:</strong> No guides, only adjacency knowledge.
+              </li>
+              <li>
+                <strong>Hard mode:</strong> Countries can be rotated and require precise placement.
+              </li>
+            </ul>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/eu-puzzle/easy-mode.png`,
+              `${BASE_PATH}/eu-puzzle/medium-mode.png`,
+              `${BASE_PATH}/eu-puzzle/hard-mode.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Interactive Tutorial</TypographyH3>
+          <p className="font-mono mb-2">
+            New to the game? The interactive tutorial guides you through the basics of gameplay, teaching you how to connect countries and navigate the UI effectively.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/eu-puzzle/tutorial.png`,
+              `${BASE_PATH}/eu-puzzle/tutorial2.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Local Records & Global Leaderboard</TypographyH3>
+          <p className="font-mono mb-2">
+            Track your best times and compare your performance with players worldwide on the global leaderboard. Compete for the top spot and see how you stack up against other EU Puzzle enthusiasts.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/eu-puzzle/local-records.png`,
+              `${BASE_PATH}/eu-puzzle/global-leaderboard.png`,
+            ]}
+          />
+          
+          <TypographyH3 className="my-4 mt-8">Account & settings</TypographyH3>
+          <p className="font-mono mb-2">
+            Manage your account and customize your settings to enhance your gameplay experience.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/eu-puzzle/account.png`,
+              `${BASE_PATH}/eu-puzzle/settings.png`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
 ];
 export default projects;
