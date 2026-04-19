@@ -26,7 +26,7 @@ const AboutSection = () => {
                className="relative mx-auto lg:mx-0 w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full border-[6px] border-background shadow-2xl overflow-hidden ring-1 ring-border"
             >
               <Image 
-                src="/assets/me.png" 
+                src="/assets/me.jpg" 
                 alt="Profile Photo" 
                 fill 
                 className="object-cover hover:scale-105 transition-transform duration-500"
