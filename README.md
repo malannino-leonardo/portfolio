@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-Hey! Welcome to my personal portfolio website repository. Here you'll find my work showcasing my skills, projects, and personality through some cool 3D animations, smooth interactions, and nice motion effects. If you love creative web design, you're in the right spot.
+Welcome to my personal portfolio website repository. Here you'll find my work showcasing my skills, projects, and personality through some cool 3D animations, smooth interactions, and nice motion effects. If you love creative web design, you're in the right spot.
 
 ![Portfolio Preview](https://github.com/malannino-leonardo/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
 
