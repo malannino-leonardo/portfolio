@@ -11,7 +11,7 @@ import {
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 import { config } from "@/data/config";
 
 import SectionWrapper from "../ui/section-wrapper";
@@ -110,14 +110,6 @@ const HeroSection = () => {
                   </Tooltip>
                   <div className="flex items-center h-full gap-2">
                     <Link
-                      href={config.social.twitter}
-                      target="_blank"
-                    >
-                      <Button variant={"outline"}>
-                        <SiX size={24} />
-                      </Button>
-                    </Link>
-                    <Link
                       href={config.social.github}
                       target="_blank"
                       className="cursor-can-hover"
@@ -133,6 +125,14 @@ const HeroSection = () => {
                     >
                       <Button variant={"outline"}>
                         <SiLinkedin size={24} />
+                      </Button>
+                    </Link>
+                    <Link
+                      href={config.social.instagram}
+                      target="_blank"
+                    >
+                      <Button variant={"outline"}>
+                        <SiInstagram size={24} />
                       </Button>
                     </Link>
                   </div>

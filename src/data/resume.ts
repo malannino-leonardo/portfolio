@@ -75,6 +75,8 @@ export interface ResumeDataLocalized {
   }[];
 }
 
+export type ResumeData = ResumeDataLocalized;
+
 export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
   en: {
     personal: {
