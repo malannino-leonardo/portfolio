@@ -98,3 +98,27 @@ body {
     pointer-events: auto;
   }
 }
+
+@media print {
+  header,
+  footer,
+  .print\\:hidden,
+  canvas {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+}
