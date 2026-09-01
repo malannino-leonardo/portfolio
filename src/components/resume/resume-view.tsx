@@ -17,12 +17,15 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { resumeDataByLocale, ResumeLocale } from "@/data/resume";
 import { generateResumePDF } from "@/lib/pdf-generator";
+import { useRippedPaperClipPath, BinderHolesStrip } from "@/components/resume/torn-paper-edge";
+import { PaperImperfections } from "@/components/resume/paper-imperfections";
 
 export const ResumeView: React.FC = () => {
   const { toast } = useToast();
   const [locale, setLocale] = useState<ResumeLocale>("en");
   const [copied, setCopied] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const rippedClipPath = useRippedPaperClipPath();
 
   const currentData = resumeDataByLocale[locale];
   const { personal, labels, experiences, skills, education, certifications } = currentData;
@@ -168,42 +171,51 @@ export const ResumeView: React.FC = () => {
       </div>
 
       {/* ========================================================================= */}
-      {/* REALISTIC YELLOW NOTEBOOK PAPER SHEET CONTAINER WITH PUNCHED HOLES        */}
+      {/* REALISTIC YELLOW NOTEBOOK PAPER SHEET CONTAINER WITH RIPPED / TORN EDGE   */}
       {/* ========================================================================= */}
-      <div className="relative w-full rounded-2xl bg-[#faf5e6] text-[#22201c] border border-[#e5dcbf] shadow-[0_12px_45px_rgba(0,0,0,0.22)] overflow-hidden transition-all duration-300">
-        
-        {/* Left Punched Binder Holes Strip */}
+      <div className="relative w-full filter drop-shadow-[0_12px_45px_rgba(0,0,0,0.22)]">
         <div 
-          aria-hidden="true" 
-          className="absolute left-0 top-0 bottom-0 w-10 sm:w-14 flex flex-col justify-between items-center py-6 sm:py-8 pointer-events-none select-none z-10"
+          style={{ clipPath: rippedClipPath }}
+          className="relative w-full rounded-r-2xl bg-[#faf5e6] text-[#22201c] border-y border-r border-[#e5dcbf] transition-all duration-300 overflow-hidden"
         >
-          {Array.from({ length: 16 }).map((_, i) => (
-            <div
-              key={i}
-              className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-background border border-[#d6cbab] shadow-[inset_0_2px_4px_rgba(0,0,0,0.45)] transition-colors"
-            />
-          ))}
-        </div>
+          {/* Left Punched Binder Holes Strip */}
+          <BinderHolesStrip />
 
-        {/* Vertical Margin Line (notebook guide separator) */}
-        <div 
-          aria-hidden="true" 
-          className="absolute left-10 sm:left-14 top-0 bottom-0 w-px bg-[#dfd4b4] pointer-events-none" 
-        />
+          {/* Vertical Margin Line (notebook guide separator) */}
+          <div 
+            aria-hidden="true" 
+            className="absolute left-10 sm:left-12 top-0 bottom-0 w-px bg-[#b45309]/40 pointer-events-none z-10" 
+          />
+
+          {/* Square Graph Paper Grid (Quadretti) */}
+          <div
+            aria-hidden="true"
+            className="absolute left-10 sm:left-12 right-0 top-0 bottom-0 pointer-events-none select-none z-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(175, 155, 120, 0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(175, 155, 120, 0.18) 1px, transparent 1px)
+              `,
+              backgroundSize: "22px 22px",
+            }}
+          />
+
+          {/* Photorealistic Paper Imperfections: 3D Wrinkles, Creases & Highlights */}
+          <PaperImperfections />
 
         {/* Content Wrapper inside the paper sheet with generous left margin */}
-        <div className="pl-16 sm:pl-22 md:pl-28 pr-6 sm:pr-10 md:pr-14 py-8 sm:py-12 md:py-14 space-y-8">
+        <div className="relative z-10 pl-14 sm:pl-18 md:pl-24 pr-4 sm:pr-10 md:pr-14 py-6 sm:py-12 md:py-14 space-y-8 min-w-0">
           
           {/* ----------------------------------------------------------------------- */}
           {/* HEADER: Candidate Profile & Full-Width Professional Summary             */}
           {/* ----------------------------------------------------------------------- */}
           <header className="space-y-5">
             
-            {/* Top Identity Row: Avatar aligned on left with Name & Contact Info */}
-            <div className="flex flex-row gap-5 sm:gap-7 items-stretch">
+            {/* Top Identity Row: Avatar aligned with Name & Contact Info */}
+            <div className="flex flex-col md:flex-row gap-5 md:gap-7 items-start min-w-0">
               
-              {/* Profile Avatar on the Left */}
-              <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden border-2 border-[#d6cbab] shadow-md bg-[#eee7cf] shrink-0">
+              {/* Profile Avatar */}
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-2xl overflow-hidden border-2 border-[#d6cbab] shadow-md bg-[#eee7cf] shrink-0">
                 <Image
                   src={personal.avatar}
                   alt={personal.name}
@@ -213,10 +225,10 @@ export const ResumeView: React.FC = () => {
                 />
               </div>
 
-              {/* Personal Details: top aligned with top of pfp and bottom contact row aligned with bottom of pfp */}
-              <div className="flex flex-col justify-between flex-1 min-w-0 py-0.5">
+              {/* Personal Details: naturally flowing vertical stack */}
+              <div className="flex flex-col justify-start space-y-3 flex-1 min-w-0 w-full">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1a1916] font-display leading-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1a1916] font-display leading-tight break-words">
                     {personal.name}
                   </h1>
                   <p className="text-base sm:text-lg md:text-xl font-bold text-[#b45309] dark:text-[#c2410c] mt-0.5">
@@ -224,32 +236,32 @@ export const ResumeView: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Contact Meta Grid pinned to bottom */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-xs sm:text-sm text-[#4b463a]">
+                {/* Contact Meta Grid: single column on mobile/tablet, 2 columns on desktop */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-2 text-xs sm:text-sm text-[#4b463a] w-full min-w-0 pt-0.5">
                   <button
                     onClick={handleCopyEmail}
-                    className="flex items-center gap-2 hover:text-[#1a1916] transition-colors text-left group w-fit"
+                    className="flex items-center gap-2 hover:text-[#1a1916] transition-colors text-left group min-w-0 w-fit"
                     title="Click to copy email"
                   >
                     <Mail className="w-4 h-4 text-[#b45309] shrink-0 group-hover:scale-110 transition-transform" />
                     <span className="font-mono text-xs font-semibold">{personal.email}</span>
                   </button>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
                     <MapPin className="w-4 h-4 text-[#b45309] shrink-0" />
                     <span className="font-medium">{personal.location}</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
                     <Car className="w-4 h-4 text-[#b45309] shrink-0" />
                     <span className="font-medium">{personal.drivingLicenseLabel}: {personal.drivingLicense}</span>
                   </div>
 
-                  <div className="flex items-center gap-3 pt-1 sm:pt-0">
+                  <div className="flex flex-wrap items-center gap-3 pt-0.5">
                     <Link
                       href={personal.social.github}
                       target="_blank"
-                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium"
+                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium shrink-0"
                     >
                       <SiGithub className="w-3.5 h-3.5" />
                       <span className="text-xs">GitHub</span>
@@ -258,7 +270,7 @@ export const ResumeView: React.FC = () => {
                     <Link
                       href={personal.social.linkedin}
                       target="_blank"
-                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium"
+                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium shrink-0"
                     >
                       <SiLinkedin className="w-3.5 h-3.5 text-[#0284c7]" />
                       <span className="text-xs">LinkedIn</span>
@@ -267,7 +279,7 @@ export const ResumeView: React.FC = () => {
                     <Link
                       href={personal.social.instagram}
                       target="_blank"
-                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium"
+                      className="inline-flex items-center gap-1 hover:text-[#1a1916] transition-colors font-medium shrink-0"
                     >
                       <SiInstagram className="w-3.5 h-3.5 text-[#e1306c]" />
                       <span className="text-xs">Instagram</span>
@@ -292,7 +304,7 @@ export const ResumeView: React.FC = () => {
           {/* SECTION: SKILLS                                                         */}
           {/* ----------------------------------------------------------------------- */}
           <section className="space-y-4">
-            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#dfd4b4]">
+            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#b45309]/50">
               <span className="w-2.5 h-6 rounded-sm bg-[#b45309]" />
               <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#1a1916] uppercase font-display">
                 {labels.skillsTitle}
@@ -374,7 +386,7 @@ export const ResumeView: React.FC = () => {
           {/* SECTION: EXPERIENCE                                                     */}
           {/* ----------------------------------------------------------------------- */}
           <section className="py-2 space-y-6">
-            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#dfd4b4]">
+            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#b45309]/50">
               <span className="w-2.5 h-6 rounded-sm bg-[#b45309]" />
               <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#1a1916] uppercase font-display">
                 {labels.experienceTitle}
@@ -430,7 +442,7 @@ export const ResumeView: React.FC = () => {
           {/* SECTION: EDUCATION                                                      */}
           {/* ----------------------------------------------------------------------- */}
           <section className="py-2 space-y-6">
-            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#dfd4b4]">
+            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#b45309]/50">
               <span className="w-2.5 h-6 rounded-sm bg-[#b45309]" />
               <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#1a1916] uppercase font-display">
                 {labels.educationTitle}
@@ -483,7 +495,7 @@ export const ResumeView: React.FC = () => {
           {/* SECTION: CERTIFICATIONS                                                 */}
           {/* ----------------------------------------------------------------------- */}
           <section className="py-2 space-y-4">
-            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#dfd4b4]">
+            <div className="flex items-center gap-3 pb-2 border-b-2 border-[#b45309]/50">
               <span className="w-2.5 h-6 rounded-sm bg-[#b45309]" />
               <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#1a1916] uppercase font-display">
                 {labels.certificationsTitle}
@@ -512,12 +524,13 @@ export const ResumeView: React.FC = () => {
           {/* ----------------------------------------------------------------------- */}
           {/* GDPR / Privacy Clause                                                   */}
           {/* ----------------------------------------------------------------------- */}
-          <footer className="pt-6 border-t border-[#dfd4b4] text-center text-[10px] text-[#635d4f] leading-relaxed">
+          <footer className="pt-6 border-t-2 border-[#b45309]/40 text-center text-[10px] text-[#635d4f] leading-relaxed">
             {labels.privacyClause}
           </footer>
 
         </div>
       </div>
+    </div>
 
       {/* Bottom Footer Navigation Link */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-2 print:hidden text-xs text-muted-foreground">

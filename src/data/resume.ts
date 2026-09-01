@@ -117,7 +117,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
       downloadPdf: "Download PDF",
       contactForm: "Contact Form",
       privacyClause:
-        "I hereby authorize the processing of my personal data pursuant to Legislative Decree 196/2003 and Article 13 of the GDPR (EU Regulation 2016/679).",
+        "I authorize the processing of my personal data pursuant to D. Lgs. 196/2003 and GDPR (EU 2016/679).",
     },
     skills: [
       {
@@ -128,7 +128,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
           { name: "git", label: "Git" },
           { name: "vscode", label: "VS Code" },
           { name: "antigravity", label: "Antigravity" },
-          { name: "claude", label: "Claude" },
+          { name: "claude-code", label: "Claude Code" },
           { name: "copilot", label: "GitHub Copilot" },
           { name: "xampp", label: "XAMPP" },
           { name: "vercel", label: "Vercel" },
@@ -183,10 +183,10 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
         summary:
           "Development and maintenance of modern web applications with a focus on end-user experience and graphic design. Deeply integrated artificial intelligence into the workflow, utilizing advanced AI agents directly within the IDE to maximize efficiency and code quality.",
         achievements: [
-          "Architect and deliver bespoke, high-performance web applications using Next.js, React, TypeScript, and modern styling solutions.",
-          "Pioneer the integration of agentic AI coding assistants within the IDE environment to accelerate feature delivery while ensuring rigorous code standards.",
-          "Refine collaborative and client communication skills, translating complex project requirements into scalable, clean, and intuitive user interfaces.",
-          "Integrate robust backend APIs and databases using Supabase, Node.js, and PostgreSQL for real-time interactivity.",
+          "Custom high-performance web applications using Next.js, React, TypeScript, and modern styling solutions.",
+          "Integration of AI coding assistants within the IDE environment to accelerate feature delivery.",
+          "Refined collaborative and client communication skills, translating complex project requirements into scalable, clean, and intuitive user interfaces.",
+          "Integration of backend APIs and databases using Supabase, Node.js, and PostgreSQL for real-time interactivity.",
         ],
       },
       {
@@ -199,10 +199,10 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
         summary:
           "School internship focused on networking and IT support, getting hands-on experience in a corporate environment. I assisted in configuring network devices and maintaining network infrastructure.",
         achievements: [
-          "Gained hands-on experience in a high-tech corporate semiconductor environment assisting the IT infrastructure team.",
-          "Configured enterprise network hardware devices and monitored network infrastructure reliability.",
-          "Provided prompt hardware, software, and connectivity troubleshooting for on-site corporate employees.",
-          "Deepened practical understanding of cybersecurity measures, access controls, and network protocol topologies.",
+          "Hands-on experience in a high-tech corporate environment assisting the IT infrastructure team.",
+          "Enterprise network hardware devices configuration and network infrastructure monitoring.",
+          "Hardware, software, and connectivity troubleshooting for on-site corporate employees.",
+          "Practical understanding of cybersecurity measures, access controls, and network protocol topologies.",
         ],
       },
       {
@@ -215,19 +215,19 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
         summary:
           "Development of responsive and optimized user interfaces for web applications. Collaboration with design teams to implement high-quality UI/UX.",
         achievements: [
-          "Developed full-featured web applications incorporating front-to-back database connectivity, authentication, and responsive design.",
-          "Collaborated in agile team sprints to design, prototype, and implement academic software solutions.",
-          "Mastered foundational programming concepts in C++, Python, PHP, and modern JavaScript/TypeScript.",
+          "Full-featured web applications incorporating front-to-back database connectivity, authentication, and responsive design.",
+          "Team projects to design, prototype, and implement academic software solutions.",
+          "Foundational programming concepts in C++, Python, PHP, and modern JavaScript/TypeScript.",
         ],
       },
     ],
     education: [
       {
         id: "isis-bem",
-        institution: "I.S.I.S. “Brignoli-Einaudi-Marconi”",
+        institution: "I.T.T. Guglielmo Marconi",
         degree: "Technical Diploma",
         field: "Information Technology and Telecommunications",
-        period: "SEP 2021 – JUL 2026",
+        period: "SEP 2021 – JUN 2026",
         location: "Staranzano (GO), Italy",
         description:
           "Through my studies, I have gained experience in building secure, responsive web applications and collaborating effectively within team-based projects.",
@@ -319,7 +319,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
           { name: "git", label: "Git" },
           { name: "vscode", label: "VS Code" },
           { name: "antigravity", label: "Antigravity" },
-          { name: "claude", label: "Claude" },
+          { name: "claude-code", label: "Claude Code" },
           { name: "copilot", label: "GitHub Copilot" },
           { name: "xampp", label: "XAMPP" },
           { name: "vercel", label: "Vercel" },
@@ -400,7 +400,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
         title: "Sviluppatore Studente & Progetti",
         company: "I.S.I.S. “Brignoli-Einaudi-Marconi”",
         companyType: "Istituto Tecnico",
-        period: "SET 2021 – PRESENTE",
+        period: "SET 2021 – GIU 2026",
         location: "Staranzano (GO), Italia",
         summary:
           "Sviluppo di interfacce utente responsive e ottimizzate per applicazioni web. Progetti scolastici in team orientati al problem-solving e all'innovazione tecnologica.",
@@ -415,10 +415,10 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
     education: [
       {
         id: "isis-bem",
-        institution: "I.S.I.S. “Brignoli-Einaudi-Marconi”",
+        institution: "I.T.T. Guglielmo Marconi",
         degree: "Diploma di Istruzione Tecnica",
         field: "Informatica e Telecomunicazioni",
-        period: "SET 2021 – LUG 2026",
+        period: "SET 2021 – GIU 2026",
         location: "Staranzano (GO), Italia",
         description:
           "Durante il mio percorso di studi, ho maturato esperienza nella creazione di applicazioni web sicure e responsive e nella collaborazione efficace all'interno di progetti di gruppo.",

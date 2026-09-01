@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <main className="relative min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+    <main className="relative min-h-screen bg-background text-foreground selection:bg-[#b45309] selection:text-white">
       <ResumeView />
     </main>
   );
