@@ -304,7 +304,7 @@ const projects: Project[] = [
           />
           <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
           <p className="font-mono mb-2">
-            Whether you&apos;re a beginner or an experienced solver, there&apos;s a mode suited for you. 
+            Whether you&apos;re a beginner or an experienced solver, there&apos;s a mode suited for you.
             <ul className="list-disc ml-6">
               <li>
                 <strong>Free play:</strong> Solve at your own pace without time constraints.
@@ -347,7 +347,7 @@ const projects: Project[] = [
           <TypographyH3 className="my-4 mt-8">Statistics</TypographyH3>
 
           <p className="font-mono mb-2">
-            
+
             <ul className="list-disc ml-6">
               <li>
                 <strong>Personal records:</strong> Track your best times and move counts for each game mode to monitor your progress and identify areas for improvement.
@@ -403,8 +403,8 @@ const projects: Project[] = [
           <ProjectsLinks live={this.live} repo={this.github} />
           <p className="font-mono mb-2 mt-4">
             The landing page of Hyrise Studio welcomes you with a sleek, modern design that immediately conveys professionalism and creativity.
-             A bold headline captures your attention, while a concise description highlights the platform&apos;s value proposition. 
-             The call-to-action button invites you to explore the services offered, making it easy for potential clients to get started on their projects.
+            A bold headline captures your attention, while a concise description highlights the platform&apos;s value proposition.
+            The call-to-action button invites you to explore the services offered, making it easy for potential clients to get started on their projects.
           </p>
           <SlideShow images={[`${BASE_PATH}/hyrise-studio/home.png`]} />
 
@@ -447,7 +447,7 @@ const projects: Project[] = [
               `${BASE_PATH}/hyrise-studio/contact-us.png`,
             ]}
           />
-          
+
           <TypographyH3 className="my-4 ">Account Dashboard</TypographyH3>
           <p className="font-mono mb-2">
             The account dashboard is where you keep track of your projects and see how things are going—all your info in one spot, nice and simple.
@@ -457,7 +457,7 @@ const projects: Project[] = [
               `${BASE_PATH}/hyrise-studio/account-dashboard.png`,
             ]}
           />
-          
+
           <TypographyH3 className="my-4 ">Admin Dashboard</TypographyH3>
           <p className="font-mono mb-2">
             If you’re an admin, there’s a dashboard for you too. You can keep an eye on users, check how projects are moving along, and see all the important stats in one place.
@@ -508,7 +508,7 @@ const projects: Project[] = [
               `${BASE_PATH}/cl-studio-portfolio/profile.png`,
             ]}
           />
-          
+
           <TypographyH3 className="my-4 mt-8">Experience & Data</TypographyH3>
           <p className="font-mono mb-2">
             Explore the studio&apos;s background, skills, and experience through an organized overview of their professional journey and key achievements.
@@ -518,7 +518,7 @@ const projects: Project[] = [
               `${BASE_PATH}/cl-studio-portfolio/experience&data.png`,
             ]}
           />
-          
+
           <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
           <p className="font-mono mb-2">
             Check out the studio&apos;s impressive portfolio of completed projects, each one showcasing their creativity and technical skill in action.
@@ -539,7 +539,7 @@ const projects: Project[] = [
     src: "/assets/projects-screenshots/portfolio/landing.png",
     screenshots: ["landing.png"],
     live: "http://malannino-leonardo.vercel.app",
-    github:"https://github.com/malannino-leonardo/Portfolio",
+    github: "https://github.com/malannino-leonardo/Portfolio",
     skills: {
       frontend: [
         PROJECT_SKILLS.ts,
@@ -563,8 +563,8 @@ const projects: Project[] = [
             Beautiful 3D Objects{" "}
           </TypographyH3>
           <p className="font-mono mb-2">
-            Did you check out that 3D keyboard modal? It&apos;s super cool! 
-            The whole keyboard pops out in 3D right on the site 🤯, and when you smash a key, 
+            Did you check out that 3D keyboard modal? It&apos;s super cool!
+            The whole keyboard pops out in 3D right on the site 🤯, and when you smash a key,
             it shows off a skill in a fun, goofy way. It&apos;s like typing, but way cooler.
           </p>
           <SlideShow
@@ -581,7 +581,7 @@ const projects: Project[] = [
           <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
 
           <p className="font-mono mb-2">
-            Here are my coolest projects. 
+            Here are my coolest projects.
             Just the good stuff, no boring bits.
           </p>
           <SlideShow
@@ -604,7 +604,7 @@ const projects: Project[] = [
     src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
     screenshots: ["landing.png"],
     live: "https://sunforgione.com/",
-    github:"",
+    github: "",
     skills: {
       frontend: [PROJECT_SKILLS.html, PROJECT_SKILLS.css, PROJECT_SKILLS.js],
       backend: [],
@@ -717,7 +717,7 @@ const projects: Project[] = [
           <p className="font-mono mb-2">
             Follow the latest tournament developments with live results, team standings, and up-to-date leaderboards so you can track progress throughout the competition.
           </p>
-          
+
           <TypographyH3 className="my-4 mt-8">Registration form</TypographyH3>
           <p className="font-mono mb-2">
             Sign up for the tournament with our simple online registration form. Just provide your information and you&apos;ll be ready to compete in the championship.
@@ -800,7 +800,7 @@ const projects: Project[] = [
               `${BASE_PATH}/eu-puzzle/global-leaderboard.png`,
             ]}
           />
-          
+
           <TypographyH3 className="my-4 mt-8">Account & settings</TypographyH3>
           <p className="font-mono mb-2">
             Manage your account and customize your settings to enhance your gameplay experience.
@@ -809,6 +809,95 @@ const projects: Project[] = [
             images={[
               `${BASE_PATH}/eu-puzzle/account.png`,
               `${BASE_PATH}/eu-puzzle/settings.png`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
+  {
+    id: "la-bottega-del-cicchetto",
+    category: "Commercial website",
+    title: "La Bottega del Cicchetto",
+    src: "/assets/projects-screenshots/la-bottega-del-cicchetto/home.png",
+    screenshots: ["home.png"],
+    live: "https://labottegadelcicchetto.it/",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.js,
+        PROJECT_SKILLS.ts,
+      ],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.supabase,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            A complete website for La Bottega del Cicchetto, a night bar in Trieste, Italy.
+          </TypographyP>
+          <ProjectsLinks live={this.live} />
+          <SlideShow images={[`${BASE_PATH}/la-bottega-del-cicchetto/home.png`]} />
+
+          <TypographyH3 className="my-4 mt-8">Menu & Categories</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the menu of La Bottega del Cicchetto with categories, photos, descriptions, allergens, prices and discounts dedicated to universitarian students.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/la-bottega-del-cicchetto/menu-categories.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/menu-items.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Events & Special events</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the events & Special events of La Bottega del Cicchetto.
+            <br></br>
+          </p>
+
+          <SlideShow
+            images={[
+              `${BASE_PATH}/la-bottega-del-cicchetto/events.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/frosty-weekend.png`,
+            ]}
+          />
+          <TypographyH3 className="my-4 mt-8">Merchandise</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the merch of La Bottega del Cicchetto, including online purchases with local pickup option.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/la-bottega-del-cicchetto/shop.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Consultation</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the consultation info of La Bottega del Cicchetto.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/la-bottega-del-cicchetto/consulenze.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Account & settings</TypographyH3>
+          <p className="font-mono mb-2">
+            Manage your account and customize your settings.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/la-bottega-del-cicchetto/profile.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/account.png`,
             ]}
           />
         </div>
