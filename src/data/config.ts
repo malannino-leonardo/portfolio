@@ -1,9 +1,9 @@
 const config = {
   title: "Leonardo Malannino | Full-Stack Developer",
   description: {
-    long: "Explore the portfolio of Leonardo, a full-stack developer specializing in creating interactive web experiences and innovative projects. From 3D animations to dynamic websites, discover a showcase of creativity and technical expertise.",
+    long: "Full-stack developer, handling everything from planning, implementing and maintaining software. I have experience with web development, database design and implementation, and much more.",
     short:
-      "Discover the portfolio of Leonardo, a full-stack developer creating interactive web experiences and innovative projects.",
+      "Full-stack developer, handling everything from planning, implementing and maintaining software.",
   },
   keywords: [
     "Leonardo",
@@ -13,15 +13,15 @@ const config = {
     "web development",
     "3D animations",
     "interactive websites",
-    "Coding Ducks",
-    "The Booking Desk",
-    "Ghostchat",
     "web design",
-    "GSAP",
+    "Hyrise",
+    "Hyrise Studios",
     "React",
     "Next.js",
     "Spline",
-    "Framer Motion",
+    "HTML",
+    "CSS",
+    "JavaScript",
   ],
   author: "Leonardo Malannino",
   email: "leonardo.malannino@gmail.com",

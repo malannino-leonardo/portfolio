@@ -24,6 +24,8 @@ export enum SkillNames {
   SUPABASE = "supabase",
   APACHE = "apache",
   CISCO = "cisco",
+  SCHEME = "scheme",
+  JAVA = "java",
 }
 export type Skill = {
   id: number;
@@ -247,6 +249,22 @@ export const SKILLS: Record<SkillNames, Skill> = {
     color: "#1BA0E2",
     icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/cisco-icon.svg",
   },
+  [SkillNames.SCHEME]: {
+    id: 27,
+    name: "scheme",
+    label: "Scheme",
+    shortDescription: "",
+    color: "#000000",
+    icon: "/assets/scheme.svg",
+  },
+  [SkillNames.JAVA]: {
+    id: 28,
+    name: "java",
+    label: "Java",
+    shortDescription: "",
+    color: "#000000",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  },
 };
 
 export type Experience = {
@@ -298,6 +316,22 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 2,
+    startDate: "Sep 2026",
+    endDate: "Present",
+    title: "Bachelor's degree in Computer Science",
+    company: "University of Udine",
+    description: [
+      "Currently pursuing a Bachelor's degree program focused on computer science fundamentals, including programming, data structures, and algorithms.",
+      "Actively developing problem-solving and critical-thinking skills while building a strong foundation in software engineering principles.",
+      "Exploring logic, math, and advanced computer science concepts to develop innovative solutions.",
+    ],
+    skills: [
+      SkillNames.SCHEME,
+      SkillNames.JAVA,
+    ],
+  },
+  {
+    id: 3,
     startDate: "Jul 2024",
     endDate: "Aug 2024",
     title: "Internship Networking",
@@ -313,14 +347,14 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     startDate: "Sep 2021",
-    endDate: "Present",
-    title: "Student Developer",
+    endDate: "Jun 2026",
+    title: "High School Diploma in Computer Science and Telecommunication",
     company: "I.S.I.S. Brignoli Einaudi Marconi",
     description: [
-      "Development of responsive and optimized user interfaces for web applications.",
-      "Collaboration with design teams to implement high-quality UI/UX.",
+      "Studied computer science, programming, and telecommunication fundamentals, gaining a solid foundation in software development and IT infrastructure.",
+      "Collaborated on school projects involving hardware and software integration, enhancing technical expertise and practical application of learned concepts.",
     ],
     skills: [
       SkillNames.HTML,
