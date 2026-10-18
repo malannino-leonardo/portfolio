@@ -63,7 +63,7 @@ const Modall = ({ project }: { project: Project }) => {
               <ProjectContents project={project} />
             </ModalContent>
           </SmoothScroll>
-          <ModalFooter className="gap-4">
+          <ModalFooter className="gap-2 sm:gap-4 flex-wrap">
             <FooterContent project={project} />
           </ModalFooter>
         </ModalBody>
@@ -74,6 +74,9 @@ const Modall = ({ project }: { project: Project }) => {
 
 const FooterContent = ({ project }: { project: Project }) => {
   const { setOpen } = useModal();
+  const hasLive = Boolean(project.live && project.live.trim().length > 0);
+  const hasGithub = Boolean(project.github && project.github.trim().length > 0);
+
   return (
     <>
       <button
@@ -82,11 +85,27 @@ const FooterContent = ({ project }: { project: Project }) => {
       >
         Cancel
       </button>
-      <Link href={project.live} target="_blank" className="cursor-can-hover">
-        <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
-          Visit
-        </button>
-      </Link>
+      {hasGithub && (
+        <Link href={project.github!} target="_blank" className="cursor-can-hover">
+          <button
+            className={cn(
+              "text-sm px-2 py-1 rounded-md w-28 cursor-can-hover",
+              hasLive
+                ? "bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300"
+                : "bg-black text-white dark:bg-white dark:text-black border border-black"
+            )}
+          >
+            Github
+          </button>
+        </Link>
+      )}
+      {hasLive && (
+        <Link href={project.live!} target="_blank" className="cursor-can-hover">
+          <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
+            Visit
+          </button>
+        </Link>
+      )}
     </>
   );
 };

@@ -36,26 +36,33 @@ import {
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
 
-const ProjectsLinks = ({ live, repo }: { live: string; repo?: string }) => {
+const ProjectsLinks = ({ live, repo }: { live?: string; repo?: string }) => {
+  const hasLive = Boolean(live && live.trim().length > 0);
+  const hasRepo = Boolean(repo && repo.trim().length > 0);
+
+  if (!hasLive && !hasRepo) return null;
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-start gap-3 my-3 mb-8">
-      <Link
-        className="font-mono underline flex gap-2 cursor-can-hover"
-        rel="noopener"
-        target="_new"
-        href={live}
-      >
-        <Button variant={"default"} size={"sm"}>
-          Visit Website
-          <ArrowUpRight className="ml-3 w-5 h-5" />
-        </Button>
-      </Link>
-      {repo && (
+      {hasLive && (
         <Link
           className="font-mono underline flex gap-2 cursor-can-hover"
           rel="noopener"
           target="_new"
-          href={repo}
+          href={live!}
+        >
+          <Button variant={"default"} size={"sm"}>
+            Visit Website
+            <ArrowUpRight className="ml-3 w-5 h-5" />
+          </Button>
+        </Link>
+      )}
+      {hasRepo && (
+        <Link
+          className="font-mono underline flex gap-2 cursor-can-hover"
+          rel="noopener"
+          target="_new"
+          href={repo!}
         >
           <Button variant={"default"} size={"sm"}>
             Github
@@ -274,7 +281,7 @@ export type Project = {
   skills: { frontend: Skill[]; backend: Skill[] };
   content: React.ReactNode | any;
   github?: string;
-  live: string;
+  live?: string;
 };
 const projects: Project[] = [
   {
@@ -487,11 +494,11 @@ const projects: Project[] = [
   },
   {
     id: "cl-studio-portfolio",
-    category: "Portfolio",
+    category: "Portfolio website",
     title: "CL Studio Portfolio",
     src: "/assets/projects-screenshots/cl-studio-portfolio/landing.png",
     screenshots: ["landing.png"],
-    live: "https://cl-studio.it/",
+    github: "https://github.com/malannino-leonardo/cl-studio",
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
@@ -548,11 +555,11 @@ const projects: Project[] = [
   },
   {
     id: "portfolio",
-    category: "Portfolio",
+    category: "Portfolio website",
     title: "My Portfolio",
     src: "/assets/projects-screenshots/portfolio/landing.png",
     screenshots: ["landing.png"],
-    live: "http://malannino-leonardo.vercel.app",
+    live: "http://leomal.it/",
     github: "https://github.com/malannino-leonardo/Portfolio",
     skills: {
       frontend: [
@@ -613,7 +620,7 @@ const projects: Project[] = [
   },
   {
     id: "macos-style-portfolio",
-    category: "Portfolio",
+    category: "Portfolio website",
     title: "MacOS Style Portfolio",
     src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
     screenshots: ["landing.png"],
@@ -678,7 +685,7 @@ const projects: Project[] = [
   },
   {
     id: "football-championship-website",
-    category: "Sports",
+    category: "Sports website",
     title: "Universitarian Football Championship",
     src: "/assets/projects-screenshots/football-championship-website/landing.png",
     screenshots: ["landing.png"],
@@ -831,7 +838,7 @@ const projects: Project[] = [
   },
   {
     id: "la-bottega-del-cicchetto",
-    category: "Commercial website",
+    category: "Night bar website",
     title: "La Bottega del Cicchetto",
     src: "/assets/projects-screenshots/la-bottega-del-cicchetto/home.png",
     screenshots: ["home.png"],
@@ -999,7 +1006,7 @@ const projects: Project[] = [
   },
   {
     id: "aerocare",
-    category: "AerocareFVG",
+    category: "Aircraft detailing website",
     title: "AerocareFVG",
     src: "/assets/projects-screenshots/aerocare/home.png",
     screenshots: ["home.png"],
