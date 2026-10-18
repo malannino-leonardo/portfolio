@@ -197,30 +197,71 @@ const AnimatedBackground = () => {
   ) => {
     const state = getKeyboardState({ section, isMobile });
 
-    gsap.killTweensOf(kbd.scale);
-    gsap.killTweensOf(kbd.position);
-    gsap.killTweensOf(kbd.rotation);
+    if (isMobile) {
+      if (section !== "skills") {
+        gsap.to(kbd.scale, {
+          x: 0,
+          y: 0,
+          z: 0,
+          duration: 0.4,
+          ease: "power2.in",
+          overwrite: "auto",
+          onComplete: () => {
+            kbd.visible = false;
+          },
+        });
+      } else {
+        kbd.visible = true;
+        gsap.killTweensOf(kbd.scale);
+        gsap.killTweensOf(kbd.position);
+        gsap.killTweensOf(kbd.rotation);
 
-    gsap.to(kbd.scale, {
-      ...state.scale,
-      duration,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
+        gsap.to(kbd.scale, {
+          ...state.scale,
+          duration,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+        gsap.to(kbd.position, {
+          ...state.position,
+          duration,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+        gsap.to(kbd.rotation, {
+          ...state.rotation,
+          duration,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+    } else {
+      kbd.visible = true;
+      gsap.killTweensOf(kbd.scale);
+      gsap.killTweensOf(kbd.position);
+      gsap.killTweensOf(kbd.rotation);
 
-    gsap.to(kbd.position, {
-      ...state.position,
-      duration,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
+      gsap.to(kbd.scale, {
+        ...state.scale,
+        duration,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
 
-    gsap.to(kbd.rotation, {
-      ...state.rotation,
-      duration,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
+      gsap.to(kbd.position, {
+        ...state.position,
+        duration,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+
+      gsap.to(kbd.rotation, {
+        ...state.rotation,
+        duration,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    }
 
     if (activeSectionRef.current !== section) {
       activeSectionRef.current = section;
@@ -665,14 +706,16 @@ const AnimatedBackground = () => {
     updateKeyboardTransform();
   }, [splineApp, isLoading, activeSection, keyboardRevealed, router, updateKeyboardTransform]);
 
+  const isKeyboardVisible = !isMobile || activeSection === "hero" || activeSection === "skills";
+
   return (
     <div className={cn(
-      "w-full h-full fixed inset-0 transition-opacity duration-1000 z-0",
-      !keyboardRevealed ? "opacity-0" : "opacity-100"
+      "w-full h-full fixed inset-0 transition-opacity duration-700 z-0",
+      !keyboardRevealed || !isKeyboardVisible ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
     )}>
       <Suspense fallback={null}>
         <Spline
-          className="w-full h-full pointer-events-auto"
+          className="w-full h-full"
           ref={splineContainer}
           onLoad={(app: Application) => {
             setSplineApp(app);

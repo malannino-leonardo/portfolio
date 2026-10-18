@@ -11,7 +11,7 @@ import ContributionGraph from "./contribution-graph";
 const AboutSection = () => {
   return (
     <SectionWrapper id="about" className="min-h-screen py-20 z-10 overflow-hidden">
-      <div className="w-full max-w-7xl px-6 md:px-10 mx-auto">
+      <div className="w-full max-w-7xl px-4 sm:px-6 md:px-10 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           
           {/* Left Column: Profile & Header (Sticky) */}
@@ -45,15 +45,17 @@ const AboutSection = () => {
                     About
                   </h2>
                </motion.div>
-               <motion.p 
+               <motion.div 
                  initial={{ opacity: 0 }}
                  whileInView={{ opacity: 1 }}
                  viewport={{ once: true }}
                  transition={{ delay: 0.2 }}
-                 className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto lg:mx-0"
+                 className="bg-card/40 dark:bg-black/40 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-border/40 shadow-sm max-w-md mx-auto lg:mx-0 text-left"
                >
-                 {config.description.long}
-               </motion.p>
+                 <p className="text-foreground/90 dark:text-zinc-200 text-base md:text-lg leading-relaxed">
+                   {config.description.long}
+                 </p>
+               </motion.div>
             </div>
           </div>
 

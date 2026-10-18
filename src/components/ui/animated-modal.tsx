@@ -118,14 +118,14 @@ export const ModalBody = ({
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="modall fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-[2000] pointer-events-auto"
+          className="modall fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-[2000] pointer-events-auto p-3 sm:p-5 md:p-8"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-[2001] flex flex-col flex-1 overflow-hidden",
+              "w-full max-w-[calc(100vw-1.5rem)] sm:max-w-[92vw] md:max-w-4xl max-h-[90dvh] bg-white dark:bg-neutral-950 border border-border dark:border-neutral-800 rounded-2xl relative z-[2001] flex flex-col overflow-hidden shadow-2xl",
               className
             )}
             initial={{
@@ -152,7 +152,7 @@ export const ModalBody = ({
             }}
           >
             <CloseIcon />
-            <ScrollArea className="h-[80dvh] w-full rounded-md border">
+            <ScrollArea className="h-[75dvh] md:h-[80dvh] w-full rounded-md border-0">
               {children}
             </ScrollArea>
           </motion.div>
@@ -171,7 +171,7 @@ export const ModalContent = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col flex-1 p-3 md:p-10", className)}>
+    <div className={cn("flex flex-col flex-1 p-3 sm:p-5 md:p-8 max-w-full overflow-hidden", className)}>
       {children}
     </div>
   );

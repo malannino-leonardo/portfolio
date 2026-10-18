@@ -25,7 +25,7 @@ const config = {
   ],
   author: "Leonardo Malannino",
   email: "leonardo.malannino@gmail.com",
-  site: "https://malannino-leonardo.vercel.app",
+  site: "https://leomal.it/",
 
   // for github stars button
   githubUsername: "malannino-leonardo",

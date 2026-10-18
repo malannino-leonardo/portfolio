@@ -26,8 +26,14 @@ const SlideShow = ({ images }: { images: string[] }) => {
         perPage: 1,
         start: 0,
         rewind: true,
-        padding: {left:'3rem',right:'3rem'},
+        padding: { left: '1.5rem', right: '1.5rem' },
         gap: "1rem",
+        breakpoints: {
+          640: {
+            padding: { left: '0.5rem', right: '0.5rem' },
+            gap: "0.5rem",
+          },
+        },
       }}
       hasTrack={false}
     >

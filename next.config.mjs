@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: process.env.BUILD_DIR || '.next',
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true

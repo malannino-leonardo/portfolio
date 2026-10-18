@@ -20,24 +20,24 @@ const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen pointer-events-none")}>
-      <div className="grid md:grid-cols-2 pointer-events-none">
+    <SectionWrapper id="hero" className={cn("relative w-full h-screen pointer-events-none overflow-hidden")}>
+      <div className="grid md:grid-cols-2 pointer-events-none w-full max-w-full">
         <div
           className={cn(
             "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2] pointer-events-none",
-            "col-span-1",
+            "col-span-1 w-full max-w-full",
             "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "pt-24 sm:pt-28 sm:pb-16 px-4 sm:px-6 md:p-20 lg:p-24 xl:p-28"
           )}
         >
           {!isLoading && (
-            <div className="flex flex-col">
-              <div>
+            <div className="flex flex-col w-full max-w-full items-center md:items-start">
+              <div className="w-full max-w-full flex flex-col items-start md:max-w-2xl">
                 <BlurIn delay={0.7}>
                   <p
                     className={cn(
                       "md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "cursor-default font-display sm:text-xl md:text-xl bg-clip-text"
                     )}
                   >
                     Hi, I am
@@ -50,14 +50,18 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "-ml-[6px] leading-none font-thin text-transparent text-slate-800 text-left",
-                          "font-thin text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display "
+                          "leading-none font-thin text-transparent text-slate-800 text-left tracking-tight",
+                          "text-[clamp(1.9rem,8vw,4.5rem)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "cursor-default text-edge-outline font-display max-w-full ml-0 md:-ml-[6px]"
                         )}
                       >
-                        {config.author.split(" ")[0]}
-                        <br className="md:block hiidden" />
-                        {config.author.split(" ")[1]}
+                        <span className="whitespace-nowrap inline-block">
+                          {config.author.split(" ")[0]}
+                        </span>
+                        <br />
+                        <span className="whitespace-nowrap inline-block">
+                          {config.author.split(" ")[1]}
+                        </span>
                       </h1>
                     </TooltipTrigger>
                     <TooltipContent
@@ -72,18 +76,18 @@ const HeroSection = () => {
                 <BlurIn delay={1.2}>
                   <p
                     className={cn(
-                      "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "md:self-start md:mt-4 font-thin text-sm sm:text-lg md:text-xl text-slate-500 dark:text-zinc-400",
+                      "cursor-default font-display bg-clip-text"
                     )}
                   >
                     A Full Stack Web Developer
                   </p>
                 </BlurIn>
               </div>
-              <div className="mt-8 flex flex-col gap-3 w-fit">
+              <div className="mt-8 flex flex-col gap-3 w-full max-w-xs md:max-w-none md:w-fit">
                 <Link
                   href="/resume"
-                  className="flex-1"
+                  className="w-full"
                 >
                   <BoxReveal delay={2} width="100%">
                     <Button className="flex items-center gap-2 w-full">
@@ -92,7 +96,7 @@ const HeroSection = () => {
                     </Button>
                   </BoxReveal>
                 </Link>
-                <div className="md:self-start flex gap-3">
+                <div className="md:self-start flex flex-wrap gap-2 sm:gap-3 items-center">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
                       <Link href={"#contact"}>

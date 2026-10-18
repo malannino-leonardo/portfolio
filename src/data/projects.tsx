@@ -29,7 +29,9 @@ import {
   SiHtml5,
   SiCss3,
   SiPhp,
-  SiXampp
+  SiXampp,
+  SiVite,
+  SiResend
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
@@ -249,6 +251,18 @@ const PROJECT_SKILLS = {
     bg: "black",
     fg: "white",
     icon: <SiXampp />,
+  },
+  vite: {
+    title: "Vite",
+    bg: "black",
+    fg: "white",
+    icon: <SiVite />,
+  },
+  resend: {
+    title: "Resend",
+    bg: "black",
+    fg: "white",
+    icon: <SiResend />,
   },
 };
 export type Project = {
@@ -898,6 +912,148 @@ const projects: Project[] = [
             images={[
               `${BASE_PATH}/la-bottega-del-cicchetto/profile.png`,
               `${BASE_PATH}/la-bottega-del-cicchetto/account.png`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
+  {
+    id: "agenda-app",
+    category: "Agenda web app",
+    title: "Agenda web app",
+    src: "/assets/projects-screenshots/agenda/home.png",
+    screenshots: ["home.png"],
+    live: "https://agenda-app-leo.vercel.app/",
+    github: "https://github.com/malannino-leonardo/agenda-app",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.vite,
+        PROJECT_SKILLS.js,
+        PROJECT_SKILLS.ts,
+      ],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.supabase,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            A complete web application for managing daily tasks and schedules, designed to help you stay organized and on top of your responsibilities.
+          </TypographyP>
+          <ProjectsLinks live={this.live} />
+          <SlideShow images={[`${BASE_PATH}/agenda/home.png`]} />
+
+          <TypographyH3 className="my-4 mt-8">Agenda section</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the agenda section of the web app, including daily, weekly and monthly tasks organized in different calendars.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/agenda/agenda.png`,
+              `${BASE_PATH}/agenda/new-calendar.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Tasks section</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the tasks section of the web app, including pending tasks, completed tasks and overdue tasks.
+            <br></br>
+          </p>
+
+          <SlideShow
+            images={[
+              `${BASE_PATH}/agenda/tasks.png`,
+              `${BASE_PATH}/agenda/new-task.png`,
+            ]}
+          />
+          <TypographyH3 className="my-4 mt-8">Projects section</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the projects section of the web app, including projects, tasks and events.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/agenda/projects.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Account & settings</TypographyH3>
+          <p className="font-mono mb-2">
+            Manage your account and customize your settings.
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/agenda/account-settings.png`,
+            ]}
+          />
+        </div>
+      );
+    },
+  },
+  {
+    id: "aerocare",
+    category: "AerocareFVG",
+    title: "AerocareFVG",
+    src: "/assets/projects-screenshots/aerocare/home.png",
+    screenshots: ["home.png"],
+    live: "https://aerocarefvg.it/",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.vite,
+        PROJECT_SKILLS.js,
+        PROJECT_SKILLS.ts,
+      ],
+      backend: [
+        PROJECT_SKILLS.resend,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            Custom web application for showcasing an aircraft detailing company, including services, aircrafts types and contact information.
+          </TypographyP>
+          <ProjectsLinks live={this.live} />
+          <SlideShow
+            images={[
+              `${BASE_PATH}/aerocare/home.png`,
+              `${BASE_PATH}/aerocare/servizi.png`,
+              `${BASE_PATH}/aerocare/settori.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Services page</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the services page of the web app, including Interior Cleaning, Deep Interior Cleaning, Exterior Detailing, Full Aircraft Detail and Periodic Cleaning.
+            <br></br>
+          </p>
+          <SlideShow
+            images={[
+              `${BASE_PATH}/aerocare/servizi-page.png`,
+              `${BASE_PATH}/aerocare/servizi-page2.png`,
+              `${BASE_PATH}/aerocare/servizi-page3.png`,
+            ]}
+          />
+
+          <TypographyH3 className="my-4 mt-8">Contacts section</TypographyH3>
+          <p className="font-mono mb-2">
+            Showcasing the contacts section of the web app, including contact form, phone number, WhatsApp, email address and social media links.
+            <br></br>
+          </p>
+
+          <SlideShow
+            images={[
+              `${BASE_PATH}/aerocare/contatti.png`,
             ]}
           />
         </div>
