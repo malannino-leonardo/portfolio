@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:pdf": "node scripts/generate-static-pdfs.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

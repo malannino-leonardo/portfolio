@@ -10,7 +10,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [ 0 0 595.28 841.89 ] /Contents 4 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R /F3 9 0 R >> /XObject << /Im1 10 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 6674 >>
+<< /Length 6313 >>
 stream
 q
 0.985 0.975 0.945 rg
@@ -139,13 +139,13 @@ BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
 187.00 595.89 Td
-(GitHub  -  Git  -  VS Code  -  Antigravity  -  Claude  -  GitHub Copilot  - ) Tj
+(GitHub  -  Git  -  VS Code  -  Antigravity  -  Claude Code  -  GitHub Copilot ) Tj
 ET
 BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
 187.00 583.39 Td
-(XAMPP  -  Vercel  -  Netlify) Tj
+(-  XAMPP  -  Vercel  -  Netlify) Tj
 ET
 BT
 /F2 9 Tf
@@ -259,13 +259,19 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 412.89 Td
-(Architect and deliver bespoke, high-performance web applications using Next.js, React, TypeScript, and) Tj
+(Custom high-performance web applications using Next.js, React, TypeScript, and modern styling solutions.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 400.39 Td
+(-) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 400.39 Td
-(modern styling solutions.) Tj
+(Integration of AI coding assistants within the IDE environment to accelerate feature delivery.) Tj
 ET
 BT
 /F2 9 Tf
@@ -277,13 +283,13 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 387.89 Td
-(Pioneer the integration of agentic AI coding assistants within the IDE environment to accelerate feature) Tj
+(Refined collaborative and client communication skills, translating complex project requirements into) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 375.39 Td
-(delivery while ensuring rigorous code standards.) Tj
+(scalable, clean, and intuitive user interfaces.) Tj
 ET
 BT
 /F2 9 Tf
@@ -295,67 +301,73 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 362.89 Td
-(Refine collaborative and client communication skills, translating complex project requirements into) Tj
+(Integration of backend APIs and databases using Supabase, Node.js, and PostgreSQL for real-time) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 350.39 Td
-(scalable, clean, and intuitive user interfaces.) Tj
-ET
-BT
-/F2 9 Tf
-0.700 0.350 0.050 rg
-46.00 337.89 Td
-(-) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 337.89 Td
-(Integrate robust backend APIs and databases using Supabase, Node.js, and PostgreSQL for real-time) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 325.39 Td
 (interactivity.) Tj
 ET
 BT
 /F2 10.5 Tf
 0.100 0.100 0.100 rg
-42.00 300.89 Td
+42.00 325.89 Td
 (IT Support & Networking Intern) Tj
 ET
 BT
 /F2 9 Tf
 0.180 0.180 0.180 rg
-454.10 300.89 Td
+454.10 325.89 Td
 (JUL 2024 - AUG 2024) Tj
 ET
 BT
 /F2 9.5 Tf
 0.700 0.350 0.050 rg
-42.00 287.89 Td
+42.00 312.89 Td
 (u-blox S.p.A. \(Corporate IoT & Wireless Semiconductor Leader\)) Tj
 ET
 BT
 /F1 8.5 Tf
 0.400 0.400 0.400 rg
-469.30 287.89 Td
+469.30 312.89 Td
 (Sgonico \(TS\), Italy) Tj
 ET
 BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
-42.00 274.89 Td
+42.00 299.89 Td
 (School internship focused on networking and IT support, getting hands-on experience in a corporate) Tj
 ET
 BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
-42.00 262.39 Td
+42.00 287.39 Td
 (environment. I assisted in configuring network devices and maintaining network infrastructure.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 272.89 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 272.89 Td
+(Hands-on experience in a high-tech corporate environment assisting the IT infrastructure team.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 260.39 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 260.39 Td
+(Enterprise network hardware devices configuration and network infrastructure monitoring.) Tj
 ET
 BT
 /F2 9 Tf
@@ -367,55 +379,19 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 247.89 Td
-(Gained hands-on experience in a high-tech corporate semiconductor environment assisting the IT) Tj
+(Hardware, software, and connectivity troubleshooting for on-site corporate employees.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 235.39 Td
+(-) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 235.39 Td
-(infrastructure team.) Tj
-ET
-BT
-/F2 9 Tf
-0.700 0.350 0.050 rg
-46.00 222.89 Td
-(-) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 222.89 Td
-(Configured enterprise network hardware devices and monitored network infrastructure reliability.) Tj
-ET
-BT
-/F2 9 Tf
-0.700 0.350 0.050 rg
-46.00 210.39 Td
-(-) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 210.39 Td
-(Provided prompt hardware, software, and connectivity troubleshooting for on-site corporate employees.) Tj
-ET
-BT
-/F2 9 Tf
-0.700 0.350 0.050 rg
-46.00 197.89 Td
-(-) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 197.89 Td
-(Deepened practical understanding of cybersecurity measures, access controls, and network protocol) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 185.39 Td
-(topologies.) Tj
+(Practical understanding of cybersecurity measures, access controls, and network protocol topologies.) Tj
 ET
 
 endstream
@@ -424,7 +400,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [ 0 0 595.28 841.89 ] /Contents 6 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R /F3 9 0 R >> /XObject << /Im1 10 0 R >> >> >>
 endobj
 6 0 obj
-<< /Length 5534 >>
+<< /Length 6959 >>
 stream
 q
 0.985 0.975 0.945 rg
@@ -496,13 +472,13 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 726.89 Td
-(Developed full-featured web applications incorporating front-to-back database connectivity,) Tj
+(Full-featured web applications incorporating front-to-back database connectivity, authentication, and) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 714.39 Td
-(authentication, and responsive design.) Tj
+(responsive design.) Tj
 ET
 BT
 /F2 9 Tf
@@ -514,7 +490,7 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 701.89 Td
-(Collaborated in agile team sprints to design, prototype, and implement academic software solutions.) Tj
+(Team projects to design, prototype, and implement academic software solutions.) Tj
 ET
 BT
 /F2 9 Tf
@@ -526,7 +502,7 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 689.39 Td
-(Mastered foundational programming concepts in C++, Python, PHP, and modern JavaScript/TypeScript.) Tj
+(Foundational programming concepts in C++, Python, PHP, and modern JavaScript/TypeScript.) Tj
 ET
 q
 0.700 0.350 0.050 rg
@@ -550,67 +526,61 @@ BT
 /F2 10.5 Tf
 0.100 0.100 0.100 rg
 42.00 636.39 Td
-(Technical Diploma - Information Technology and Telecommunications) Tj
+(Bachelor's Degree - Computer Science) Tj
 ET
 BT
 /F2 9 Tf
 0.180 0.180 0.180 rg
-454.10 636.39 Td
-(SEP 2021 - JUL 2026) Tj
+459.32 636.39 Td
+(SEP 2026 - PRESENT) Tj
 ET
 BT
 /F2 9.5 Tf
 0.700 0.350 0.050 rg
 42.00 623.39 Td
-(I.S.I.S. "Brignoli-Einaudi-Marconi") Tj
+(University of Udine) Tj
 ET
 BT
 /F1 8.5 Tf
 0.400 0.400 0.400 rg
-456.04 623.39 Td
-(Staranzano \(GO\), Italy) Tj
+478.14 623.39 Td
+(Udine \(UD\), Italy) Tj
 ET
 BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
 42.00 610.39 Td
-(Through my studies, I have gained experience in building secure, responsive web applications and) Tj
+(I am currently pursuing a Bachelor's Degree in Computer Science at the University of Udine, where I am) Tj
 ET
 BT
 /F1 9 Tf
 0.220 0.220 0.220 rg
 42.00 597.89 Td
-(collaborating effectively within team-based projects.) Tj
+(expanding my theoretical knowledge and practical skills in software development, algorithms, data structures,) Tj
+ET
+BT
+/F1 9 Tf
+0.220 0.220 0.220 rg
+42.00 585.39 Td
+(and emerging technologies.) Tj
 ET
 BT
 /F2 9 Tf
 0.700 0.350 0.050 rg
-46.00 583.39 Td
+46.00 570.89 Td
 (-) Tj
-ET
-BT
-/F1 9 Tf
-0.150 0.150 0.150 rg
-56.00 583.39 Td
-(Hands-on coursework in secure web application development, database management systems \(SQL\), and) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 570.89 Td
-(object-oriented programming.) Tj
-ET
-BT
-/F2 9 Tf
-0.700 0.350 0.050 rg
-46.00 558.39 Td
-(-) Tj
+(Currently pursuing a Bachelor's degree program focused on computer science fundamentals, including) Tj
 ET
 BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 558.39 Td
-(Network design, switching & routing protocols, network security, and telecommunications theory.) Tj
+(programming, data structures, and algorithms.) Tj
 ET
 BT
 /F2 9 Tf
@@ -622,140 +592,230 @@ BT
 /F1 9 Tf
 0.150 0.150 0.150 rg
 56.00 545.89 Td
+(Actively developing problem-solving and critical-thinking skills while building a strong foundation in) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 533.39 Td
+(software engineering principles.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 520.89 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 520.89 Td
+(Exploring logic, math, and advanced computer science concepts to develop innovative solutions.) Tj
+ET
+BT
+/F2 10.5 Tf
+0.100 0.100 0.100 rg
+42.00 498.39 Td
+(Technical Diploma - Information Technology and Telecommunications) Tj
+ET
+BT
+/F2 9 Tf
+0.180 0.180 0.180 rg
+454.10 498.39 Td
+(SEP 2021 - JUN 2026) Tj
+ET
+BT
+/F2 9.5 Tf
+0.700 0.350 0.050 rg
+42.00 485.39 Td
+(I.T.T. Guglielmo Marconi) Tj
+ET
+BT
+/F1 8.5 Tf
+0.400 0.400 0.400 rg
+456.04 485.39 Td
+(Staranzano \(GO\), Italy) Tj
+ET
+BT
+/F1 9 Tf
+0.220 0.220 0.220 rg
+42.00 472.39 Td
+(Through my studies, I have gained experience in building secure, responsive web applications and) Tj
+ET
+BT
+/F1 9 Tf
+0.220 0.220 0.220 rg
+42.00 459.89 Td
+(collaborating effectively within team-based projects.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 445.39 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 445.39 Td
+(Hands-on coursework in secure web application development, database management systems \(SQL\), and) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 432.89 Td
+(object-oriented programming.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 420.39 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 420.39 Td
+(Network design, switching & routing protocols, network security, and telecommunications theory.) Tj
+ET
+BT
+/F2 9 Tf
+0.700 0.350 0.050 rg
+46.00 407.89 Td
+(-) Tj
+ET
+BT
+/F1 9 Tf
+0.150 0.150 0.150 rg
+56.00 407.89 Td
 (Emphasis on collaborative group projects, code reviews, and practical lab assignments.) Tj
 ET
 q
 0.700 0.350 0.050 rg
-42.00 508.39 4.00 12.00 re
+42.00 370.39 4.00 12.00 re
 f
 Q
 BT
 /F2 11 Tf
 0.100 0.100 0.100 rg
-52.00 509.39 Td
+52.00 371.39 Td
 (CERTIFICATIONS) Tj
 ET
 q
 0.820 0.780 0.700 RG
 0.75 w
-42.00 505.89 m
-553.28 505.89 l
+42.00 367.89 m
+553.28 367.89 l
 S
 Q
 BT
 /F2 9.5 Tf
 0.100 0.100 0.100 rg
-42.00 494.89 Td
+42.00 356.89 Td
 (English B2 - Cambridge First Certificate) Tj
 ET
 BT
 /F3 8.5 Tf
 0.400 0.400 0.400 rg
-429.52 494.89 Td
+429.52 356.89 Td
 (\(CEFR B2 Upper-Intermediate\)) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 482.89 Td
+54.00 344.89 Td
 (Demonstrates the linguistic competence to communicate fluently and effectively in professional and international) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 470.89 Td
+54.00 332.89 Td
 (technical settings.) Tj
 ET
 BT
 /F2 9.5 Tf
 0.100 0.100 0.100 rg
-42.00 452.89 Td
+42.00 314.89 Td
 (Cisco ITE - IT Essentials) Tj
 ET
 BT
 /F3 8.5 Tf
 0.400 0.400 0.400 rg
-491.40 452.89 Td
+491.40 314.89 Td
 (\(Foundational\)) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 440.89 Td
+54.00 302.89 Td
 (Entry-level certificate that validates the ability to build, secure, and troubleshoot computer hardware,) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 428.89 Td
+54.00 290.89 Td
 (software, and basic networks.) Tj
 ET
 BT
 /F2 9.5 Tf
 0.100 0.100 0.100 rg
-42.00 410.89 Td
+42.00 272.89 Td
 (Cisco CCNA - Introduction to Networks) Tj
 ET
 BT
 /F3 8.5 Tf
 0.400 0.400 0.400 rg
-491.40 410.89 Td
+491.40 272.89 Td
 (\(Intermediate\)) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 398.89 Td
+54.00 260.89 Td
 (Intermediate-level certification that validates the ability to install, configure, and manage advanced switched) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 386.89 Td
+54.00 248.89 Td
 (and routed networks using industry-standard protocols.) Tj
 ET
 BT
 /F2 9.5 Tf
 0.100 0.100 0.100 rg
-42.00 368.89 Td
+42.00 230.89 Td
 (ICDL - Full Standard) Tj
 ET
 BT
 /F3 8.5 Tf
 0.400 0.400 0.400 rg
-447.20 368.89 Td
+447.20 230.89 Td
 (\(International Standard\)) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 356.89 Td
+54.00 218.89 Td
 (A comprehensive, internationally recognized certification that proves the mastery of essential digital skills,) Tj
 ET
 BT
 /F3 8.5 Tf
 0.300 0.300 0.300 rg
-54.00 344.89 Td
+54.00 206.89 Td
 (ranging from office productivity applications to online security and collaboration.) Tj
 ET
 q
 0.880 0.850 0.800 RG
 0.75 w
-42.00 312.89 m
-553.28 312.89 l
+42.00 174.89 m
+553.28 174.89 l
 S
 Q
 BT
 /F1 7.5 Tf
 0.450 0.450 0.450 rg
-42.00 301.89 Td
-(I hereby authorize the processing of my personal data pursuant to Legislative Decree 196/2003 and Article 13 of the GDPR \(EU) Tj
-ET
-BT
-/F1 7.5 Tf
-0.450 0.450 0.450 rg
-42.00 291.89 Td
-(Regulation 2016/679\).) Tj
+42.00 163.89 Td
+(I authorize the processing of my personal data pursuant to D. Lgs. 196/2003 and GDPR \(EU 2016/679\).) Tj
 ET
 
 endstream
@@ -1302,14 +1362,14 @@ xref
 0000000064 00000 n 
 0000000129 00000 n 
 0000000310 00000 n 
-0000007036 00000 n 
-0000007217 00000 n 
-0000012803 00000 n 
-0000012900 00000 n 
-0000013002 00000 n 
-0000013107 00000 n 
+0000006675 00000 n 
+0000006856 00000 n 
+0000013867 00000 n 
+0000013964 00000 n 
+0000014066 00000 n 
+0000014171 00000 n 
 trailer
 << /Size 11 /Root 1 0 R >>
 startxref
-157836
+158900
 %%EOF

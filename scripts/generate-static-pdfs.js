@@ -1,10 +1,12 @@
-const fs = require("fs");
+const { spawnSync } = require("child_process");
 const path = require("path");
 
-// Ensure public/assets/resume exists
-const targetDir = path.join(__dirname, "..", "public", "assets", "resume");
-if (!fs.existsSync(targetDir)) {
-  fs.mkdirSync(targetDir, { recursive: true });
-}
+const scriptPath = path.join(__dirname, "generate-static-pdfs.ts");
+const result = spawnSync("npx", ["-y", "tsx", scriptPath], {
+  stdio: "inherit",
+  shell: true,
+});
 
-console.log("Assets resume directory ready:", targetDir);
+if (result.status !== 0) {
+  process.exit(result.status || 1);
+}

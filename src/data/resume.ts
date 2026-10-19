@@ -433,7 +433,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
         institution: "Università di Udine",
         degree: "Laurea Triennale",
         field: "Informatica",
-        period: "SET 2026 – PRESENT",
+        period: "SET 2026 – PRESENTE",
         location: "Udine (UD), Italia",
         description:
           "Iscritto al primo anno del Corso di Laurea Triennale in Informatica, sto costruendo solide basi teoriche e pratiche in algoritmi, strutture dati, programmazione avanzata, sistemi operativi e intelligenza artificiale.",
