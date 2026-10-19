@@ -223,6 +223,21 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
     ],
     education: [
       {
+        id: "university-of-udine",
+        institution: "University of Udine",
+        degree: "Bachelor's Degree",
+        field: "Computer Science",
+        period: "SEP 2026 – PRESENT",
+        location: "Udine (UD), Italy",
+        description:
+          "I am currently pursuing a Bachelor's Degree in Computer Science at the University of Udine, where I am expanding my theoretical knowledge and practical skills in software development, algorithms, data structures, and emerging technologies.",
+        highlights: [
+          "Currently pursuing a Bachelor's degree program focused on computer science fundamentals, including programming, data structures, and algorithms.",
+          "Actively developing problem-solving and critical-thinking skills while building a strong foundation in software engineering principles.",
+          "Exploring logic, math, and advanced computer science concepts to develop innovative solutions.",
+        ],
+      },
+      {
         id: "isis-bem",
         institution: "I.T.T. Guglielmo Marconi",
         degree: "Technical Diploma",
@@ -413,6 +428,21 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
       },
     ],
     education: [
+      {
+        id: "university-of-udine",
+        institution: "Università di Udine",
+        degree: "Laurea Triennale",
+        field: "Informatica",
+        period: "SET 2026 – PRESENT",
+        location: "Udine (UD), Italia",
+        description:
+          "Iscritto al primo anno del Corso di Laurea Triennale in Informatica, sto costruendo solide basi teoriche e pratiche in algoritmi, strutture dati, programmazione avanzata, sistemi operativi e intelligenza artificiale.",
+        highlights: [
+          "Sto seguendo la triennale in informatica presso l'università di Udine, dove sto costruendo solide basi teoriche e pratiche in algoritmi, strutture dati, programmazione avanzata, sistemi operativi e intelligenza artificiale.",
+          "Sto approfondendo le capacità analitiche e critiche necessarie per affrontare problemi complessi e sviluppare soluzioni innovative.",
+          "Sto esplorando la logica, la matematica e i concetti avanzati di informatica per sviluppare soluzioni innovative.",
+        ],
+      },
       {
         id: "isis-bem",
         institution: "I.T.T. Guglielmo Marconi",
