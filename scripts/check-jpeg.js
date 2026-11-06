@@ -32,7 +32,7 @@ function getJpegDimensions(buffer) {
   throw new Error("Could not find SOF marker in JPEG");
 }
 
-const imgPath = path.join(__dirname, "..", "public", "assets", "me.jpg");
+const imgPath = path.join(__dirname, "source", "me.png");
 const imgBuffer = fs.readFileSync(imgPath);
 const dims = getJpegDimensions(imgBuffer);
 console.log("JPEG Dimensions:", dims, "Size in bytes:", imgBuffer.length);

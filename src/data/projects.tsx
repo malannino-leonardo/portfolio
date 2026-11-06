@@ -288,8 +288,8 @@ const projects: Project[] = [
     id: "rubiks-cube-simulator",
     category: "Puzzle game",
     title: "Rubik's Cube Simulator",
-    src: "/assets/projects-screenshots/rubiks-cube-simulator/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/rubiks-cube-simulator/landing.webp",
+    screenshots: ["landing.webp"],
     skills: {
       frontend: [
         PROJECT_SKILLS.python,
@@ -318,9 +318,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/rubiks-cube-simulator/main-menu.png`,
-              `${BASE_PATH}/rubiks-cube-simulator/controls.png`,
-              `${BASE_PATH}/rubiks-cube-simulator/achievements.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/main-menu.webp`,
+              `${BASE_PATH}/rubiks-cube-simulator/controls.webp`,
+              `${BASE_PATH}/rubiks-cube-simulator/achievements.webp`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
@@ -352,7 +352,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/rubiks-cube-simulator/game-modes.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/game-modes.webp`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Visual hints</TypographyH3>
@@ -362,7 +362,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/rubiks-cube-simulator/hint-animation.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/hint-animation.webp`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Statistics</TypographyH3>
@@ -383,9 +383,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/rubiks-cube-simulator/personal-records.png`,
-              `${BASE_PATH}/rubiks-cube-simulator/global-leaderboard.png`,
-              `${BASE_PATH}/rubiks-cube-simulator/daily-leaderboard.png`,
+              `${BASE_PATH}/rubiks-cube-simulator/personal-records.webp`,
+              `${BASE_PATH}/rubiks-cube-simulator/global-leaderboard.webp`,
+              `${BASE_PATH}/rubiks-cube-simulator/daily-leaderboard.webp`,
             ]}
           />
         </div>
@@ -396,8 +396,8 @@ const projects: Project[] = [
     id: "hyrise-studio",
     category: "Freelancer Platform",
     title: "Hyrise Studio",
-    src: "/assets/projects-screenshots/hyrise-studio/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/hyrise-studio/landing.webp",
+    screenshots: ["landing.webp"],
     live: "",
     skills: {
       frontend: [
@@ -427,7 +427,7 @@ const projects: Project[] = [
             A bold headline captures your attention, while a concise description highlights the platform&apos;s value proposition.
             The call-to-action button invites you to explore the services offered, making it easy for potential clients to get started on their projects.
           </p>
-          <SlideShow images={[`${BASE_PATH}/hyrise-studio/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/hyrise-studio/home.webp`]} />
 
           <TypographyH3 className="my-4 ">Services</TypographyH3>
           <p className="font-mono mb-2">
@@ -435,7 +435,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/services.png`,
+              `${BASE_PATH}/hyrise-studio/services.webp`,
             ]}
           />
 
@@ -445,7 +445,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/freelancers.png`,
+              `${BASE_PATH}/hyrise-studio/freelancers.webp`,
             ]}
           />
 
@@ -455,7 +455,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/projects.png`,
+              `${BASE_PATH}/hyrise-studio/projects.webp`,
             ]}
           />
 
@@ -465,7 +465,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/contact-us.png`,
+              `${BASE_PATH}/hyrise-studio/contact-us.webp`,
             ]}
           />
 
@@ -475,7 +475,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/account-dashboard.png`,
+              `${BASE_PATH}/hyrise-studio/account-dashboard.webp`,
             ]}
           />
 
@@ -485,7 +485,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/hyrise-studio/admin-dashboard.png`,
+              `${BASE_PATH}/hyrise-studio/admin-dashboard.webp`,
             ]}
           />
         </div>
@@ -496,8 +496,8 @@ const projects: Project[] = [
     id: "cl-studio-portfolio",
     category: "Portfolio website",
     title: "CL Studio Portfolio",
-    src: "/assets/projects-screenshots/cl-studio-portfolio/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/cl-studio-portfolio/landing.webp",
+    screenshots: ["landing.webp"],
     github: "https://github.com/malannino-leonardo/cl-studio",
     skills: {
       frontend: [
@@ -518,7 +518,7 @@ const projects: Project[] = [
           <p className="font-mono mb-2 mt-8">
             The interface is sleek and modern, designed to highlight the studio&apos;s best work with an engaging layout and plenty of visual appeal.
           </p>
-          <SlideShow images={[`${BASE_PATH}/cl-studio-portfolio/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/cl-studio-portfolio/home.webp`]} />
 
           <TypographyH3 className="my-4 mt-8">Profiles</TypographyH3>
           <p className="font-mono mb-2">
@@ -526,7 +526,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/cl-studio-portfolio/profile.png`,
+              `${BASE_PATH}/cl-studio-portfolio/profile.webp`,
             ]}
           />
 
@@ -536,7 +536,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/cl-studio-portfolio/experience&data.png`,
+              `${BASE_PATH}/cl-studio-portfolio/experience&data.webp`,
             ]}
           />
 
@@ -546,7 +546,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/cl-studio-portfolio/project-view.png`,
+              `${BASE_PATH}/cl-studio-portfolio/project-view.webp`,
             ]}
           />
         </div>
@@ -557,8 +557,8 @@ const projects: Project[] = [
     id: "portfolio",
     category: "Portfolio website",
     title: "My Portfolio",
-    src: "/assets/projects-screenshots/portfolio/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/portfolio/landing.webp",
+    screenshots: ["landing.webp"],
     live: "http://leomal.it/",
     github: "https://github.com/malannino-leonardo/Portfolio",
     skills: {
@@ -590,15 +590,15 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/portfolio/home.png`,
-              `${BASE_PATH}/portfolio/skills.png`,
+              `${BASE_PATH}/portfolio/home.webp`,
+              `${BASE_PATH}/portfolio/skills.webp`,
             ]}
           />
           <TypographyH3 className="my-4 ">Space Theme</TypographyH3>
           <p className="font-mono mb-2">
             Dark background + floating particles = super cool space vibes.
           </p>
-          <SlideShow images={[`${BASE_PATH}/portfolio/navbar.png`]} />
+          <SlideShow images={[`${BASE_PATH}/portfolio/navbar.webp`]} />
           <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
 
           <p className="font-mono mb-2">
@@ -607,8 +607,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/portfolio/projects.png`,
-              `${BASE_PATH}/portfolio/project.png`,
+              `${BASE_PATH}/portfolio/projects.webp`,
+              `${BASE_PATH}/portfolio/project.webp`,
             ]}
           />
           <p className="font-mono mb-2 mt-8 text-center">
@@ -622,8 +622,8 @@ const projects: Project[] = [
     id: "macos-style-portfolio",
     category: "Portfolio website",
     title: "MacOS Style Portfolio",
-    src: "/assets/projects-screenshots/macos-style-portfolio/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/macos-style-portfolio/landing.webp",
+    screenshots: ["landing.webp"],
     live: "https://sunforgione.com/",
     github: "",
     skills: {
@@ -639,7 +639,7 @@ const projects: Project[] = [
           <ProjectsLinks live={this.live} repo={this.github} />
           <SlideShow
             images={[
-              `${BASE_PATH}/macos-style-portfolio/home.png`,
+              `${BASE_PATH}/macos-style-portfolio/home.webp`,
             ]}
           />
 
@@ -649,14 +649,14 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/macos-style-portfolio/pfp.png`,
-              `${BASE_PATH}/macos-style-portfolio/about-me.png`,
-              `${BASE_PATH}/macos-style-portfolio/notes-app.png`,
-              `${BASE_PATH}/macos-style-portfolio/photos-folder.png`,
-              `${BASE_PATH}/macos-style-portfolio/videos-folder.png`,
-              `${BASE_PATH}/macos-style-portfolio/contacts.png`,
-              `${BASE_PATH}/macos-style-portfolio/reviews.png`,
-              `${BASE_PATH}/macos-style-portfolio/trash.png`,
+              `${BASE_PATH}/macos-style-portfolio/pfp.webp`,
+              `${BASE_PATH}/macos-style-portfolio/about-me.webp`,
+              `${BASE_PATH}/macos-style-portfolio/notes-app.webp`,
+              `${BASE_PATH}/macos-style-portfolio/photos-folder.webp`,
+              `${BASE_PATH}/macos-style-portfolio/videos-folder.webp`,
+              `${BASE_PATH}/macos-style-portfolio/contacts.webp`,
+              `${BASE_PATH}/macos-style-portfolio/reviews.webp`,
+              `${BASE_PATH}/macos-style-portfolio/trash.webp`,
             ]}
           />
 
@@ -666,7 +666,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/macos-style-portfolio/os-starting.png`,
+              `${BASE_PATH}/macos-style-portfolio/os-starting.webp`,
             ]}
           />
 
@@ -676,7 +676,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/macos-style-portfolio/user-selection.png`,
+              `${BASE_PATH}/macos-style-portfolio/user-selection.webp`,
             ]}
           />
         </div>
@@ -687,8 +687,8 @@ const projects: Project[] = [
     id: "football-championship-website",
     category: "Sports website",
     title: "Universitarian Football Championship",
-    src: "/assets/projects-screenshots/football-championship-website/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/football-championship-website/landing.webp",
+    screenshots: ["landing.webp"],
     live: "https://tuc-units.infinityfree.me/",
     github: "",
     skills: {
@@ -708,7 +708,7 @@ const projects: Project[] = [
             A dedicated website for the Universitarian Football Championship featuring schedules, match results, team information, and tournament statistics all in one place.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow images={[`${BASE_PATH}/football-championship-website/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/football-championship-website/home.webp`]} />
 
           <TypographyH3 className="my-4 mt-8">Informative pages</TypographyH3>
           <p className="font-mono mb-2">
@@ -728,9 +728,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/football-championship-website/il-torneo.png`,
-              `${BASE_PATH}/football-championship-website/about.png`,
-              `${BASE_PATH}/football-championship-website/contacts.png`,
+              `${BASE_PATH}/football-championship-website/il-torneo.webp`,
+              `${BASE_PATH}/football-championship-website/about.webp`,
+              `${BASE_PATH}/football-championship-website/contacts.webp`,
             ]}
           />
 
@@ -745,7 +745,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/football-championship-website/registration-form.png`,
+              `${BASE_PATH}/football-championship-website/registration-form.webp`,
             ]}
           />
         </div>
@@ -756,8 +756,8 @@ const projects: Project[] = [
     id: "eu-puzzle",
     category: "Puzzle game",
     title: "EU Puzzle",
-    src: "/assets/projects-screenshots/eu-puzzle/landing.jpg",
-    screenshots: ["home.png"],
+    src: "/assets/projects-screenshots/eu-puzzle/landing.webp",
+    screenshots: ["home.webp"],
     live: "https://eu-puzzle.netlify.app/",
     github: "https://github.com/malannino-leonardo/eu-puzzle",
     skills: {
@@ -774,7 +774,7 @@ const projects: Project[] = [
             An interactive map game where you rebuild the European Union (27 member states) by connecting countries in the correct way..
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow images={[`${BASE_PATH}/eu-puzzle/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/eu-puzzle/home.webp`]} />
 
           <TypographyH3 className="my-4 mt-8">Game modes</TypographyH3>
           <p className="font-mono mb-2">
@@ -794,9 +794,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/eu-puzzle/easy-mode.png`,
-              `${BASE_PATH}/eu-puzzle/medium-mode.png`,
-              `${BASE_PATH}/eu-puzzle/hard-mode.png`,
+              `${BASE_PATH}/eu-puzzle/easy-mode.webp`,
+              `${BASE_PATH}/eu-puzzle/medium-mode.webp`,
+              `${BASE_PATH}/eu-puzzle/hard-mode.webp`,
             ]}
           />
 
@@ -806,8 +806,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/eu-puzzle/tutorial.png`,
-              `${BASE_PATH}/eu-puzzle/tutorial2.png`,
+              `${BASE_PATH}/eu-puzzle/tutorial.webp`,
+              `${BASE_PATH}/eu-puzzle/tutorial2.webp`,
             ]}
           />
 
@@ -817,8 +817,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/eu-puzzle/local-records.png`,
-              `${BASE_PATH}/eu-puzzle/global-leaderboard.png`,
+              `${BASE_PATH}/eu-puzzle/local-records.webp`,
+              `${BASE_PATH}/eu-puzzle/global-leaderboard.webp`,
             ]}
           />
 
@@ -828,8 +828,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/eu-puzzle/account.png`,
-              `${BASE_PATH}/eu-puzzle/settings.png`,
+              `${BASE_PATH}/eu-puzzle/account.webp`,
+              `${BASE_PATH}/eu-puzzle/settings.webp`,
             ]}
           />
         </div>
@@ -840,8 +840,8 @@ const projects: Project[] = [
     id: "la-bottega-del-cicchetto",
     category: "Night bar website",
     title: "La Bottega del Cicchetto",
-    src: "/assets/projects-screenshots/la-bottega-del-cicchetto/home.png",
-    screenshots: ["home.png"],
+    src: "/assets/projects-screenshots/la-bottega-del-cicchetto/home.webp",
+    screenshots: ["home.webp"],
     live: "https://labottegadelcicchetto.it/",
     skills: {
       frontend: [
@@ -863,7 +863,7 @@ const projects: Project[] = [
             A complete website for La Bottega del Cicchetto, a night bar in Trieste, Italy.
           </TypographyP>
           <ProjectsLinks live={this.live} />
-          <SlideShow images={[`${BASE_PATH}/la-bottega-del-cicchetto/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/la-bottega-del-cicchetto/home.webp`]} />
 
           <TypographyH3 className="my-4 mt-8">Menu & Categories</TypographyH3>
           <p className="font-mono mb-2">
@@ -872,8 +872,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/la-bottega-del-cicchetto/menu-categories.png`,
-              `${BASE_PATH}/la-bottega-del-cicchetto/menu-items.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/menu-categories.webp`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/menu-items.webp`,
             ]}
           />
 
@@ -885,8 +885,8 @@ const projects: Project[] = [
 
           <SlideShow
             images={[
-              `${BASE_PATH}/la-bottega-del-cicchetto/events.png`,
-              `${BASE_PATH}/la-bottega-del-cicchetto/frosty-weekend.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/events.webp`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/frosty-weekend.webp`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Merchandise</TypographyH3>
@@ -896,7 +896,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/la-bottega-del-cicchetto/shop.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/shop.webp`,
             ]}
           />
 
@@ -907,7 +907,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/la-bottega-del-cicchetto/consulenze.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/consulenze.webp`,
             ]}
           />
 
@@ -917,8 +917,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/la-bottega-del-cicchetto/profile.png`,
-              `${BASE_PATH}/la-bottega-del-cicchetto/account.png`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/profile.webp`,
+              `${BASE_PATH}/la-bottega-del-cicchetto/account.webp`,
             ]}
           />
         </div>
@@ -929,8 +929,8 @@ const projects: Project[] = [
     id: "agenda-app",
     category: "Agenda web app",
     title: "Agenda web app",
-    src: "/assets/projects-screenshots/agenda/home.png",
-    screenshots: ["home.png"],
+    src: "/assets/projects-screenshots/agenda/home.webp",
+    screenshots: ["home.webp"],
     live: "https://agenda-app-leo.vercel.app/",
     github: "https://github.com/malannino-leonardo/agenda-app",
     skills: {
@@ -954,7 +954,7 @@ const projects: Project[] = [
             A complete web application for managing daily tasks and schedules, designed to help you stay organized and on top of your responsibilities.
           </TypographyP>
           <ProjectsLinks live={this.live} />
-          <SlideShow images={[`${BASE_PATH}/agenda/home.png`]} />
+          <SlideShow images={[`${BASE_PATH}/agenda/home.webp`]} />
 
           <TypographyH3 className="my-4 mt-8">Agenda section</TypographyH3>
           <p className="font-mono mb-2">
@@ -963,8 +963,8 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/agenda/agenda.png`,
-              `${BASE_PATH}/agenda/new-calendar.png`,
+              `${BASE_PATH}/agenda/agenda.webp`,
+              `${BASE_PATH}/agenda/new-calendar.webp`,
             ]}
           />
 
@@ -976,8 +976,8 @@ const projects: Project[] = [
 
           <SlideShow
             images={[
-              `${BASE_PATH}/agenda/tasks.png`,
-              `${BASE_PATH}/agenda/new-task.png`,
+              `${BASE_PATH}/agenda/tasks.webp`,
+              `${BASE_PATH}/agenda/new-task.webp`,
             ]}
           />
           <TypographyH3 className="my-4 mt-8">Projects section</TypographyH3>
@@ -987,7 +987,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/agenda/projects.png`,
+              `${BASE_PATH}/agenda/projects.webp`,
             ]}
           />
 
@@ -997,7 +997,7 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/agenda/account-settings.png`,
+              `${BASE_PATH}/agenda/account-settings.webp`,
             ]}
           />
         </div>
@@ -1008,8 +1008,8 @@ const projects: Project[] = [
     id: "aerocare",
     category: "Aircraft detailing website",
     title: "AerocareFVG",
-    src: "/assets/projects-screenshots/aerocare/home.png",
-    screenshots: ["home.png"],
+    src: "/assets/projects-screenshots/aerocare/home.webp",
+    screenshots: ["home.webp"],
     live: "https://aerocarefvg.it/",
     skills: {
       frontend: [
@@ -1033,9 +1033,9 @@ const projects: Project[] = [
           <ProjectsLinks live={this.live} />
           <SlideShow
             images={[
-              `${BASE_PATH}/aerocare/home.png`,
-              `${BASE_PATH}/aerocare/servizi.png`,
-              `${BASE_PATH}/aerocare/settori.png`,
+              `${BASE_PATH}/aerocare/home.webp`,
+              `${BASE_PATH}/aerocare/servizi.webp`,
+              `${BASE_PATH}/aerocare/settori.webp`,
             ]}
           />
 
@@ -1046,9 +1046,9 @@ const projects: Project[] = [
           </p>
           <SlideShow
             images={[
-              `${BASE_PATH}/aerocare/servizi-page.png`,
-              `${BASE_PATH}/aerocare/servizi-page2.png`,
-              `${BASE_PATH}/aerocare/servizi-page3.png`,
+              `${BASE_PATH}/aerocare/servizi-page.webp`,
+              `${BASE_PATH}/aerocare/servizi-page2.webp`,
+              `${BASE_PATH}/aerocare/servizi-page3.webp`,
             ]}
           />
 
@@ -1060,7 +1060,7 @@ const projects: Project[] = [
 
           <SlideShow
             images={[
-              `${BASE_PATH}/aerocare/contatti.png`,
+              `${BASE_PATH}/aerocare/contatti.webp`,
             ]}
           />
         </div>

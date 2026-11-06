@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const zlib = require("zlib");
 
-// 1. Read me.jpg (which is PNG format)
-const pngBuffer = fs.readFileSync(path.join(__dirname, "..", "public", "assets", "me.jpg"));
+// 1. Read scripts/source/me.png (the full-size original of public/assets/me.webp)
+const pngBuffer = fs.readFileSync(path.join(__dirname, "source", "me.png"));
 
 // 2. Parse PNG chunks
 let pos = 8;

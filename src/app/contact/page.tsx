@@ -1,4 +1,5 @@
 import React from "react";
+import DarkPageMarker from "@/components/dark-page-marker";
 
 function Page() {
 
@@ -8,6 +9,7 @@ function Page() {
   }
   return (
     <section>
+      <DarkPageMarker />
       <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-zinc-200">
           Contact Me
@@ -16,7 +18,7 @@ function Page() {
           <div>
             <label
               htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="block mb-2 text-sm font-medium text-gray-300"
             >
               Your email
             </label>
@@ -31,7 +33,7 @@ function Page() {
           <div>
             <label
               htmlFor="subject"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="block mb-2 text-sm font-medium text-gray-300"
             >
               Subject
             </label>

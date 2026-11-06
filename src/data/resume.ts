@@ -90,7 +90,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
       drivingLicenseLabel: "Driving license",
       summaryTitle: "Professional Summary",
       status: "Available for freelance & collaborative projects",
-      avatar: "/assets/me.jpg",
+      avatar: "/assets/me.webp",
       social: {
         github: "https://github.com/malannino-leonardo",
         linkedin: "https://www.linkedin.com/in/leonardo-malannino-0b5160341/",
@@ -296,7 +296,7 @@ export const resumeDataByLocale: Record<ResumeLocale, ResumeDataLocalized> = {
       drivingLicenseLabel: "Patente di guida",
       summaryTitle: "Profilo Professionale",
       status: "Disponibile per progetti freelance e collaborazioni",
-      avatar: "/assets/me.jpg",
+      avatar: "/assets/me.webp",
       social: {
         github: "https://github.com/malannino-leonardo",
         linkedin: "https://www.linkedin.com/in/leonardo-malannino-0b5160341/",

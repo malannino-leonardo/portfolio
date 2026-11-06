@@ -26,7 +26,7 @@ const AboutSection = () => {
                className="relative mx-auto lg:mx-0 w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full border-[6px] border-background shadow-2xl overflow-hidden ring-1 ring-border"
             >
               <Image 
-                src="/assets/me.jpg" 
+                src="/assets/me.webp" 
                 alt="Profile Photo" 
                 fill 
                 className="object-cover hover:scale-105 transition-transform duration-500"
@@ -50,7 +50,7 @@ const AboutSection = () => {
                  whileInView={{ opacity: 1 }}
                  viewport={{ once: true }}
                  transition={{ delay: 0.2 }}
-                 className="bg-card/40 dark:bg-black/40 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-border/40 shadow-sm max-w-md mx-auto lg:mx-0 text-left"
+                 className="bg-card/80 dark:bg-black/70 p-4 sm:p-5 rounded-2xl border border-border/40 shadow-sm max-w-md mx-auto lg:mx-0 text-left"
                >
                  <p className="text-foreground/90 dark:text-zinc-200 text-base md:text-lg leading-relaxed">
                    {config.description.long}
@@ -104,7 +104,7 @@ const AboutCard = ({
       
       <Card
         className={cn(
-          "bg-card/40 dark:bg-black/40 backdrop-blur-md text-card-foreground border-border/40 rounded-2xl",
+          "bg-card/80 dark:bg-black/70 text-card-foreground border-border/40 rounded-2xl",
           "hover:border-primary/50 transition-all duration-300",
           "hover:shadow-lg hover:-translate-y-1"
         )}
@@ -121,7 +121,7 @@ const AboutCard = ({
            </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          <ul className="list-disc list-outside ml-4 space-y-2 text-white text-sm md:text-base">
+          <ul className="list-disc list-outside ml-4 space-y-2 text-foreground/90 dark:text-white text-sm md:text-base">
             {experience.description.map((point, i) => (
               <li key={i}>{point}</li>
             ))}

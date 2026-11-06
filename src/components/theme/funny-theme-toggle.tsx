@@ -14,7 +14,12 @@ export default function FunnyThemeToggle({
 }: {
   className?: string;
 }) {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme: storedTheme } = useTheme();
+  // The stored theme is only known on the client; render the default (dark) markup until
+  // mounted so server and client HTML match (otherwise light mode fails hydration).
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+  const theme = mounted ? storedTheme : "dark";
   const [indices, setIndices] = React.useState({ dark: 0, light: 0 });
   const { toast } = useToast();
   const ref = React.useRef<HTMLButtonElement>(null);

@@ -7,6 +7,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
 
 import "@splidejs/react-splide/css";
+import DarkPageMarker from "@/components/dark-page-marker";
 
 const PROJECTS = [
   {
@@ -63,6 +64,7 @@ best deals on luxury brands and products. Join our savvy community of shoppers a
 function Page() {
   return (
     <>
+      <DarkPageMarker />
       <div className="container mx-auto md:px-[50px] xl:px-[150px] text-zinc-300 h-full">
         <h1 className="text-4xl mt-[100px] mb-[50px]">Projects</h1>
         <ul className="grid  md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-around ">

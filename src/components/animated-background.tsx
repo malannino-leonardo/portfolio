@@ -9,10 +9,10 @@ import { sleep, cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
 import { Section, getKeyboardState } from "./animated-background-config";
 import { useSounds } from "./realtime/hooks/use-sounds";
 import { usePerformance } from "@/hooks/use-performance";
+import { detectGpu, capDevicePixelRatio, GpuInfo } from "@/lib/gpu";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +28,8 @@ const SKILL_REMAP: Record<string, SkillNames> = {
   "vim": SkillNames.APACHE,
 };
 
+// Every wobbling key dirties the WebGL frame; a subset looks the same but is far cheaper.
+const MAX_WOBBLING_KEYS = 14;
 const KEYBOARD_SCROLL_TRIGGER_PREFIX = "keyboard-section-";
 const KEYBOARD_TRANSITION_DURATION = {
   default: 0.7,
@@ -37,11 +39,12 @@ const KEYBOARD_TRANSITION_DURATION = {
 
 const AnimatedBackground = () => {
   const { isLoading, bypassLoading } = usePreloader();
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
   const { isLowPowerMode } = usePerformance();
   const isMobile = useMediaQuery("(max-width: 767px)");
   const splineContainer = useRef<HTMLDivElement>(null);
   const [splineApp, setSplineApp] = useState<Application>();
+  const [gpu, setGpu] = useState<GpuInfo | null>(null);
   const selectedSkillRef = useRef<Skill | null>(null);
 
   const { playPressSound, playReleaseSound } = useSounds();
@@ -49,6 +52,22 @@ const AnimatedBackground = () => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("hero");
   const activeSectionRef = useRef<Section>("hero");
+
+  // Classify the GPU (WebGPU adapter when available) and cap the render
+  // resolution of the 3D canvas *before* the Spline runtime initialises.
+  useEffect(() => {
+    let alive = true;
+    let restore = () => {};
+    detectGpu().then((info) => {
+      if (!alive) return;
+      restore = capDevicePixelRatio(info.maxDpr);
+      setGpu(info);
+    });
+    return () => {
+      alive = false;
+      restore();
+    };
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "") as Section;
@@ -64,10 +83,11 @@ const AnimatedBackground = () => {
 
   // Animation controllers refs
   const bongoAnimationRef = useRef<{ start: () => void; stop: () => void }>();
+  // >0 while a timer-driven (non-gsap) animation needs the render loop to keep running
+  const extraBusyRef = useRef(0);
   const keycapAnimationsRef = useRef<{ start: () => void; stop: () => void }>();
 
   const [keyboardRevealed, setKeyboardRevealed] = useState(false);
-  const router = useRouter();
 
   // Helper to safely set variables without crashing if they don't exist
   const setSplineVariable = useCallback((name: string, value: string | number) => {
@@ -364,8 +384,13 @@ const AnimatedBackground = () => {
     }
 
     let interval: NodeJS.Timeout;
+    let running = false;
     const start = () => {
       let i = 0;
+      if (!running) {
+        running = true;
+        extraBusyRef.current++;
+      }
       framesParent.visible = true;
       interval = setInterval(() => {
         if (i % 2) {
@@ -380,6 +405,10 @@ const AnimatedBackground = () => {
     };
     const stop = () => {
       clearInterval(interval);
+      if (running) {
+        running = false;
+        extraBusyRef.current--;
+      }
       framesParent.visible = false;
       frame1.visible = false;
       frame2.visible = false;
@@ -405,6 +434,7 @@ const AnimatedBackground = () => {
       removePrevTweens();
       Object.values(SKILLS)
         .sort(() => Math.random() - 0.5)
+        .slice(0, MAX_WOBBLING_KEYS)
         .forEach((skill, idx) => {
           const keycap = findKeycap(skill.name);
 
@@ -700,13 +730,76 @@ const AnimatedBackground = () => {
   // Reveal keyboard on load/route change
   useEffect(() => {
     const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
-    router.push("/" + hash, { scroll: false });
+    // replaceState: updating the hash must not trigger a Next.js navigation
+    // (which re-renders the route tree on every section change).
+    if (window.location.hash !== (hash === "#" ? "" : hash)) {
+      window.history.replaceState(window.history.state, "", "/" + (hash === "#" ? "" : hash));
+    }
 
     if (!splineApp || isLoading || keyboardRevealed) return;
     updateKeyboardTransform();
-  }, [splineApp, isLoading, activeSection, keyboardRevealed, router, updateKeyboardTransform]);
+  }, [splineApp, isLoading, activeSection, keyboardRevealed, updateKeyboardTransform]);
 
   const isKeyboardVisible = !isMobile || activeSection === "hero" || activeSection === "skills";
+
+  // Don't burn GPU on a canvas nobody can see (phones hide the keyboard after "skills").
+  useEffect(() => {
+    if (!splineApp) return;
+    if (isKeyboardVisible) splineApp.play();
+    else splineApp.stop();
+  }, [splineApp, isKeyboardVisible]);
+
+  // Light theme: the page starfield (Particles) shows through the transparent canvas in dark
+  // mode and made dark-on-light text unreadable. In light mode the canvas is painted with the
+  // page colour; in dark mode it goes back to transparent. Both switch instantly.
+  useEffect(() => {
+    if (!splineApp || !resolvedTheme) return;
+    try {
+      splineApp.setBackgroundColor(resolvedTheme === "light" ? "#f2f6f3" : "rgba(0,0,0,0)");
+      splineApp.requestRender();
+    } catch {}
+  }, [splineApp, resolvedTheme]);
+
+  // Render scheduler. Spline's default "auto" mode renders every animation frame
+  // (a 120 Hz phone does 2x the work of a 60 Hz one). We switch the runtime to
+  // manual mode and request frames ourselves: at most 30 fps on phones / weak
+  // GPUs, and only while something is actually changing (gsap tweens, the bongo
+  // cat, recent input). When the scene is idle the GPU does no work at all.
+  useEffect(() => {
+    if (!splineApp || !gpu) return;
+    const interval = isMobile || gpu.tier === "low" ? 1000 / 30 : 0;
+    const app = splineApp as Application & { renderMode?: string };
+    const evts = ["pointermove", "pointerdown", "keydown", "wheel", "scroll", "touchmove", "resize"];
+    let raf = 0;
+    let last = 0;
+    let lastInput = performance.now();
+    const onInput = () => {
+      lastInput = performance.now();
+    };
+
+    const busy = () =>
+      extraBusyRef.current > 0 ||
+      performance.now() - lastInput < 1500 ||
+      gsap.globalTimeline.getChildren(true, true, false).some((t) => t.isActive());
+
+    const loop = (t: number) => {
+      raf = requestAnimationFrame(loop);
+      if (document.hidden || t - last < interval - 2 || !busy()) return;
+      last = t;
+      app.requestRender();
+    };
+
+    app.renderMode = "manual";
+    evts.forEach((e) => window.addEventListener(e, onInput, { passive: true }));
+    raf = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      evts.forEach((e) => window.removeEventListener(e, onInput));
+      app.renderMode = "auto";
+      app.requestRender();
+    };
+  }, [splineApp, gpu, isMobile]);
 
   return (
     <div className={cn(
@@ -714,7 +807,7 @@ const AnimatedBackground = () => {
       !keyboardRevealed || !isKeyboardVisible ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"
     )}>
       <Suspense fallback={null}>
-        <Spline
+        {gpu && <Spline
           className="w-full h-full"
           ref={splineContainer}
           onLoad={(app: Application) => {
@@ -722,7 +815,7 @@ const AnimatedBackground = () => {
             bypassLoading();
           }}
           scene="/assets/skills-keyboard.spline"
-        />
+        />}
       </Suspense>
     </div>
   );

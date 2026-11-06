@@ -62,6 +62,7 @@ export default function Index() {
       variants={slideUp}
       initial="initial"
       exit="exit"
+      data-ascii="skip"
       className={styles.introduction}
     >
       {dimension.width > 0 && (

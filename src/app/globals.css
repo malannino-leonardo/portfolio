@@ -162,3 +162,17 @@ body {
     content: none !important;
   }
 }
+/* ASCII reveal: glow while a text block is decoding */
+.ascii-revealing {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.55);
+}
+
+/* Always-dark pages (404, /about): keep the header readable in light mode */
+body[data-dark-page="true"] header,
+body[data-dark-page="true"] footer {
+  --foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --background: 222.2 84% 4.9%;
+  --border: 217.2 32.6% 17.5%;
+  color: hsl(var(--foreground));
+}

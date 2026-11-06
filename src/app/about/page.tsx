@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { config } from "@/data/config";
+import DarkPageMarker from "@/components/dark-page-marker";
 import { DiMongodb, DiNginx, DiNpm, DiPostgresql, DiVim } from "react-icons/di";
 import {
   FaAws,
@@ -235,6 +236,7 @@ function Page() {
   }, []);
   return (
     <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20">
+      <DarkPageMarker />
       <div className="flex flex-col lg:flex-row gap-5">
         <aside className="w-full md:basis-1/4">
           <div
@@ -248,7 +250,7 @@ function Page() {
                 <img
                   className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square  bg-zinc-800"
                   alt="me"
-                  src="/assets/me.jpg"
+                  src="/assets/me.webp"
                 />
               </div>
               <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">

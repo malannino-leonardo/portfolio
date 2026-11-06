@@ -11,22 +11,22 @@ const BUTTONS = [
   {
     name: "Github",
     href: config.social.github,
-    icon: <SiGithub size={"24"} color={"#fff"} />,
+    icon: <SiGithub size={"24"} color={"currentColor"} />,
   },
   {
     name: "LinkedIn",
     href: config.social.linkedin,
-    icon: <SiLinkedin size={"24"} color={"#fff"} />,
+    icon: <SiLinkedin size={"24"} color={"currentColor"} />,
   },
   {
     name: "Twitter",
     href: config.social.twitter,
-    icon: <SiX size={"24"} color={"#fff"} />,
+    icon: <SiX size={"24"} color={"currentColor"} />,
   },
   {
     name: "Instagram",
     href: config.social.instagram,
-    icon: <SiInstagram size={"24"} color={"#fff"} />,
+    icon: <SiInstagram size={"24"} color={"currentColor"} />,
   },
 ];
 
@@ -38,7 +38,7 @@ const SocialMediaButtons = () => {
       {show &&
         BUTTONS.map((button) => (
           <Link href={button.href} key={button.name} target="_blank">
-            <Button variant={"ghost"}>{button.icon}</Button>
+            <Button variant={"ghost"} className="text-foreground">{button.icon}</Button>
           </Link>
         ))}
     </div>
