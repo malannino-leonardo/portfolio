@@ -1,4 +1,4 @@
-/* Matrix terminal theme (scoped to .term-root). Dark = matrix, light = "paper terminal". */
+/* Terminal theme (scoped to .term-root). Dark = green phosphor, light = "paper terminal". */
 .term-root {
   --m-bg: #000604;
   --m-panel: rgba(0, 10, 4, 0.9);
@@ -244,6 +244,64 @@
 .term-footer a { color: var(--m-green); text-decoration: none; margin: 0 8px; }
 .term-footer a:hover { text-decoration: underline; }
 
+
+/* ---------- Linux boot screen ---------- */
+.term-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  overflow: hidden;
+  background: var(--m-bg);
+  color: var(--m-white);
+  font-size: 13px;
+  line-height: 1.45;
+  cursor: default;
+  user-select: none;
+}
+.term-boot .t-white { font-weight: 400; }
+.term-boot-line { white-space: pre-wrap; overflow-wrap: anywhere; min-height: 1.45em; }
+.term-boot-cursor {
+  display: inline-block;
+  color: var(--m-white);
+  animation: term-boot-blink 1s steps(1) infinite;
+}
+@keyframes term-boot-blink { 50% { opacity: 0; } }
+.term-boot-hint {
+  position: fixed;
+  right: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  color: var(--m-muted);
+  opacity: 0;
+  animation: term-boot-hint 0.6s ease 1.6s forwards;
+}
+@keyframes term-boot-hint { to { opacity: 0.7; } }
+/* CRT power-off when handing over to the UI */
+.term-boot.is-leaving {
+  animation: term-crt-off 0.38s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+@keyframes term-crt-off {
+  0% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+  60% { transform: scale(1, 0.004); filter: brightness(3); opacity: 1; }
+  100% { transform: scale(0, 0.004); filter: brightness(4); opacity: 0; }
+}
+
+/* terminal UI: hidden while booting, CRT power-on afterwards */
+.term-wrap.is-booting { visibility: hidden; }
+.term-wrap.is-powering-on {
+  animation: term-crt-on 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transform-origin: 50% 50%;
+}
+@keyframes term-crt-on {
+  0% { transform: scale(0, 0.004); filter: brightness(4); opacity: 0; }
+  35% { transform: scale(1, 0.004); filter: brightness(3); opacity: 1; }
+  100% { transform: scale(1, 1); filter: brightness(1); opacity: 1; }
+}
+@media (max-width: 640px) {
+  .term-boot { font-size: 11px; padding: 8px; }
+}
+
 @media (max-width: 640px) {
   .term-wrap { padding: 10px 8px 14px; }
   .term-body { font-size: 12.5px; }
@@ -258,5 +316,7 @@
   .term-root .t-long .t-own { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .term-cursor { animation: none; }
+  .term-cursor,
+  .term-boot-cursor,
+  .term-wrap.is-powering-on { animation: none; }
 }

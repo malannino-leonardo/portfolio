@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { usePreloader } from "@/components/preloader";
 import { config } from "@/data/config";
 import MatrixRain from "./matrix-rain";
+import BootScreen from "./boot-screen";
 import { Banner, COMMAND_NAMES, CommandContext, runCommand } from "./commands";
 import { HOME, display, getNode, resolveSegments } from "./fs";
 import "./terminal.css";
@@ -27,7 +28,7 @@ const Prompt = ({ cwd }: { cwd: string }) => (
 
 export default function Terminal() {
   const router = useRouter();
-  const { isLoading } = usePreloader();
+  const { bypassLoading } = usePreloader();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [lines, setLines] = useState<Line[]>([]);
@@ -45,8 +46,26 @@ export default function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const booted = useRef(false);
   const matrixRef = useRef(false);
+  // "boot" = Linux startup screen, "ready" = terminal UI powered on
+  const [phase, setPhase] = useState<"boot" | "ready">("boot");
+  const [fastBoot, setFastBoot] = useState(false);
+  const [instant, setInstant] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setInstant(true);
+      setPhase("ready");
+      return;
+    }
+    // second visit in the same tab session: same sequence, ~3x quicker
+    try {
+      if (sessionStorage.getItem("term-booted")) setFastBoot(true);
+      sessionStorage.setItem("term-booted", "1");
+    } catch {
+      /* storage unavailable */
+    }
+  }, []);
   const theme: "light" | "dark" = mounted && resolvedTheme === "light" ? "light" : "dark";
 
   const push = useCallback((node: React.ReactNode, cmd = false) => {
@@ -139,10 +158,11 @@ export default function Terminal() {
   );
   execRef.current = exec;
 
-  // boot sequence (after the site preloader finishes)
+  // session start (once the Linux boot screen has handed over)
   useEffect(() => {
-    if (isLoading || booted.current) return;
+    if (phase !== "ready" || booted.current) return;
     booted.current = true;
+    bypassLoading(); // the boot screen replaces the site preloader on this route
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const steps: React.ReactNode[] = [
       <span key="a" className="t-green">
@@ -160,7 +180,7 @@ export default function Terminal() {
     if (window.matchMedia("(hover: hover)").matches) inputRef.current?.focus();
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  }, [phase]);
 
   const setValueAt = (v: string) => {
     setValue(v);
@@ -257,8 +277,9 @@ export default function Terminal() {
         inputRef.current?.focus();
       }}
     >
-      <MatrixRain intense={matrix} light={theme === "light"} />
-      <div className="term-wrap">
+      <MatrixRain active={matrix} light={theme === "light"} />
+      {phase === "boot" && <BootScreen fast={fastBoot} onDone={() => setPhase("ready")} />}
+      <div className={"term-wrap" + (phase === "boot" ? " is-booting" : instant ? "" : " is-powering-on")}>
         <div className="term-topbar">
           <Link href="/">← back to the 3D portfolio</Link>
           <span className="term-topright">
