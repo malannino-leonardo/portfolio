@@ -49,9 +49,7 @@ export default function Terminal() {
   const matrixRef = useRef(false);
   // "boot" = Linux startup screen, "ready" = terminal UI powered on
   const [phase, setPhase] = useState<"boot" | "ready">("boot");
-  const [fastBoot, setFastBoot] = useState(false);
   const [instant, setInstant] = useState(false);
-  const visitId = useRef("");
   const [keySound, setKeySound] = useState(true);
   const [winState, setWinState] = useState<"normal" | "maximized" | "shaded">("normal");
 
@@ -63,21 +61,9 @@ export default function Terminal() {
     } catch {
       /* storage unavailable */
     }
-    // identifies this visit, so StrictMode's dev re-run of this effect isn't taken for a repeat visit
-    if (!visitId.current) visitId.current = String(Date.now());
-    const bootVisit = visitId.current;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setInstant(true);
       setPhase("ready");
-      return;
-    }
-    // second visit in the same tab session: no power-on prompt, silent, ~3x quicker
-    try {
-      const seen = sessionStorage.getItem("term-booted");
-      if (seen && seen !== bootVisit) setFastBoot(true);
-      sessionStorage.setItem("term-booted", bootVisit);
-    } catch {
-      /* storage unavailable */
     }
   }, []);
   const theme: "light" | "dark" = mounted && resolvedTheme === "light" ? "light" : "dark";
@@ -304,7 +290,7 @@ export default function Terminal() {
       }}
     >
       <MatrixRain active={matrix} light={theme === "light"} />
-      {phase === "boot" && <BootScreen fast={fastBoot} sound={!fastBoot} onDone={() => setPhase("ready")} />}
+      {phase === "boot" && <BootScreen sound onDone={() => setPhase("ready")} />}
       <div className={"term-wrap" + (phase === "boot" ? " is-booting" : instant ? "" : " is-powering-on")}>
         <div className="term-topbar">
           <Link href="/">← back to the 3D portfolio</Link>
