@@ -15,6 +15,8 @@ export interface GpuInfo {
   /** `navigator.gpu` exists and returned a real (non-fallback) adapter. */
   webgpu: boolean;
   tier: GpuTier;
+  /** Mobile user agent: selects the lighter (subdivision 1) scene. */
+  mobile: boolean;
   /** Max devicePixelRatio the 3D canvas is allowed to render at. */
   maxDpr: number;
   /** Human readable adapter description, for debugging. */
@@ -66,7 +68,7 @@ export async function detectGpu(): Promise<GpuInfo> {
 
   // Phones report a DPR of 3 (9x the pixels of a 1x canvas): cap hard. Weak devices render at 1x.
   const maxDpr = tier === "low" ? 1 : mobile ? 1.25 : tier === "high" ? 2 : 1.25;
-  return { webgpu, tier, maxDpr, adapter: adapterName };
+  return { webgpu, tier, mobile, maxDpr, adapter: adapterName };
 }
 
 /**
