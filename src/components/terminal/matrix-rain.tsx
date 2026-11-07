@@ -6,14 +6,12 @@ const CHARS =
   "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789<>/{}[]#*=+";
 
 /**
- * Cheap matrix rain: 2D canvas, DPR 1, ~24fps, pauses when the tab is hidden.
- * `intense` brightens the rain (the `matrix` command); otherwise it stays a
- * dim backdrop so the terminal text remains readable.
+ * Matrix rain easter egg: 2D canvas, DPR 1, ~24fps, pauses when the tab is hidden.
+ * Off by default; the `matrix` command toggles `active`. While inactive nothing
+ * is drawn (the loop is not even scheduled) and the canvas fades out.
  */
-export default function MatrixRain({ intense = false, light = false }: { intense?: boolean; light?: boolean }) {
+export default function MatrixRain({ active = false, light = false }: { active?: boolean; light?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const intenseRef = useRef(intense);
-  intenseRef.current = intense;
   const lightRef = useRef(light);
   lightRef.current = light;
 
@@ -28,6 +26,7 @@ export default function MatrixRain({ intense = false, light = false }: { intense
   }, [light]);
 
   useEffect(() => {
+    if (!active) return;
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -50,47 +49,48 @@ export default function MatrixRain({ intense = false, light = false }: { intense
     resize();
     window.addEventListener("resize", resize);
 
-    const draw = (t: number) => {
-      raf = requestAnimationFrame(draw);
-      if (document.hidden || t - last < 42) return;
-      last = t;
-      const hot = intenseRef.current;
+    const step = () => {
       const L = lightRef.current;
-      ctx.fillStyle = L ? (hot ? "rgba(236,246,238,0.10)" : "rgba(236,246,238,0.16)") : hot ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0.14)";
+      ctx.fillStyle = L ? "rgba(236,246,238,0.10)" : "rgba(0,0,0,0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${size}px monospace`;
       for (let i = 0; i < cols; i++) {
         const y = drops[i] * size;
-        const ch = CHARS[(Math.random() * CHARS.length) | 0];
         // bright head + dimmer trail from the fade above
-        ctx.fillStyle = L ? (hot ? "#04561b" : "rgba(6,90,33,0.7)") : hot ? "#b6ffc9" : "rgba(120,255,160,0.55)";
-        if (y > 0) ctx.fillText(ch, i * size, y);
-        ctx.fillStyle = L ? (hot ? "#0a8a2e" : "rgba(10,130,45,0.45)") : hot ? "#00ff41" : "rgba(0,255,65,0.35)";
+        ctx.fillStyle = L ? "#04561b" : "#b6ffc9";
+        if (y > 0) ctx.fillText(CHARS[(Math.random() * CHARS.length) | 0], i * size, y);
+        ctx.fillStyle = L ? "#0a8a2e" : "#00ff41";
         if (y > size) ctx.fillText(CHARS[(Math.random() * CHARS.length) | 0], i * size, y - size);
         if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i] += hot ? 1 : 0.6;
+        drops[i] += 1;
       }
     };
+
     if (reduce) {
       // single static frame
-      for (let k = 0; k < 60; k++) draw(k * 100);
-      cancelAnimationFrame(raf);
+      for (let k = 0; k < 60; k++) step();
     } else {
+      const draw = (t: number) => {
+        raf = requestAnimationFrame(draw);
+        if (document.hidden || t - last < 42) return;
+        last = t;
+        step();
+      };
       raf = requestAnimationFrame(draw);
     }
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [active]);
 
   return (
     <canvas
       ref={ref}
       aria-hidden="true"
       data-ascii="skip"
-      className="fixed inset-0 z-0 h-full w-full"
-      style={{ opacity: intense ? (light ? 0.8 : 0.9) : light ? 0.3 : 0.35, transition: "opacity .6s" }}
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full"
+      style={{ opacity: active ? (light ? 0.8 : 0.9) : 0, transition: "opacity .6s" }}
     />
   );
 }

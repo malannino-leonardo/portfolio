@@ -642,7 +642,7 @@ export const COMMANDS: Record<string, Cmd> = {
   contributions: { desc: "live GitHub contribution heatmap", run: () => <ContributionHeatmap /> },
   streak: { desc: "GitHub streaks & stats", run: () => <StreakStats /> },
   matrix: {
-    desc: "toggle the full-intensity rain",
+    desc: "toggle the matrix rain background",
     run: (_a, ctx) => (
       <Dim>
         {ctx.toggleMatrix() ? "wake up, Leonardo... (run `matrix` again to calm down)" : "back to the real world."}
