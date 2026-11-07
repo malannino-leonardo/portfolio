@@ -766,7 +766,15 @@ function tokenize(raw: string): string[] {
   return out;
 }
 
+/* Secret commands: not in COMMANDS, so they stay out of help, man and Tab completion. */
+const DESTRUCTIVE_RE =
+  /^(cd \/ && )?sudo rm -rf (\/\*|\.|\/bin|--no-preserve-root( \/\*?)?|\/\*? --no-preserve-root)$|^sudo find \/ -delete$/;
+const AURA_WORDS = new Set(["palle", "balle", "pisello", "aura"]);
+
 export function runCommand(raw: string, ctx: CommandContext): Output {
+  const line = raw.trim().replace(/\s+/g, " ").toLowerCase();
+  if (DESTRUCTIVE_RE.test(line)) return <span>Nice try buddy. What about you run it in your terminal now?</span>;
+  if (AURA_WORDS.has(line)) return <G>+10 punti aura</G>;
   const [name, ...args] = tokenize(raw.trim());
   const cmd = COMMANDS[name.toLowerCase()];
   if (!cmd) {
