@@ -8,6 +8,7 @@ import { usePreloader } from "@/components/preloader";
 import { config } from "@/data/config";
 import MatrixRain from "./matrix-rain";
 import BootScreen from "./boot-screen";
+import { playKeySound, preloadKeySound } from "./key-sound";
 import { Banner, COMMAND_NAMES, CommandContext, runCommand } from "./commands";
 import { HOME, display, getNode, resolveSegments } from "./fs";
 import "./terminal.css";
@@ -50,18 +51,31 @@ export default function Terminal() {
   const [phase, setPhase] = useState<"boot" | "ready">("boot");
   const [fastBoot, setFastBoot] = useState(false);
   const [instant, setInstant] = useState(false);
+  const visitId = useRef("");
+  const [keySound, setKeySound] = useState(true);
+  const [winState, setWinState] = useState<"normal" | "maximized" | "shaded">("normal");
 
   useEffect(() => {
     setMounted(true);
+    preloadKeySound();
+    try {
+      if (localStorage.getItem("term-key-sound") === "off") setKeySound(false);
+    } catch {
+      /* storage unavailable */
+    }
+    // identifies this visit, so StrictMode's dev re-run of this effect isn't taken for a repeat visit
+    if (!visitId.current) visitId.current = String(Date.now());
+    const bootVisit = visitId.current;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setInstant(true);
       setPhase("ready");
       return;
     }
-    // second visit in the same tab session: same sequence, ~3x quicker
+    // second visit in the same tab session: no power-on prompt, silent, ~3x quicker
     try {
-      if (sessionStorage.getItem("term-booted")) setFastBoot(true);
-      sessionStorage.setItem("term-booted", "1");
+      const seen = sessionStorage.getItem("term-booted");
+      if (seen && seen !== bootVisit) setFastBoot(true);
+      sessionStorage.setItem("term-booted", bootVisit);
     } catch {
       /* storage unavailable */
     }
@@ -221,7 +235,19 @@ export default function Terminal() {
     push(<span className="t-dim">{candidates.join("   ")}</span>);
   };
 
+  const toggleKeySound = () => {
+    setKeySound((on) => {
+      try {
+        localStorage.setItem("term-key-sound", on ? "off" : "on");
+      } catch {
+        /* storage unavailable */
+      }
+      return !on;
+    });
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (keySound && !e.metaKey && !(e.ctrlKey && e.key !== "c" && e.key !== "l")) playKeySound(e.key, e.repeat);
     if (e.key === "Enter") {
       e.preventDefault();
       const v = value;
@@ -278,12 +304,22 @@ export default function Terminal() {
       }}
     >
       <MatrixRain active={matrix} light={theme === "light"} />
-      {phase === "boot" && <BootScreen fast={fastBoot} onDone={() => setPhase("ready")} />}
+      {phase === "boot" && <BootScreen fast={fastBoot} sound={!fastBoot} onDone={() => setPhase("ready")} />}
       <div className={"term-wrap" + (phase === "boot" ? " is-booting" : instant ? "" : " is-powering-on")}>
         <div className="term-topbar">
           <Link href="/">← back to the 3D portfolio</Link>
           <span className="term-topright">
-            <span>{config.author}</span>
+            <span className="term-author">{config.author}</span>
+            <button
+              type="button"
+              className="term-theme"
+              onClick={toggleKeySound}
+              aria-pressed={keySound}
+              aria-label={keySound ? "Mute keyboard sound" : "Unmute keyboard sound"}
+              title="Keyboard sound"
+            >
+              {keySound ? "♪ keys on" : "♪ keys off"}
+            </button>
             <button
               type="button"
               className="term-theme"
@@ -296,12 +332,71 @@ export default function Terminal() {
           </span>
         </div>
 
-        <div className="term-window" role="application" aria-label="Interactive terminal">
-          <div className="term-titlebar">
-            <span className="term-dot" style={{ background: "#ff5f56" }} />
-            <span className="term-dot" style={{ background: "#ffbd2e" }} />
-            <span className="term-dot" style={{ background: "#27c93f" }} />
+        <div
+          className={"term-window" + (winState !== "normal" ? " is-" + winState : "")}
+          role="application"
+          aria-label="Interactive terminal"
+        >
+          {/* GNOME-style header bar: title centred, window controls on the right */}
+          <div
+            className="term-titlebar"
+            onDoubleClick={(e) => {
+              if ((e.target as HTMLElement).closest("button")) return;
+              setWinState((w) => (w === "maximized" ? "normal" : "maximized"));
+            }}
+          >
+            <span className="term-tb-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14">
+                <rect x="1.5" y="2.5" width="13" height="11" rx="2" fill="none" stroke="currentColor" />
+                <path d="M4 6l2.2 2L4 10M7.5 10.5h4" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
             <span className="term-title">leonardo@portfolio: {display(cwd)}</span>
+            <span className="term-wm">
+              <button
+                type="button"
+                className="term-wm-btn"
+                aria-label={winState === "shaded" ? "Restore" : "Minimize"}
+                title={winState === "shaded" ? "Restore" : "Minimize"}
+                onClick={() => setWinState((w) => (w === "shaded" ? "normal" : "shaded"))}
+              >
+                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                  <path d="M4.5 11.5h7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="term-wm-btn"
+                aria-label={winState === "maximized" ? "Restore" : "Maximize"}
+                title={winState === "maximized" ? "Restore" : "Maximize"}
+                onClick={() => setWinState((w) => (w === "maximized" ? "normal" : "maximized"))}
+              >
+                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                  {winState === "maximized" ? (
+                    <path
+                      d="M5.5 6.5h5v5h-5zM7 6.5V5h4.5v4.5H10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      strokeLinejoin="round"
+                    />
+                  ) : (
+                    <rect x="4.5" y="4.5" width="7" height="7" rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                  )}
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="term-wm-btn term-wm-close"
+                aria-label="Close terminal"
+                title="Close"
+                onClick={() => router.push("/")}
+              >
+                <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                  <path d="M5 5l6 6M11 5l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </span>
           </div>
           <div className="term-body" ref={bodyRef} aria-live="polite">
             <div>

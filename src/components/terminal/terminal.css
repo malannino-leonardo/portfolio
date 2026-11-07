@@ -170,25 +170,67 @@
   pointer-events: none;
   background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, var(--m-scan) 3px);
 }
+/* GNOME / libadwaita-style header bar */
 .term-titlebar {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
-  padding: 9px 14px;
+  height: 40px;
+  padding: 0 7px 0 12px;
   background: var(--m-title);
   border-bottom: 1px solid var(--m-frame);
+  user-select: none;
 }
-.term-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.term-tb-icon { display: flex; color: var(--m-muted); flex-shrink: 0; }
 .term-title {
   position: absolute;
-  inset: 0;
+  inset: 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--m-muted);
-  font-size: 12px;
+  color: var(--m-white);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   pointer-events: none;
+}
+.term-wm { position: relative; display: flex; align-items: center; gap: 10px; }
+.term-wm-btn {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--m-chip);
+  color: var(--m-white);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.term-wm-btn:hover { background: color-mix(in srgb, var(--m-green) 22%, transparent); }
+.term-wm-btn:focus-visible { outline: 1px dashed var(--m-green); outline-offset: 2px; }
+.term-wm-close:hover { background: var(--m-err); color: #fff; }
+
+/* window states */
+.term-window.is-shaded { height: auto; min-height: 0; }
+.term-window.is-shaded .term-titlebar { border-bottom: 0; }
+.term-window.is-shaded .term-body,
+.term-window.is-shaded .term-inputrow { display: none; }
+.term-window.is-maximized {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  height: 100dvh;
+  min-height: 0;
+  border-radius: 0;
+  border-width: 0;
+  background: var(--m-bg); /* opaque: nothing of the page shows through */
 }
 .term-body {
   position: relative;
@@ -277,6 +319,37 @@
   animation: term-boot-hint 0.6s ease 1.6s forwards;
 }
 @keyframes term-boot-hint { to { opacity: 0.7; } }
+/* "power on" prompt: the key / tap that unlocks the startup sound */
+.term-boot-power {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--m-muted);
+  background: none;
+  border: 0;
+  padding: 24px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  animation: term-power-in 0.8s ease 0.3s both;
+}
+.term-boot-power:hover,
+.term-boot-power:focus-visible { color: var(--m-green); outline: none; }
+.term-boot-power-icon {
+  font-size: 34px;
+  line-height: 1;
+  color: var(--m-green);
+  text-shadow: var(--m-glow);
+  animation: term-power-pulse 2.4s ease-in-out infinite;
+}
+@keyframes term-power-pulse { 50% { opacity: 0.45; } }
+@keyframes term-power-in { from { opacity: 0; } }
 /* CRT power-off when handing over to the UI */
 .term-boot.is-leaving {
   animation: term-crt-off 0.38s cubic-bezier(0.7, 0, 0.84, 0) forwards;
@@ -308,6 +381,9 @@
   /* 16px keeps iOS from zooming on focus */
   .term-inputrow { font-size: 16px; }
   .term-prompt-long { display: none; }
+  .term-title { inset: 0 104px 0 34px; justify-content: flex-start; font-size: 12px; }
+  .term-wm { gap: 6px; }
+  .term-author { display: none; }
   .term-window { height: calc(100dvh - 120px); min-height: 320px; }
   .term-root .t-row { flex-direction: column; gap: 0; margin-bottom: 0.2rem; }
   .term-root .t-long { flex-direction: row; }
@@ -318,5 +394,6 @@
 @media (prefers-reduced-motion: reduce) {
   .term-cursor,
   .term-boot-cursor,
+  .term-boot-power-icon,
   .term-wrap.is-powering-on { animation: none; }
 }
