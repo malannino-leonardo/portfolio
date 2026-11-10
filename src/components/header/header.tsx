@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import styles from "./style.module.scss";
@@ -17,6 +17,14 @@ interface HeaderProps {
 
 const Header = ({ loader }: HeaderProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  useEffect(() => {
+    if (!isActive) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsActive(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isActive]);
   return (
     <motion.header
       className={cn(
@@ -69,9 +77,11 @@ const Header = ({ loader }: HeaderProps) => {
               styles.el,
               "m-0 p-0 h-auto w-auto bg-transparent hover:bg-transparent flex items-center justify-center shrink-0 cursor-pointer"
             )}
-            aria-label="Toggle menu"
+            aria-label={isActive ? "Close menu" : "Open menu"}
+            aria-expanded={isActive}
+            aria-controls="site-navigation"
           >
-            <div className="relative hidden md:flex items-center">
+            <div className="relative hidden md:flex items-center" aria-hidden="true">
               <motion.p
                 variants={opacity}
                 animate={!isActive ? "open" : "closed"}
@@ -83,6 +93,7 @@ const Header = ({ loader }: HeaderProps) => {
               </motion.p>
             </div>
             <div
+              aria-hidden="true"
               className={`${styles.burger} ${isActive ? styles.burgerActive : ""
                 }`}
             ></div>

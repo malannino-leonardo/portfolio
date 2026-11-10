@@ -139,7 +139,7 @@ const AboutCard = ({
                 >
                   <Image
                     src={skill.icon}
-                    alt={skill.label}
+                    alt=""
                     width={16}
                     height={16}
                     className="object-contain"

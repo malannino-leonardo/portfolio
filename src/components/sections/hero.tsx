@@ -91,7 +91,7 @@ const HeroSection = () => {
                 >
                   <BoxReveal delay={2} width="100%">
                     <Button className="flex items-center gap-2 w-full">
-                      <File size={24} />
+                      <File size={24} aria-hidden="true" />
                       <p>Resume</p>
                     </Button>
                   </BoxReveal>
@@ -116,27 +116,33 @@ const HeroSection = () => {
                     <Link
                       href={config.social.github}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub (opens in a new tab)"
                       className="cursor-can-hover"
                     >
                       <Button variant={"outline"}>
-                        <SiGithub size={24} />
+                        <SiGithub size={24} aria-hidden="true" />
                       </Button>
                     </Link>
                     <Link
                       href={config.social.linkedin}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn (opens in a new tab)"
                       className="cursor-can-hover"
                     >
                       <Button variant={"outline"}>
-                        <SiLinkedin size={24} />
+                        <SiLinkedin size={24} aria-hidden="true" />
                       </Button>
                     </Link>
                     <Link
                       href={config.social.instagram}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram (opens in a new tab)"
                     >
                       <Button variant={"outline"}>
-                        <SiInstagram size={24} />
+                        <SiInstagram size={24} aria-hidden="true" />
                       </Button>
                     </Link>
                   </div>

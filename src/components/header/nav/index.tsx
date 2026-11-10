@@ -25,7 +25,9 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
   });
 
   return (
-    <motion.div
+    <motion.nav
+      id="site-navigation"
+      aria-label="Main"
       variants={height}
       initial="initial"
       animate="enter"
@@ -48,7 +50,7 @@ const Index: React.FC<IndexProps> = ({ setIsActive }) => {
         />
         {/* <p>{links[selectedLink.index].thumbnail}</p> */}
       </div>
-    </motion.div>
+    </motion.nav>
   );
 };
 

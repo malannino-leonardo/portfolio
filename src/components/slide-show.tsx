@@ -48,7 +48,7 @@ const SlideShow = ({ images }: { images: string[] }) => {
               >
                 <Image
                   src={image}
-                  alt="screenshot"
+                  alt="Project screenshot"
                   width={1000}
                   height={1000}
                   className="w-full rounded-lg h-auto"
@@ -70,7 +70,7 @@ const SlideShow = ({ images }: { images: string[] }) => {
                 <div className="relative w-full h-full">
                   <Image
                     src={image}
-                    alt="screenshot"
+                    alt="Project screenshot"
                     fill
                     className="object-contain"
                     sizes="95vw"

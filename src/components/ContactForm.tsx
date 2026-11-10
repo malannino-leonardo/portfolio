@@ -77,11 +77,14 @@ const ContactForm = () => {
             placeholder="Your Name"
             type="text"
             required
+            aria-invalid={!isFullNameValid}
+            aria-describedby={!isFullNameValid ? "fullname-error" : undefined}
+            autoComplete="name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
           {!isFullNameValid && (
-            <p className="text-[10px] text-red-500">
+            <p id="fullname-error" role="alert" className="text-xs text-red-600 dark:text-red-400">
               Minimum 2 characters required
             </p>
           )}
@@ -93,6 +96,7 @@ const ContactForm = () => {
             placeholder="you@example.com"
             type="email"
             required
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -104,16 +108,18 @@ const ContactForm = () => {
           placeholder="Tell me about about your project,"
           id="content"
           required
+          aria-invalid={!isMessageValid}
+          aria-describedby="content-hint"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <div className="flex justify-between items-center">
           {!isMessageValid ? (
-            <p className="text-[10px] text-red-500">
+            <p id="content-hint" role="alert" className="text-xs text-red-600 dark:text-red-400">
               Minimum 10 characters required ({message.length}/10)
             </p>
           ) : (
-            <p className="text-sm text-muted-foreground">
+            <p id="content-hint" className="text-sm text-muted-foreground">
               Your information will remain confidential and secure.
             </p>
           )}

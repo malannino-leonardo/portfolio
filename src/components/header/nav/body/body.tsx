@@ -66,6 +66,7 @@ export default function Body({
             href={href}
             target={target}
             className="cursor-can-hover rounded-lg"
+            aria-current={currentHref === href ? "page" : undefined}
           >
             <motion.p
               className={cn(

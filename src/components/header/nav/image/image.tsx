@@ -23,7 +23,8 @@ const Index: React.FC<IndexProps> = ({ src, isActive }) => {
         width={400}
         height={400}
         className="my-32 w-full h-auto object-cover"
-        alt={"Image"}
+        alt=""
+        aria-hidden="true"
         // priority={true}
       />
     </motion.div>
