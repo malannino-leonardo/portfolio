@@ -17,7 +17,7 @@ import React, { useEffect, useRef, useState } from "react";
  */
 
 const SOUND_SRC = "/sounds/boot.mp3";
-const VOLUME = 0.7;
+const VOLUME = 0.3;
 // timeline, in seconds of /sounds/boot.mp3
 const T_SPIN = 1.55;
 const T_KERNEL_END = 4.7;
