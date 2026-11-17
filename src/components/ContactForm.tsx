@@ -8,11 +8,13 @@ import { cn } from "@/lib/utils";
 import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import { CONTACT_LIMITS } from "@/lib/contact-schema";
 
 const ContactForm = () => {
   const [fullName, setFullName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [website, setWebsite] = React.useState(""); // honeypot
   const [loading, setLoading] = React.useState(false);
 
   const isFullNameValid = fullName.length >= 2 || fullName.length === 0;
@@ -37,10 +39,23 @@ const ContactForm = () => {
           fullName,
           email,
           message,
+          website,
         }),
       });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 429) {
+        toast({
+          title: "Slow down",
+          description: "You've sent too many messages. Please try again later.",
+          className: cn(
+            "top-20 w-full flex justify-center fixed md:max-w-7xl md:top-20 md:right-4"
+          ),
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+      if (!res.ok || data.error) throw new Error(data.error ?? "Request failed");
       toast({
         title: "Thank you!",
         description: "I'll get back to you as soon as possible.",
@@ -69,6 +84,19 @@ const ContactForm = () => {
   };
   return (
     <form className="w-full mx-auto sm:mt-4" onSubmit={handleSubmit}>
+      {/* Honeypot: invisible to people, bots tend to fill it in. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
         <LabelInputContainer>
           <Label htmlFor="fullname">Full name</Label>
@@ -80,6 +108,7 @@ const ContactForm = () => {
             aria-invalid={!isFullNameValid}
             aria-describedby={!isFullNameValid ? "fullname-error" : undefined}
             autoComplete="name"
+            maxLength={CONTACT_LIMITS.fullName.max}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
@@ -97,6 +126,7 @@ const ContactForm = () => {
             type="email"
             required
             autoComplete="email"
+            maxLength={CONTACT_LIMITS.email.max}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -108,6 +138,7 @@ const ContactForm = () => {
           placeholder="Tell me about about your project,"
           id="content"
           required
+          maxLength={CONTACT_LIMITS.message.max}
           aria-invalid={!isMessageValid}
           aria-describedby="content-hint"
           value={message}
