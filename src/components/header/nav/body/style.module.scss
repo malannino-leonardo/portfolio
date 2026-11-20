@@ -26,8 +26,8 @@
     margin-top: 80px;
 
     p {
-      font-size: 5vw;
-      padding-right: 2vw;
+      font-size: min(5vw, 96px);
+      padding-right: min(2vw, 38px);
     }
   }
 }
